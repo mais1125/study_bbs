@@ -1,0 +1,45 @@
+services:
+  web:
+    container_name: study_bbs_web
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    cap_add:
+      - NET_ADMIN
+    sysctls:
+      net.ipv6.conf.all.disable_ipv6: 0
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        NODE_VAR: 14
+        USER_SID: root
+        USER_UID: 1000
+        USER_GID: 1000
+    volumes:
+      - ..:/workspace:cached
+      - ~/.gitconfig:/root/.gitconfig
+      - ~/.netrc:/root/.netrc
+      - ~/.ssh:/root/.ssh
+    command: sleep infinity
+  mysql:
+    container_name: study_bbs_mysql
+    image: mysql:5.7
+    environment:
+      MYSQL_DATABASE: demo
+      MYSQL_ROOT_USER: root
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USER: user
+      MYSQL_PASSWORD: user
+      TZ: "Asia/Tokyo"
+    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_general_ci --sql_mode=""
+    volumes:
+      - ../volumes/mysql:/var/lib/mysql
+    ports:
+      - 3306:3306
+  redis:
+    container_name: study_bbs_redis
+    image: redis:6.2.4
+    volumes:
+      - ../volumes/redis:/var/lib/redis
+    ports:
+      - 6379:6379

@@ -1,0 +1,37 @@
+{
+  "dockerComposeFile": "docker-compose.yml",
+  "service": "web",
+  "workspaceFolder": "/workspace",
+  "remoteUser": "node",
+  "forwardPorts": [
+    3000,
+    3333,
+    4200
+  ],
+  "settings": {
+    "#terminal.integrated.defaultProfile.linux#": "/bin/bash",
+    "#terminal.integrated.defaultProfile.windows#": "/bin/bash",
+    "#terminal.integrated.defaultProfile.osx#": "/bin/bash",
+    "files.trimTrailingWhitespace": true,
+    "explorer.compactFolders": false,
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": true
+    }
+  },
+  "extensions": [
+    "eamodio.gitlens",
+    "mhutchie.git-graph",
+    "msjsdiag.debugger-for-chrome",
+    "angular.ng-template",
+    "ghaschel.vscode-angular-html",
+    "humao.rest-client",
+    "esbenp.prettier-vscode",
+    "dbaeumer.vscode-eslint",
+    "cweijan.vscode-redis-client",
+    "coenraads.bracket-pair-colorizer",
+    "johnpapa.angular2",
+    "kumar-harsh.graphql-for-vscode"
+  ]
+}
