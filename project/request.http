@@ -6,15 +6,92 @@
 # Message
 #-------------------------
 ###
-# CREATE 新規投稿, 編集
+# CREATE スレッド新規投稿
 POST http://localhost:3333/api/v1/message HTTP/1.1
 content-type: application/json
 
+{
+
+    "title": "test",
+    "cid":{"id":2},
+    "name":"テストさん",
+    "text": "煉獄さん大好き！！！憧れ",
+    "editkey":"1122"
+}
+
+###
+# CREATE メッセージ新規投稿
+POST http://localhost:3333/api/v1/createmessage HTTP/1.1
+content-type: application/json
 
 {
-    "title": "おもしろい記事だよ",
-    "cid":{"id":1},
-    "name":"ぱぱりぬ",
-    "text": "ふとんがふっとんだー",
+    "tid":{"id":1},
+    "text":"こうきっちょかわゆー",
+    "name":"ままりぬ",
+    "editkey":"1111"
+}
+
+
+###
+# READ thread 個別読み込み
+GET  http://localhost:3333/api/v1/thread HTTP/1.1
+content-type: application/json
+
+{
+
+    "id": 1
+}
+
+###
+# READ thread すべて読み込み
+GET  http://localhost:3333/api/v1/threadall HTTP/1.1
+content-type: application/json
+###
+# READ category カテゴリーごとに読み込み
+GET  http://localhost:3333/api/v1/category HTTP/1.1
+content-type: application/json
+
+
+###
+# READ Message メッセージごとに読み込み
+GET  http://localhost:3333/api/v1/findmessage HTTP/1.1
+content-type: application/json
+
+{
+
+    "id": 2
+}
+
+###
+# UPDATE Message メッセージを更新
+POST   http://localhost:3333/api/v1/update HTTP/1.1
+content-type: application/json
+
+{
+
+   "id":8,
+    "name":"こうき隊士",
+    "text": "煉獄さん大好き！炎の呼吸！！！",
     "editkey":"1122"
-},
+}
+
+###
+# DELETE Thread スレッド削除
+GET  http://localhost:3333/api/v1/delete HTTP/1.1
+content-type: application/json
+
+{
+    "id": 15,
+    "mid":6
+}
+
+
+###
+# DELETE Message メッセージ削除
+GET  http://localhost:3333/api/v1/deleteres HTTP/1.1
+content-type: application/json
+
+{
+
+    "id": 1
+}

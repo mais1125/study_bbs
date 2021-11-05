@@ -1,5 +1,10 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
-import { Category, CATEGORY_TYPE } from '../../interface/category.interface';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { ThreadEntity } from '.';
+import {
+  Category,
+  CATEGORY_TYPE,
+} from '../../interface/entities/category.interface';
+import { Thread } from '../../interface/entities/thread.interface';
 
 @Entity('Categories')
 export class CategoryEntity implements Category {
@@ -8,4 +13,7 @@ export class CategoryEntity implements Category {
 
   @Column('enum', { comment: 'カテゴリー', enum: CATEGORY_TYPE })
   name: typeof CATEGORY_TYPE[keyof typeof CATEGORY_TYPE];
+
+  @OneToMany(() => ThreadEntity, (thread) => thread.cid)
+  thread?: Thread[];
 }

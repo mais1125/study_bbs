@@ -1,5 +1,6 @@
 import { ConnectionOptions } from 'typeorm';
 import * as entities from './entities';
+import * as migrations from './migrations';
 
 const TypeOrmOptions: ConnectionOptions = {
   type: 'mysql',
@@ -9,9 +10,10 @@ const TypeOrmOptions: ConnectionOptions = {
   password: process.env.DB_PASSWORD,
   database: process.env.DB_DATABASE,
   entities: Object.values(entities),
+  migrations: Object.values(migrations),
   synchronize: true,
-  migrations: [__dirname + '/migrations/*.ts'],
   migrationsRun: true,
+  logging: true,
   cli: {
     migrationsDir: __dirname + '/migrations',
   },

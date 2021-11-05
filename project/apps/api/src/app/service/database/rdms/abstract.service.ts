@@ -21,10 +21,20 @@ export abstract class AbstractRDBMSService<
   }
 
   /**
-   * データ取得(Read)
+   * データを1件だけ個別取得(read)
    */
-  find(params?: Partial<Entity>): Promise<Entity[]> {
-    return getRepository<Entity>(this.entityName).find(params);
+  findOne(
+    params?: Partial<Entity>,
+    options?: FindOneOptions<Entity>
+  ): Promise<Entity> {
+    return getRepository<Entity>(this.entityName).findOne(params, options);
+  }
+
+  /**
+   * データを全て取得(read)
+   */
+  find(options?: FindOneOptions<Entity>): Promise<Entity[]> {
+    return getRepository<Entity>(this.entityName).find(options);
   }
 
   /**
@@ -39,15 +49,5 @@ export abstract class AbstractRDBMSService<
    */
   delete(params: Entity): Promise<Entity> {
     return getRepository<Entity>(this.entityName).remove(params);
-  }
-
-  /**
-   * データを1件だけ取得
-   */
-  findOne(
-    params?: Partial<Entity | string>,
-    options?: FindOneOptions<Entity>
-  ): Promise<Entity> {
-    return getRepository<Entity>(this.entityName).findOne(params, options);
   }
 }
