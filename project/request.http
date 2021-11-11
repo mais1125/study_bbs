@@ -12,8 +12,8 @@ content-type: application/json
 
 {
 
-    "title": "てすと３",
-    "cid":{"id":3},
+    "title": "てすと1",
+    "cid":{"id":1},
     "name":"テストさん",
     "text": "テスト３",
     "editkey":"1122"
@@ -25,7 +25,7 @@ POST http://localhost:3333/api/v1/createmessage HTTP/1.1
 content-type: application/json
 
 {
-    "tid":{"id":5},
+    "tid":{"id":3},
     "text":"３",
     "name":"3",
     "editkey":"1111"
@@ -69,9 +69,9 @@ content-type: application/json
 
 {
 
-   "id":12,
-    "name":"こうき隊士",
-    "text": "煉獄さん大好き！炎の呼吸！！！",
+   "id":4,
+    "name":"aaaaa",
+    "text": "iiiiiii",
     "editkey":"1122"
 }
 
@@ -92,6 +92,6 @@ content-type: application/json
 
 {
 
-    "id": 64,
-    "editkey":"111"
+    "id": 7,
+    "editkey":"1111"
 }

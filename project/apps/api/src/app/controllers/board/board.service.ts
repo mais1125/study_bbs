@@ -1,4 +1,8 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import {
+  BadRequestException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { FindOneOptions } from 'typeorm';
 // entitysInterface
 import { Category } from '../../interface/entities/category.interface';
@@ -86,19 +90,23 @@ export class BoardService {
   }
 
   /** メッセージを取得 */
-  async findMessage(req: MessageId): Promise<Message> {
+  async findMessage(req: Message): Promise<Message> {
     const options = { relations: ['tid'] };
-    return await this.messageEntityService.findOne(req, options);
+    const res = await this.messageEntityService.findOne(req, options);
+    return res;
   }
 
   /**
    * メッセージを更新
    */
   async updateMessage(req: Message): Promise<Message> {
-    const editMessage = await this.findMessage(req);
-    editMessage.name = req.name;
-    editMessage.text = req.text;
-    return this.messageEntityService.update(editMessage);
+    const editMessage = await this.findMessage(req.id);
+    if (editMessage.editkey === req.editkey) {
+      editMessage.name = req.name;
+      editMessage.text = req.text;
+      return await this.messageEntityService.update(editMessage);
+    }
+    throw new BadRequestException();
   }
 
   /**
@@ -124,7 +132,7 @@ export class BoardService {
         await this.messageEntityService.delete(req);
       }
     } else {
-      throw new NotFoundException();
+      throw new BadRequestException();
     }
     return true;
   }
