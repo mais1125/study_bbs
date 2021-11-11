@@ -42,10 +42,10 @@ export class BoardController {
     return this.boardService.findMessage(req);
   }
 
-  // @Post('update')
-  // updateMessage(@Body() req: Message): Promise<Message> {
-  //   return this.boardService.updateMessage(req);
-  // }
+  @Post('update')
+  updateMessage(@Body() req: Message): Promise<Message> {
+    return this.boardService.updateMessage(req);
+  }
 
   @Get('delete')
   delete(@Body() req: Thread): Promise<Thread> {

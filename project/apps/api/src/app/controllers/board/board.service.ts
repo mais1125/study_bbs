@@ -1,12 +1,15 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { FindOneOptions, MaxKey } from 'typeorm';
-import { BoardCreate } from '../../interface/controller/board.interface';
-import { MessageId } from '../../interface/controller/messageid.interface';
-import { ResCreate } from '../../interface/controller/res.interface';
-import { ThreadId } from '../../interface/controller/threadid.interface';
+import { FindOneOptions } from 'typeorm';
+// entitysInterface
 import { Category } from '../../interface/entities/category.interface';
 import { Message } from '../../interface/entities/message.interface';
 import { Thread } from '../../interface/entities/thread.interface';
+// controllerInterface
+import { BoardCreate } from '../../interface/controller/board.interface';
+import { ResCreate } from '../../interface/controller/res.interface';
+import { MessageId } from '../../interface/controller/messageid.interface';
+import { ThreadId } from '../../interface/controller/threadid.interface';
+// service
 import { CategoryEntityService } from '../../service/database/rdms/entities/category.service';
 import { MessageEntityService } from '../../service/database/rdms/entities/massage.service';
 import { ThreadEntityService } from '../../service/database/rdms/entities/thread.service';
@@ -57,9 +60,6 @@ export class BoardService {
   async findOne(req: ThreadId): Promise<Thread> {
     const options: FindOneOptions<Thread> = {
       relations: ['cid', 'message'],
-      // order: {
-      //   message: 'ASC',
-      // },
     };
     const res = await this.threadEntityService.findOne(req, options);
     if (!res) {
@@ -94,15 +94,12 @@ export class BoardService {
   /**
    * メッセージを更新
    */
-  // async updateMessage(req: Message): Promise<Message> {
-  //   const item: Message = await this.findMessage(req.id);
-  //   if (!item) {
-  //     throw new NotFoundException();
-  //   }
-  //   item.name = req.name;
-  //   item.text = req.text;
-  //   return this.messageEntityService.update(item);
-  // }
+  async updateMessage(req: Message): Promise<Message> {
+    const editMessage = await this.findMessage(req);
+    editMessage.name = req.name;
+    editMessage.text = req.text;
+    return this.messageEntityService.update(editMessage);
+  }
 
   /**
    * スレッド削除
@@ -116,15 +113,19 @@ export class BoardService {
    */
   async deleteRes(req: Message): Promise<any> {
     // 対象のスレッドを取得
-    const thread = await this.findOne(req);
-    return;
-    // 対象スレッドの一番若いメッセージIDを取得
-
-    // if (req.id === 1) {
-    //   const del = await this.findMessage(req);
-    //   this.delete(del.tid);
-    // } else {
-    //   return await this.messageEntityService.delete(req);
-    // }
+    const message = await this.findMessage(req);
+    const thread = await this.findOne(message.tid);
+    // 対象スレッドの一番若いメッセージIDとリクエストIDが同じならばスレッドも同時に削除
+    if (message.editkey === req.editkey) {
+      if (thread.message[0].id === req.id) {
+        await this.delete(thread);
+      } else {
+        // 配列の１番初めでなければ該当のレスのみ１件削除
+        await this.messageEntityService.delete(req);
+      }
+    } else {
+      throw new NotFoundException();
+    }
+    return true;
   }
 }

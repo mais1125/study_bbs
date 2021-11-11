@@ -12,10 +12,10 @@ content-type: application/json
 
 {
 
-    "title": "test",
-    "cid":{"id":2},
+    "title": "てすと３",
+    "cid":{"id":3},
     "name":"テストさん",
-    "text": "煉獄さん大好き！！！憧れ",
+    "text": "テスト３",
     "editkey":"1122"
 }
 
@@ -25,9 +25,9 @@ POST http://localhost:3333/api/v1/createmessage HTTP/1.1
 content-type: application/json
 
 {
-    "tid":{"id":1},
-    "text":"こうきっちょかわゆー",
-    "name":"ままりぬ",
+    "tid":{"id":5},
+    "text":"３",
+    "name":"3",
     "editkey":"1111"
 }
 
@@ -59,7 +59,7 @@ content-type: application/json
 
 {
 
-    "id": 2
+    "id": 3
 }
 
 ###
@@ -69,7 +69,7 @@ content-type: application/json
 
 {
 
-   "id":8,
+   "id":12,
     "name":"こうき隊士",
     "text": "煉獄さん大好き！炎の呼吸！！！",
     "editkey":"1122"
@@ -81,8 +81,7 @@ GET  http://localhost:3333/api/v1/delete HTTP/1.1
 content-type: application/json
 
 {
-    "id": 15,
-    "mid":6
+    "id": 1
 }
 
 
@@ -93,5 +92,6 @@ content-type: application/json
 
 {
 
-    "id": 1
+    "id": 64,
+    "editkey":"111"
 }

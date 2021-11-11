@@ -11,7 +11,7 @@ import { Thread } from '../../interface/entities/thread.interface';
 import { AbstractEntity } from './abstract';
 
 @Entity('Messages')
-export class MessageEntity extends AbstractEntity implements Message {
+export class MessageEntity implements Message {
   @PrimaryGeneratedColumn({ comment: 'レスID' })
   id?: number;
 
