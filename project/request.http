@@ -25,7 +25,7 @@ POST http://localhost:3333/api/v1/createmessage HTTP/1.1
 content-type: application/json
 
 {
-    "tid":{"id":3},
+    "tid":{"id":1},
     "text":"３",
     "name":"3",
     "editkey":"1111"
@@ -38,7 +38,6 @@ GET  http://localhost:3333/api/v1/thread HTTP/1.1
 content-type: application/json
 
 {
-
     "id": 1
 }
 
@@ -69,10 +68,10 @@ content-type: application/json
 
 {
 
-   "id":4,
+   "id":7,
     "name":"aaaaa",
     "text": "iiiiiii",
-    "editkey":"1122"
+    "editkey":"1111"
 }
 
 ###

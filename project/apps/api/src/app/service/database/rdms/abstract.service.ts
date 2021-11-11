@@ -23,10 +23,7 @@ export abstract class AbstractRDBMSService<
   /**
    * データを1件だけ個別取得(read)
    */
-  findOne(
-    params?: Partial<Entity>,
-    options?: FindOneOptions<Entity>
-  ): Promise<Entity> {
+  findOne(params?: number, options?: FindOneOptions<Entity>): Promise<Entity> {
     return getRepository<Entity>(this.entityName).findOne(params, options);
   }
 

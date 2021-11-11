@@ -65,7 +65,7 @@ export class BoardService {
     const options: FindOneOptions<Thread> = {
       relations: ['cid', 'message'],
     };
-    const res = await this.threadEntityService.findOne(req, options);
+    const res = await this.threadEntityService.findOne(req.id, options);
     if (!res) {
       throw new NotFoundException();
     }
@@ -90,7 +90,7 @@ export class BoardService {
   }
 
   /** メッセージを取得 */
-  async findMessage(req: Message): Promise<Message> {
+  async findMessage(req: number): Promise<Message> {
     const options = { relations: ['tid'] };
     const res = await this.messageEntityService.findOne(req, options);
     return res;
@@ -101,12 +101,15 @@ export class BoardService {
    */
   async updateMessage(req: Message): Promise<Message> {
     const editMessage = await this.findMessage(req.id);
-    if (editMessage.editkey === req.editkey) {
-      editMessage.name = req.name;
-      editMessage.text = req.text;
-      return await this.messageEntityService.update(editMessage);
+    if (editMessage.editkey !== req.editkey) {
+      throw new BadRequestException();
     }
-    throw new BadRequestException();
+    const updateMassage: Partial<Message> = {
+      id: editMessage.id,
+      text: req.text,
+      name: req.name,
+    };
+    return await this.messageEntityService.update(updateMassage as Message);
   }
 
   /**
@@ -121,7 +124,7 @@ export class BoardService {
    */
   async deleteRes(req: Message): Promise<any> {
     // 対象のスレッドを取得
-    const message = await this.findMessage(req);
+    const message = await this.findMessage(req.id);
     const thread = await this.findOne(message.tid);
     // 対象スレッドの一番若いメッセージIDとリクエストIDが同じならばスレッドも同時に削除
     if (message.editkey === req.editkey) {
