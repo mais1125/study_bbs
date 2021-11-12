@@ -7,6 +7,13 @@
       "name": "API",
       "localRoot": "${workspaceFolder}/project", // 1階層下げた時に必要
       "port": 9229
+    },
+    {
+      "type": "chrome",
+      "request": "attach",
+      "name": "web",
+      "port": 9222,
+      "url": "http://localhost:4200"
     }
   ]
 }

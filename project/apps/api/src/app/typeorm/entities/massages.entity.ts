@@ -8,7 +8,6 @@ import {
 import { ThreadEntity } from '.';
 import { Message } from '../../interface/entities/message.interface';
 import { Thread } from '../../interface/entities/thread.interface';
-import { AbstractEntity } from './abstract';
 
 @Entity('Messages')
 export class MessageEntity implements Message {

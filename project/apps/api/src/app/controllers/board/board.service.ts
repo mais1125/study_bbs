@@ -101,9 +101,11 @@ export class BoardService {
    */
   async updateMessage(req: Message): Promise<Message> {
     const editMessage = await this.findMessage(req.id as MessageId);
+    // editkyeが一致しているか照合
     if (editMessage.editkey !== req.editkey) {
       throw new BadRequestException();
     }
+    // editkyeが一致していれば新たに値を書き込む(IDが一致する値に上書き)
     const updateMassage: Partial<Message> = {
       id: editMessage.id,
       text: req.text,
@@ -126,6 +128,7 @@ export class BoardService {
     // 対象のスレッドを取得
     const message = await this.findMessage(req.id as MessageId);
     const thread = await this.findOne(message.tid);
+    // editkyeが一致しているか照合
     if (message.editkey !== req.editkey) {
       throw new BadRequestException();
     }
