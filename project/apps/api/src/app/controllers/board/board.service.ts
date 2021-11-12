@@ -90,9 +90,9 @@ export class BoardService {
   }
 
   /** メッセージを取得 */
-  async findMessage(req: number): Promise<Message> {
+  async findMessage(req: MessageId): Promise<Message> {
     const options = { relations: ['tid'] };
-    const res = await this.messageEntityService.findOne(req, options);
+    const res = await this.messageEntityService.findOne(req as number, options);
     return res;
   }
 
@@ -100,7 +100,7 @@ export class BoardService {
    * メッセージを更新
    */
   async updateMessage(req: Message): Promise<Message> {
-    const editMessage = await this.findMessage(req.id);
+    const editMessage = await this.findMessage(req.id as MessageId);
     if (editMessage.editkey !== req.editkey) {
       throw new BadRequestException();
     }
@@ -122,21 +122,20 @@ export class BoardService {
   /**
    * メッセージ削除
    */
-  async deleteRes(req: Message): Promise<any> {
+  async deleteRes(req: Message): Promise<Message> {
     // 対象のスレッドを取得
-    const message = await this.findMessage(req.id);
+    const message = await this.findMessage(req.id as MessageId);
     const thread = await this.findOne(message.tid);
-    // 対象スレッドの一番若いメッセージIDとリクエストIDが同じならばスレッドも同時に削除
-    if (message.editkey === req.editkey) {
-      if (thread.message[0].id === req.id) {
-        await this.delete(thread);
-      } else {
-        // 配列の１番初めでなければ該当のレスのみ１件削除
-        await this.messageEntityService.delete(req);
-      }
-    } else {
+    if (message.editkey !== req.editkey) {
       throw new BadRequestException();
     }
-    return true;
+    // 対象スレッドの一番若いメッセージIDとリクエストIDが同じならばスレッドも同時に削除
+    if (thread.message[0].id === req.id) {
+      await this.delete(thread);
+    } else {
+      // 配列の１番初めでなければ該当のレスのみ１件削除
+      await this.messageEntityService.delete(req);
+    }
+    return;
   }
 }

@@ -15,7 +15,7 @@ content-type: application/json
     "title": "てすと1",
     "cid":{"id":1},
     "name":"テストさん",
-    "text": "テスト３",
+    "text": "テスト",
     "editkey":"1122"
 }
 
@@ -25,7 +25,7 @@ POST http://localhost:3333/api/v1/createmessage HTTP/1.1
 content-type: application/json
 
 {
-    "tid":{"id":1},
+    "tid":{"id":5},
     "text":"３",
     "name":"3",
     "editkey":"1111"
@@ -33,12 +33,12 @@ content-type: application/json
 
 
 ###
-# READ thread 個別読み込み
+# READ threadごとに読み込み
 GET  http://localhost:3333/api/v1/thread HTTP/1.1
 content-type: application/json
 
 {
-    "id": 1
+    "id": 5
 }
 
 ###
@@ -68,10 +68,10 @@ content-type: application/json
 
 {
 
-   "id":7,
+   "id":10,
     "name":"aaaaa",
     "text": "iiiiiii",
-    "editkey":"1111"
+    "editkey":"2111"
 }
 
 ###
@@ -92,5 +92,5 @@ content-type: application/json
 {
 
     "id": 7,
-    "editkey":"1111"
+    "editkey":"1122"
 }

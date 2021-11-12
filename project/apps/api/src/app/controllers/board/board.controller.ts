@@ -1,5 +1,6 @@
 import { Body, Controller, Get, Post } from '@nestjs/common';
 import { BoardCreate } from '../../interface/controller/board.interface';
+import { MessageId } from '../../interface/controller/messageid.interface';
 import { ResCreate } from '../../interface/controller/res.interface';
 import { ThreadId } from '../../interface/controller/threadid.interface';
 import { Category } from '../../interface/entities/category.interface';
@@ -37,7 +38,7 @@ export class BoardController {
   }
 
   @Get('findmessage')
-  findMessage(@Body() req: Message): Promise<Message> {
+  findMessage(@Body() req: MessageId): Promise<Message> {
     return this.boardService.findMessage(req);
   }
 
