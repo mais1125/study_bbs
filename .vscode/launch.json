@@ -11,9 +11,10 @@
     {
       "type": "chrome",
       "request": "attach",
-      "name": "web",
+      "name": "WEB",
+      "webRoot": "${workspaceFolder}/project",
       "port": 9222,
-      "url": "http://localhost:4200"
+      "url": "http://localhost:4200/*"
     }
   ]
 }
