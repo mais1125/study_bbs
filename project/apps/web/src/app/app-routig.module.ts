@@ -21,19 +21,6 @@ const routes: Routes = [
     path: PAGE_URI.CATEGORY,
     component: CategoryComponent,
   },
-  //   {
-  //     path: PAGE_URI.MAIN,
-  //     component: MainComponent,
-  //     children: [
-  //       {
-  //         path: PAGE_URI.CATEGORY,
-  //         loadChildren: () =>
-  //           import('./pages/category/category-routing.module').then(
-  //             (m) => m.CategoryRoutingModule
-  //           ),
-  //       },
-  //     ],
-  //   },
 ];
 
 @NgModule({

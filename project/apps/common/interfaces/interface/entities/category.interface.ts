@@ -1,3 +1,5 @@
+import { Thread } from './thread.interface';
+
 /** カテゴリータイプ */
 export const CATEGORY_TYPE = {
   /** カテゴリー A */
@@ -13,4 +15,6 @@ export interface Category {
   id?: number;
   /** カテゴリー */
   name: typeof CATEGORY_TYPE[keyof typeof CATEGORY_TYPE];
+  /** スレッド */
+  thread?: Thread[];
 }

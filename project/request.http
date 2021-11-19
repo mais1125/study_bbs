@@ -59,7 +59,6 @@ GET  http://localhost:3333/api/v1/category?id=3 HTTP/1.1
 content-type: application/json
 
 
-
 ###
 # READ Message メッセージごとに読み込み
 GET  http://localhost:3333/api/v1/findmessage HTTP/1.1

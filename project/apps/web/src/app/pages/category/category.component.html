@@ -1,1 +1,4 @@
-{{ category.name }}
+<h2>{{ category.name }}</h2>
+<div *ngFor="let thread of category.thread">
+  <p>{{ thread.title }}</p>
+</div>

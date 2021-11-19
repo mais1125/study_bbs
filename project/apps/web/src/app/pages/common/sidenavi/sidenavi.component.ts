@@ -32,9 +32,9 @@ export class SidenaviComponent implements OnInit {
   /**
    * カテゴリーページへ遷移
    */
-  onClick(cid: Category): void {
+  onClick(id: Category): void {
     this.router.navigate(['./category'], {
-      queryParams: { cid: cid.id },
+      queryParams: { id: id.id },
       queryParamsHandling: 'merge',
     });
   }
