@@ -3,8 +3,8 @@ import { ThreadEntity } from '.';
 import {
   Category,
   CATEGORY_TYPE,
-} from '../../interface/entities/category.interface';
-import { Thread } from '../../interface/entities/thread.interface';
+} from '../../../../../common/interfaces/interface/entities/category.interface';
+import { Thread } from '../../../../../common/interfaces/interface/entities/thread.interface';
 
 @Entity('Categories')
 export class CategoryEntity implements Category {

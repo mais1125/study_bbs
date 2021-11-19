@@ -1,11 +1,11 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
-import { BoardCreate } from '../../interface/controller/board.interface';
-import { MessageId } from '../../interface/controller/messageid.interface';
-import { ResCreate } from '../../interface/controller/res.interface';
-import { ThreadId } from '../../interface/controller/threadid.interface';
-import { Category } from '../../interface/entities/category.interface';
-import { Message } from '../../interface/entities/message.interface';
-import { Thread } from '../../interface/entities/thread.interface';
+import { Body, Controller, Get, Post, Query } from '@nestjs/common';
+import { BoardCreate } from '../../../../../common/interfaces/interface/controller/board.interface';
+import { MessageId } from '../../../../../common/interfaces/interface/controller/messageid.interface';
+import { ResCreate } from '../../../../../common/interfaces/interface/controller/res.interface';
+import { ThreadId } from '../../../../../common/interfaces/interface/controller/threadid.interface';
+import { Category } from '../../../../../common/interfaces/interface/entities/category.interface';
+import { Message } from '../../../../../common/interfaces/interface/entities/message.interface';
+import { Thread } from '../../../../../common/interfaces/interface/entities/thread.interface';
 import { BoardService } from './board.service';
 
 @Controller()
@@ -32,9 +32,14 @@ export class BoardController {
     return this.boardService.findAll();
   }
 
+  @Get('categories')
+  Categories(): Promise<Category[]> {
+    return this.boardService.Categories();
+  }
+
   @Get('category')
-  findCategory(): Promise<Category[]> {
-    return this.boardService.findCategory();
+  findCategory(@Query() id: number): Promise<Category> {
+    return this.boardService.findCategory(id);
   }
 
   @Get('findmessage')

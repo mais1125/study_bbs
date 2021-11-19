@@ -1,0 +1,4 @@
+<button (click)="main()">top</button>
+<div *ngFor="let category of categories">
+  <button (click)="onClick(category)">{{ category.name }}</button>
+</div>

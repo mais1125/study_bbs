@@ -12,10 +12,10 @@ content-type: application/json
 
 {
 
-    "title": "てすと1",
-    "cid":{"id":1},
-    "name":"テストさん",
-    "text": "テスト",
+    "title": "こんにちは",
+    "cid":{"id":3},
+    "name":"にゃー",
+    "text": "よみこめてるーーーーーーーー？",
     "editkey":"1122"
 }
 
@@ -45,10 +45,19 @@ content-type: application/json
 # READ thread すべて読み込み
 GET  http://localhost:3333/api/v1/threadall HTTP/1.1
 content-type: application/json
+
+
+###
+# READ category カテゴリーだけを読み込み
+GET  http://localhost:3333/api/v1/categories HTTP/1.1
+content-type: application/json
+
+
 ###
 # READ category カテゴリーごとに読み込み
-GET  http://localhost:3333/api/v1/category HTTP/1.1
+GET  http://localhost:3333/api/v1/category?id=3 HTTP/1.1
 content-type: application/json
+
 
 
 ###

@@ -9,6 +9,8 @@ export const CATEGORY_TYPE = {
 } as const;
 
 export interface Category {
+  /** cid */
+  id?: number;
   /** カテゴリー */
   name: typeof CATEGORY_TYPE[keyof typeof CATEGORY_TYPE];
 }

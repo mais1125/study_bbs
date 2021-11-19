@@ -5,14 +5,14 @@ import {
 } from '@nestjs/common';
 import { FindOneOptions } from 'typeorm';
 // entitysInterface
-import { Category } from '../../interface/entities/category.interface';
-import { Message } from '../../interface/entities/message.interface';
-import { Thread } from '../../interface/entities/thread.interface';
+import { Category } from '../../../../../common/interfaces/interface/entities/category.interface';
+import { Message } from '../../../../../common/interfaces/interface/entities/message.interface';
+import { Thread } from '../../../../../common/interfaces/interface/entities/thread.interface';
 // controllerInterface
-import { BoardCreate } from '../../interface/controller/board.interface';
-import { ResCreate } from '../../interface/controller/res.interface';
-import { MessageId } from '../../interface/controller/messageid.interface';
-import { ThreadId } from '../../interface/controller/threadid.interface';
+import { BoardCreate } from '../../../../../common/interfaces/interface/controller/board.interface';
+import { ResCreate } from '../../../../../common/interfaces/interface/controller/res.interface';
+import { MessageId } from '../../../../../common/interfaces/interface/controller/messageid.interface';
+import { ThreadId } from '../../../../../common/interfaces/interface/controller/threadid.interface';
 // service
 import { CategoryEntityService } from '../../service/database/rdms/entities/category.service';
 import { MessageEntityService } from '../../service/database/rdms/entities/massage.service';
@@ -81,12 +81,18 @@ export class BoardService {
   }
 
   /**
+   * カテゴリーを取得
+   */
+  async Categories(): Promise<Category[]> {
+    return await this.categoryEntityService.find();
+  }
+
+  /**
    * カテゴリーごとに取得
    */
-  async findCategory(): Promise<Category[]> {
-    const options = { relations: ['thread'] };
-
-    return await this.categoryEntityService.find(options);
+  async findCategory(id: number): Promise<Category> {
+    const options: FindOneOptions<Category> = { relations: ['thread'] };
+    return await this.categoryEntityService.findOne(id, options);
   }
 
   /** メッセージを取得 */
