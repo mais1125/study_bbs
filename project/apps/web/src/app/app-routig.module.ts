@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CategoryComponent } from './pages/category/category.component';
 import { MainComponent } from './pages/main/main.component';
+import { ThreadComponent } from './pages/thread/thread.component';
 
 export const PAGE_URI = {
   /** メイン */
@@ -20,6 +21,10 @@ const routes: Routes = [
   {
     path: PAGE_URI.CATEGORY,
     component: CategoryComponent,
+  },
+  {
+    path: PAGE_URI.THREAD,
+    component: ThreadComponent,
   },
 ];
 

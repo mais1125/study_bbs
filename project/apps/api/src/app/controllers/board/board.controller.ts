@@ -23,7 +23,7 @@ export class BoardController {
   }
 
   @Get('thread')
-  findOne(@Body() req: ThreadId): Promise<Thread> {
+  findOne(@Query() req: ThreadId): Promise<Thread> {
     return this.boardService.findOne(req);
   }
 

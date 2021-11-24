@@ -1,18 +1,18 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { CategoryComponent } from './category.component';
+import { ThreadComponent } from './thread.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: CategoryComponent,
+    component: ThreadComponent,
   },
 ];
 
 @NgModule({
-  declarations: [CategoryComponent],
+  declarations: [ThreadComponent],
   imports: [CommonModule, RouterModule.forRoot(routes)],
-  exports: [CategoryComponent],
+  exports: [ThreadComponent],
 })
-export class CategoryRoutingModule {}
+export class ThreadRoutingModule {}

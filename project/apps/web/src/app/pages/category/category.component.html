@@ -1,4 +1,6 @@
-<h2>{{ category.name }}</h2>
-<div *ngFor="let thread of category.thread">
-  <p>{{ thread.title }}</p>
-</div>
+<ng-container *ngIf="category">
+  <h2>{{ category.name }}</h2>
+  <div *ngFor="let thread of category.thread" (click)="onClick(thread)">
+    <p>{{ thread.title }}</p>
+  </div>
+</ng-container>
