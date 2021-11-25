@@ -7,6 +7,7 @@ import { Category } from 'apps/common/interfaces/interface/entities/category.int
 import { ApiService } from '../../service/api.service';
 import { HttpParams } from '@angular/common/http';
 import { Thread } from 'apps/common/interfaces/interface/entities/thread.interface';
+import { PAGE } from '../../app-routig.module';
 
 @Component({
   selector: 'project-ctegory',
@@ -57,7 +58,7 @@ export class CategoryComponent implements OnInit, OnDestroy {
    * 各カテゴリーのページへ遷移
    */
   onClick(id: Thread): void {
-    this.router.navigate(['./thread'], {
+    this.router.navigate([PAGE.THREAD], {
       queryParams: { id: id.id },
       queryParamsHandling: 'merge',
     });

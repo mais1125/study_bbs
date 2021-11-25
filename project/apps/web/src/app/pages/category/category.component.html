@@ -1,6 +1,13 @@
-<ng-container *ngIf="category">
-  <h2>{{ category.name }}</h2>
-  <div *ngFor="let thread of category.thread" (click)="onClick(thread)">
-    <p>{{ thread.title }}</p>
-  </div>
-</ng-container>
+<div>
+  <button>新規投稿</button>
+  <ng-container *ngIf="category">
+    <h3>{{ category.name }}</h3>
+
+    <ng-container
+      *ngFor="let thread of category.thread"
+      (click)="onClick(thread)"
+    >
+      <p>{{ thread.title }}</p>
+    </ng-container>
+  </ng-container>
+</div>

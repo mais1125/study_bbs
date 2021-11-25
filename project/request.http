@@ -12,10 +12,10 @@ content-type: application/json
 
 {
 
-    "title": "カテゴリーの3だよ",
-    "cid":{"id":3},
-    "name":"にゃー",
-    "text": "よみこめてるーーーーーーーー？",
+    "title": "すごみいいいい",
+    "cid":{"id":2},
+    "name":"ぎゃお",
+    "text": "わわわわわわわわわわわわわわわわわわｗ",
     "editkey":"1122"
 }
 
@@ -25,9 +25,9 @@ POST http://localhost:3333/api/v1/createmessage HTTP/1.1
 content-type: application/json
 
 {
-    "tid":{"id":3},
-    "text":"three",
-    "name":"さんさん",
+    "tid":{"id":8},
+    "text":"aaaaaaaaaaaaaa",
+    "name":"ぷぷぷ",
     "editkey":"1111"
 }
 

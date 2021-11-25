@@ -4,7 +4,7 @@ import { CategoryComponent } from './pages/category/category.component';
 import { MainComponent } from './pages/main/main.component';
 import { ThreadComponent } from './pages/thread/thread.component';
 
-export const PAGE_URI = {
+export const PAGE = {
   /** メイン */
   MAIN: '',
   /** カテゴリー */
@@ -15,15 +15,15 @@ export const PAGE_URI = {
 
 const routes: Routes = [
   {
-    path: PAGE_URI.MAIN,
+    path: PAGE.MAIN,
     component: MainComponent,
   },
   {
-    path: PAGE_URI.CATEGORY,
+    path: PAGE.CATEGORY,
     component: CategoryComponent,
   },
   {
-    path: PAGE_URI.THREAD,
+    path: PAGE.THREAD,
     component: ThreadComponent,
   },
 ];

@@ -3,6 +3,7 @@ import { ApiService } from '../../service/api.service';
 import { API_ENDPOINT } from 'apps/common/interfaces/interface/controller/endpoints.interface';
 import { Thread } from 'apps/common/interfaces/interface/entities/thread.interface';
 import { Router } from '@angular/router';
+import { PAGE } from '../../app-routig.module';
 
 @Component({
   selector: 'project-main',
@@ -28,7 +29,7 @@ export class MainComponent implements OnInit {
    * 各カテゴリーのページへ遷移
    */
   onClick(id: Thread): void {
-    this.router.navigate(['./thread'], {
+    this.router.navigate([PAGE.THREAD], {
       queryParams: { id: id.id },
       queryParamsHandling: 'merge',
     });

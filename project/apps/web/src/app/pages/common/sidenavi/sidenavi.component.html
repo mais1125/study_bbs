@@ -1,4 +1,8 @@
-<button (click)="main()">top</button>
-<div *ngFor="let category of categories">
-  <button (click)="onClick(category)">{{ category.name }}</button>
+<div>
+  <button (click)="main()">top</button>
+  <ng-container *ngFor="let category of categories"
+    ><button (click)="onClick(category)">
+      {{ category.name }}
+    </button></ng-container
+  >
 </div>

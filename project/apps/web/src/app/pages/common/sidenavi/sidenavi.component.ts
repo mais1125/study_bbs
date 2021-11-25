@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { API_ENDPOINT } from 'apps/common/interfaces/interface/controller/endpoints.interface';
 import { Category } from 'apps/common/interfaces/interface/entities/category.interface';
-import { PAGE_URI } from '../../../app-routig.module';
+import { PAGE } from '../../../app-routig.module';
 import { ApiService } from '../../../service/api.service';
 
 @Component({
@@ -14,6 +14,9 @@ export class SidenaviComponent implements OnInit {
   categories: Category[] = [];
 
   constructor(private apiService: ApiService, public router: Router) {}
+  /**
+   * ngOnInitでカテゴリーを取得
+   */
   async ngOnInit(): Promise<void> {
     const url = API_ENDPOINT.CATEGORIES;
     await this.apiService
@@ -26,14 +29,14 @@ export class SidenaviComponent implements OnInit {
    * メインページへ遷移
    */
   main(): void {
-    this.router.navigateByUrl(PAGE_URI.MAIN);
+    this.router.navigateByUrl(PAGE.MAIN);
   }
 
   /**
    * カテゴリーページへ遷移
    */
   onClick(id: Category): void {
-    this.router.navigate(['./category'], {
+    this.router.navigate([PAGE.CATEGORY], {
       queryParams: { id: id.id },
       queryParamsHandling: 'merge',
     });
