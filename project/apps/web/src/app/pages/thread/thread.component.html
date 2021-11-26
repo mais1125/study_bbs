@@ -1,6 +1,6 @@
 <ng-container *ngIf="thread">
   <h2>{{ thread.title }}</h2>
-  <div *ngFor="let message of thread.message">
+  <ng-container *ngFor="let message of thread.message">
     <p>{{ message.text }}</p>
-  </div>
+  </ng-container>
 </ng-container>

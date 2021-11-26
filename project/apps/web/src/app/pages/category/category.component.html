@@ -1,13 +1,9 @@
-<div>
-  <button>新規投稿</button>
-  <ng-container *ngIf="category">
-    <h3>{{ category.name }}</h3>
-
-    <ng-container
-      *ngFor="let thread of category.thread"
-      (click)="onClick(thread)"
-    >
-      <p>{{ thread.title }}</p>
-    </ng-container>
-  </ng-container>
-</div>
+<ng-container *ngIf="category">
+  <h3>{{ category.name }}</h3>
+  <button (click)="create()">新規作成</button>
+  <main *ngFor="let thread of category.thread" (click)="onClick(thread)">
+    <p>{{ thread.title }}</p>
+  </main>
+  <!-- 投稿編集：Modal -->
+  <p-dialog header="Title" [(visible)]="display"> Content </p-dialog>
+</ng-container>

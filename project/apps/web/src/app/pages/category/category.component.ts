@@ -17,6 +17,7 @@ import { PAGE } from '../../app-routig.module';
 export class CategoryComponent implements OnInit, OnDestroy {
   subscription!: Subscription;
   category!: Category;
+  display = false;
 
   constructor(
     private apiService: ApiService,
@@ -62,5 +63,9 @@ export class CategoryComponent implements OnInit, OnDestroy {
       queryParams: { id: id.id },
       queryParamsHandling: 'merge',
     });
+  }
+
+  create(): void {
+    this.display = true;
   }
 }

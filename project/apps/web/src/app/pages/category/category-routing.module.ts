@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CategoryComponent } from './category.component';
 
+import { DialogModule } from 'primeng/dialog';
+
 const routes: Routes = [
   {
     path: '',
@@ -12,7 +14,7 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [CategoryComponent],
-  imports: [CommonModule, RouterModule.forRoot(routes)],
+  imports: [CommonModule, RouterModule.forRoot(routes), DialogModule],
   exports: [CategoryComponent],
 })
 export class CategoryRoutingModule {}

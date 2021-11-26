@@ -11,7 +11,6 @@ import { AppComponent } from './app.component';
 import { MainComponent } from './pages/main/main.component';
 
 const pageRouting = [CategoryRoutingModule, ThreadRoutingModule];
-
 @NgModule({
   declarations: [AppComponent, MainComponent],
   imports: [
