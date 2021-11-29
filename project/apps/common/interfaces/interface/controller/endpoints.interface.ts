@@ -7,4 +7,6 @@ export const API_ENDPOINT = {
   CATEGORIES: 'categories',
   /** カテゴリーごとに読み込み */
   CATEGORY: 'category',
+  /** 新規投稿 */
+  MESSAGE: 'message',
 } as const;

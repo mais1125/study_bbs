@@ -8,6 +8,9 @@ import { ApiService } from '../../service/api.service';
 import { HttpParams } from '@angular/common/http';
 import { Thread } from 'apps/common/interfaces/interface/entities/thread.interface';
 import { PAGE } from '../../app-routig.module';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+
+import { BoardCreate } from '../../../../../common/interfaces/interface/controller/board.interface';
 
 @Component({
   selector: 'project-ctegory',
@@ -18,6 +21,13 @@ export class CategoryComponent implements OnInit, OnDestroy {
   subscription!: Subscription;
   category!: Category;
   display = false;
+
+  createForm = new FormGroup({
+    title: new FormControl('', Validators.required),
+    text: new FormControl('', Validators.required),
+    name: new FormControl('', Validators.required),
+    editkey: new FormControl('', Validators.required),
+  });
 
   constructor(
     private apiService: ApiService,
@@ -65,7 +75,27 @@ export class CategoryComponent implements OnInit, OnDestroy {
     });
   }
 
-  create(): void {
+  /**
+   * 新規投稿用Modal
+   */
+  createModal(): void {
     this.display = true;
+  }
+
+  /**
+   * 新規投稿送信
+   */
+  create(): void {
+    const req: BoardCreate = {
+      title: this.createForm.value.title,
+      name: this.createForm.value.name,
+      text: this.createForm.value.text,
+      editkey: this.createForm.value.editkey,
+      cid: { id: this.category.id } as Category,
+    };
+    this.apiService
+      .post<'', BoardCreate>(API_ENDPOINT.MESSAGE, req)
+      .subscribe();
+    this.display = false;
   }
 }

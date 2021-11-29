@@ -1,9 +1,17 @@
 <ng-container *ngIf="category">
   <h3>{{ category.name }}</h3>
-  <button (click)="create()">新規作成</button>
+  <button (click)="createModal()">新規作成</button>
   <main *ngFor="let thread of category.thread" (click)="onClick(thread)">
     <p>{{ thread.title }}</p>
   </main>
   <!-- 投稿編集：Modal -->
-  <p-dialog header="Title" [(visible)]="display"> Content </p-dialog>
+  <form [formGroup]="createForm">
+    <p-dialog header="新規投稿" [(visible)]="display">
+      <input type="text" formControlName="title" />
+      <textarea formControlName="text"></textarea>
+      <input type="text" formControlName="name" />
+      <input type="text" formControlName="editkey" />
+      <button (click)="create()">投稿</button>
+    </p-dialog>
+  </form>
 </ng-container>
