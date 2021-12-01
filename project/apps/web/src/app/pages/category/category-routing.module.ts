@@ -4,7 +4,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CategoryComponent } from './category.component';
-
 import { DialogModule } from 'primeng/dialog';
 
 const routes: Routes = [

@@ -94,7 +94,7 @@ export class CategoryComponent implements OnInit, OnDestroy {
       cid: { id: this.category.id } as Category,
     };
     this.apiService
-      .post<'', BoardCreate>(API_ENDPOINT.MESSAGE, req)
+      .post<BoardCreate, ''>(API_ENDPOINT.MESSAGE, req)
       .subscribe();
     this.display = false;
   }

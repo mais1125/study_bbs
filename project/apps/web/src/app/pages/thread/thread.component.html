@@ -1,6 +1,20 @@
 <ng-container *ngIf="thread">
   <h2>{{ thread.title }}</h2>
-  <ng-container *ngFor="let message of thread.message">
+  <button (click)="modal()">返信投稿</button>
+  <main *ngFor="let message of thread.message">
     <p>{{ message.text }}</p>
-  </ng-container>
+  </main>
+
+  <!-- 投稿：Modal -->
+  <form [formGroup]="resForm">
+    <p-dialog header="返信投稿" [(visible)]="display">
+      <label>名前</label>
+      <input type="text" formControlName="name" />
+      <label>本文</label>
+      <textarea formControlName="text"></textarea>
+      <label>編集キー</label>
+      <input type="text" formControlName="editkye" />
+      <button (click)="create()">投稿</button>
+    </p-dialog>
+  </form>
 </ng-container>

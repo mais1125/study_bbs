@@ -4,12 +4,16 @@
   <main *ngFor="let thread of category.thread" (click)="onClick(thread)">
     <p>{{ thread.title }}</p>
   </main>
-  <!-- 投稿編集：Modal -->
+  <!-- 投稿：Modal -->
   <form [formGroup]="createForm">
     <p-dialog header="新規投稿" [(visible)]="display">
+      <label>タイトル</label>
       <input type="text" formControlName="title" />
+      <label>本文</label>
       <textarea formControlName="text"></textarea>
+      <label>名前</label>
       <input type="text" formControlName="name" />
+      <label>編集キー</label>
       <input type="text" formControlName="editkey" />
       <button (click)="create()">投稿</button>
     </p-dialog>

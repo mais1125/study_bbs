@@ -9,4 +9,6 @@ export const API_ENDPOINT = {
   CATEGORY: 'category',
   /** 新規投稿 */
   MESSAGE: 'message',
+  /** 返信投稿 */
+  RES: 'createmessage',
 } as const;
