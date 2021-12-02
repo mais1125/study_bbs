@@ -98,7 +98,7 @@ export class CategoryComponent implements OnInit, OnDestroy {
     this.apiService
       .post<BoardCreate, BoardCreate>(API_ENDPOINT.MESSAGE, req)
       .subscribe((res) => {
-        this.threadTitle.unshift(res as Category);
+        this.category.thread?.unshift(res);
       });
 
     this.display = false;
