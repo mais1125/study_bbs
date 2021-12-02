@@ -73,7 +73,9 @@ export class ThreadComponent implements OnInit, OnDestroy {
       editkey: this.resForm.value.editkye,
       tid: { id: this.thread.id } as Thread,
     };
-    this.apiService.post<ResCreate, ''>(API_ENDPOINT.RES, req).subscribe();
+    this.apiService
+      .post<ResCreate, ResCreate>(API_ENDPOINT.RES, req)
+      .subscribe();
     this.display = false;
   }
 }

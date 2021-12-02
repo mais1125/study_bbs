@@ -21,6 +21,7 @@ export class CategoryComponent implements OnInit, OnDestroy {
   subscription!: Subscription;
   category!: Category;
   display = false;
+  threadTitle: Pick<Category, 'thread'>[] = [];
 
   createForm = new FormGroup({
     title: new FormControl('', Validators.required),
@@ -59,14 +60,15 @@ export class CategoryComponent implements OnInit, OnDestroy {
     const options = {
       params: new HttpParams().set('id', id),
     };
-    await this.apiService
+    const res = await this.apiService
       .get(url, options)
       .toPromise()
       .then((i) => (this.category = i as Category));
+    res.thread?.reverse();
   }
 
   /**
-   * 各カテゴリーのページへ遷移
+   * 各スレッドのページへ遷移
    */
   onClick(id: Thread): void {
     this.router.navigate([PAGE.THREAD], {
@@ -94,8 +96,11 @@ export class CategoryComponent implements OnInit, OnDestroy {
       cid: { id: this.category.id } as Category,
     };
     this.apiService
-      .post<BoardCreate, ''>(API_ENDPOINT.MESSAGE, req)
-      .subscribe();
+      .post<BoardCreate, BoardCreate>(API_ENDPOINT.MESSAGE, req)
+      .subscribe((res) => {
+        this.threadTitle.unshift(res as Category);
+      });
+
     this.display = false;
   }
 }
