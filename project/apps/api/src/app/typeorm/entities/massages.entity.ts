@@ -8,9 +8,10 @@ import {
 import { ThreadEntity } from '.';
 import { Message } from '../../../../../common/interfaces/interface/entities/message.interface';
 import { Thread } from '../../../../../common/interfaces/interface/entities/thread.interface';
+import { TimeStampEntity } from './abstract';
 
 @Entity('Messages')
-export class MessageEntity implements Message {
+export class MessageEntity extends TimeStampEntity implements Message {
   @PrimaryGeneratedColumn({ comment: 'レスID' })
   id?: number;
 

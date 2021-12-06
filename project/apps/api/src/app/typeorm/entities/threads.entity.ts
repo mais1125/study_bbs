@@ -10,10 +10,10 @@ import { CategoryEntity, MessageEntity } from '.';
 import { Category } from '../../../../../common/interfaces/interface/entities/category.interface';
 import { Message } from '../../../../../common/interfaces/interface/entities/message.interface';
 import { Thread } from '../../../../../common/interfaces/interface/entities/thread.interface';
-import { AbstractEntity } from './abstract';
+import { TimeStampEntity } from './abstract';
 
 @Entity('Threads')
-export class ThreadEntity extends AbstractEntity implements Thread {
+export class ThreadEntity extends TimeStampEntity implements Thread {
   @PrimaryGeneratedColumn({ comment: '親スレッドID' })
   id?: number;
 
@@ -22,7 +22,7 @@ export class ThreadEntity extends AbstractEntity implements Thread {
 
   @ManyToOne(() => CategoryEntity, (cid) => cid.thread)
   @JoinColumn({ name: 'cid' })
-  cid: Category;
+  cid?: Category;
 
   @OneToMany(() => MessageEntity, (message) => message.tid)
   message?: Message[];

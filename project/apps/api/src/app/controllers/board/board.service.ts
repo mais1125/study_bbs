@@ -28,7 +28,7 @@ export class BoardService {
   /**
    * スレッド新規投稿
    */
-  async create(req: BoardCreate): Promise<Message> {
+  async create(req: BoardCreate): Promise<boolean> {
     // スレッドに新規登録
     const thread: Thread = {
       title: req.title,
@@ -42,7 +42,8 @@ export class BoardService {
       name: req.name,
       editkey: req.editkey,
     };
-    return await this.messageEntityService.create(message);
+    await this.messageEntityService.create(message);
+    return true;
   }
 
   /**

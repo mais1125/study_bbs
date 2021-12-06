@@ -1,11 +1,10 @@
-import { Abstract } from './abstract';
 import { Category } from './category.interface';
 import { Message } from './message.interface';
 
 /**
  * Threadモデル
  */
-export interface Thread extends Abstract {
+export interface Thread {
   /** ID */
   id?: number;
   /** タイトル */

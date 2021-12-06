@@ -20,13 +20,18 @@ import { BoardCreate } from '../../../../../common/interfaces/interface/controll
 export class CategoryComponent implements OnInit, OnDestroy {
   subscription!: Subscription;
   category!: Category;
+  /** 投稿用Modal表示フラグ */
   display = false;
-  threadTitle: Pick<Category, 'thread'>[] = [];
 
+  /** 投稿用Modal表示フラグ */
   createForm = new FormGroup({
+    /** タイトル */
     title: new FormControl('', Validators.required),
-    text: new FormControl('', Validators.required),
+    /** 名前 */
     name: new FormControl('', Validators.required),
+    /** 本文 */
+    text: new FormControl('', Validators.required),
+    /** 編集キー */
     editkey: new FormControl('', Validators.required),
   });
 
@@ -78,16 +83,16 @@ export class CategoryComponent implements OnInit, OnDestroy {
   }
 
   /**
-   * 新規投稿用Modal
+   * 新規投稿用Modalの切り替え
    */
-  createModal(): void {
-    this.display = true;
+  switchModal(): void {
+    this.display = !this.display;
   }
 
   /**
    * 新規投稿送信
    */
-  create(): void {
+  async create(): Promise<void> {
     const req: BoardCreate = {
       title: this.createForm.value.title,
       name: this.createForm.value.name,
@@ -95,12 +100,14 @@ export class CategoryComponent implements OnInit, OnDestroy {
       editkey: this.createForm.value.editkey,
       cid: { id: this.category.id } as Category,
     };
-    this.apiService
+    // 投稿
+    await this.apiService
       .post<BoardCreate, BoardCreate>(API_ENDPOINT.MESSAGE, req)
-      .subscribe((res) => {
-        this.category.thread?.unshift(res);
-      });
-
-    this.display = false;
+      .toPromise()
+      .then(() => this.createForm.reset());
+    // スレッドの再取得
+    await this.getCategory(req.cid?.id as number);
+    // Modalを閉じる
+    this.switchModal();
   }
 }

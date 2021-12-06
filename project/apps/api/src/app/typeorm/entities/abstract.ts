@@ -1,9 +1,10 @@
+import { TimeStamp } from 'apps/common/interfaces/interface/entities/abstract';
 import { CreateDateColumn, UpdateDateColumn } from 'typeorm';
 
-export abstract class AbstractEntity {
-  @CreateDateColumn({ select: false })
-  createAt?: Date;
+export abstract class TimeStampEntity implements TimeStamp {
+  @CreateDateColumn()
+  readonly createAt?: Date;
 
-  @UpdateDateColumn({ select: false })
-  updateAt?: Date;
+  @UpdateDateColumn()
+  readonly updateAt?: Date;
 }

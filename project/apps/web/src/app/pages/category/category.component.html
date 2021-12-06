@@ -1,20 +1,23 @@
 <ng-container *ngIf="category">
   <h3>{{ category.name }}</h3>
-  <button (click)="createModal()">新規作成</button>
+  <button (click)="switchModal()">新規作成</button>
   <main *ngFor="let thread of category.thread" (click)="onClick(thread)">
     <p>{{ thread.title }}</p>
   </main>
-  <!-- 投稿：Modal -->
+</ng-container>
+
+<!-- 投稿：Modal -->
+<ng-container *ngIf="display">
   <form [formGroup]="createForm">
     <p-dialog header="新規投稿" [(visible)]="display">
       <label>タイトル</label>
-      <input type="text" formControlName="title" />
-      <label>本文</label>
-      <textarea formControlName="text"></textarea>
+      <input type="text" formControlName="title" /><br />
       <label>名前</label>
-      <input type="text" formControlName="name" />
+      <input type="text" formControlName="name" /><br />
+      <label>本文</label>
+      <textarea formControlName="text"></textarea><br />
       <label>編集キー</label>
-      <input type="text" formControlName="editkey" />
+      <input type="text" formControlName="editkey" /><br />
       <button (click)="create()">投稿</button>
     </p-dialog>
   </form>

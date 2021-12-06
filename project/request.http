@@ -11,9 +11,8 @@ POST http://localhost:3333/api/v1/message HTTP/1.1
 content-type: application/json
 
 {
-
+    "cid":{"id":1},
     "title": "すごみいいいい",
-    "cid":{"id":2},
     "name":"ぎゃお",
     "text": "わわわわわわわわわわわわわわわわわわｗ",
     "editkey":"1122"
@@ -25,7 +24,7 @@ POST http://localhost:3333/api/v1/createmessage HTTP/1.1
 content-type: application/json
 
 {
-    "tid":{"id":8},
+    "tid":{"id":1},
     "text":"aaaaaaaaaaaaaa",
     "name":"ぷぷぷ",
     "editkey":"1111"

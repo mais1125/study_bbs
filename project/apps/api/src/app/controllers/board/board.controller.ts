@@ -13,7 +13,7 @@ export class BoardController {
   constructor(private boardService: BoardService) {}
 
   @Post('message')
-  create(@Body() req: BoardCreate): Promise<Message> {
+  create(@Body() req: BoardCreate): Promise<boolean> {
     return this.boardService.create(req);
   }
 
