@@ -48,7 +48,7 @@ export class BoardController {
   }
 
   @Post('update')
-  updateMessage(@Body() req: Message): Promise<Message> {
+  updateMessage(@Body() req: Message): Promise<boolean> {
     return this.boardService.updateMessage(req);
   }
 

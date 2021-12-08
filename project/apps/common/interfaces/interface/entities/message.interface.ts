@@ -1,4 +1,5 @@
 import { Thread } from './thread.interface';
+
 /**
  * Messageモデル
  */

@@ -1,20 +1,43 @@
 <ng-container *ngIf="thread">
   <h2>{{ thread.title }}</h2>
-  <button (click)="modal()">返信投稿</button>
+  <button (click)="createModal()">返信投稿</button>
   <main *ngFor="let message of thread.message">
-    <p>{{ message.text }}</p>
+    <p>名前:{{ message.name }}</p>
+    <p>本文:{{ message.text }}</p>
+    <button (click)="update(message)">編集</button>
   </main>
+</ng-container>
+<!-- 投稿：Modal -->
+<ng-container [formGroup]="resForm" *ngIf="createDisplay">
+  <p-dialog header="返信投稿" [(visible)]="createDisplay">
+    <label>名前</label>
+    <input type="text" formControlName="name" /><br />
+    <label>本文</label>
+    <textarea formControlName="text"></textarea><br />
+    <label>編集キー</label>
+    <input type="text" formControlName="editkye" /><br />
+    <button (click)="create()">投稿</button>
+  </p-dialog>
+</ng-container>
 
-  <!-- 投稿：Modal -->
-  <form [formGroup]="resForm">
-    <p-dialog header="返信投稿" [(visible)]="display">
-      <label>名前</label>
-      <input type="text" formControlName="name" />
-      <label>本文</label>
-      <textarea formControlName="text"></textarea>
-      <label>編集キー</label>
-      <input type="text" formControlName="editkye" />
-      <button (click)="create()">投稿</button>
-    </p-dialog>
-  </form>
+<!-- 編集：Modal -->
+<ng-container [formGroup]="editForm" *ngIf="editMessage">
+  <p-dialog header="編集" [(visible)]="editDisplay">
+    <label>名前</label>
+    <input
+      type="text"
+      [(ngModel)]="editMessage.name"
+      formControlName="name"
+    /><br />
+    <label>本文</label>
+    <textarea [(ngModel)]="editMessage.text" formControlName="text"></textarea
+    ><br />
+    <label>編集キー</label>
+    <input
+      type="text"
+      [(ngModel)]="editMessage.editkey"
+      formControlName="editkey"
+    />
+    <button (click)="edit()">投稿</button>
+  </p-dialog>
 </ng-container>

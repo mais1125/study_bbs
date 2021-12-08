@@ -11,10 +11,10 @@ POST http://localhost:3333/api/v1/message HTTP/1.1
 content-type: application/json
 
 {
-    "cid":{"id":1},
-    "title": "すごみいいいい",
-    "name":"ぎゃお",
-    "text": "わわわわわわわわわわわわわわわわわわｗ",
+
+    "title": "新規投稿する",
+    "name":"name",
+    "text": "あああ",
     "editkey":"1122"
 }
 
@@ -25,8 +25,8 @@ content-type: application/json
 
 {
     "tid":{"id":1},
-    "text":"aaaaaaaaaaaaaa",
-    "name":"ぷぷぷ",
+    "text":"変更前",
+    "name":"あああ",
     "editkey":"1111"
 }
 
@@ -72,10 +72,13 @@ content-type: application/json
 
 {
 
-   "id":10,
-    "name":"aaaaa",
-    "text": "iiiiiii",
-    "editkey":"2111"
+   "id":4,
+    "name":"・ω・",
+    "text": "・x・",
+    "editkey":"1111",
+     "tid":{"id":1}
+
+
 }
 
 ###

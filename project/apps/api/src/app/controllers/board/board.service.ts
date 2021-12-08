@@ -51,10 +51,10 @@ export class BoardService {
    */
   async createMessage(req: ResCreate): Promise<Message> {
     const newMessage: Message = {
-      tid: req.tid,
       text: req.text,
       name: req.name,
       editkey: req.editkey,
+      tid: req.tid,
     };
     return await this.messageEntityService.create(newMessage);
   }
@@ -99,6 +99,7 @@ export class BoardService {
   /** メッセージを取得 */
   async findMessage(req: MessageId): Promise<Message> {
     const options = { relations: ['tid'] };
+
     const res = await this.messageEntityService.findOne(req as number, options);
     return res;
   }
@@ -106,10 +107,12 @@ export class BoardService {
   /**
    * メッセージを更新
    */
-  async updateMessage(req: Message): Promise<Message> {
+  async updateMessage(req: Message): Promise<boolean> {
     const editMessage = await this.findMessage(req.id as MessageId);
+    const options = { select: ['editkey'] };
+    const pass = await this.messageEntityService.findOne(req.id, options);
     // editkyeが一致しているか照合
-    if (editMessage.editkey !== req.editkey) {
+    if (pass.editkey !== req.editkey) {
       throw new BadRequestException();
     }
     // editkyeが一致していれば新たに値を書き込む(IDが一致する値に上書き)
@@ -118,7 +121,8 @@ export class BoardService {
       text: req.text,
       name: req.name,
     };
-    return await this.messageEntityService.update(updateMassage as Message);
+    await this.messageEntityService.update(updateMassage as Message);
+    return true;
   }
 
   /**

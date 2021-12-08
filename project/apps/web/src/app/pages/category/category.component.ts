@@ -23,7 +23,7 @@ export class CategoryComponent implements OnInit, OnDestroy {
   /** 投稿用Modal表示フラグ */
   display = false;
 
-  /** 投稿用Modal表示フラグ */
+  /** 投稿FormGroup */
   createForm = new FormGroup({
     /** タイトル */
     title: new FormControl('', Validators.required),

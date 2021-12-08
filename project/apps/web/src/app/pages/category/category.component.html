@@ -7,18 +7,16 @@
 </ng-container>
 
 <!-- 投稿：Modal -->
-<ng-container *ngIf="display">
-  <form [formGroup]="createForm">
-    <p-dialog header="新規投稿" [(visible)]="display">
-      <label>タイトル</label>
-      <input type="text" formControlName="title" /><br />
-      <label>名前</label>
-      <input type="text" formControlName="name" /><br />
-      <label>本文</label>
-      <textarea formControlName="text"></textarea><br />
-      <label>編集キー</label>
-      <input type="text" formControlName="editkey" /><br />
-      <button (click)="create()">投稿</button>
-    </p-dialog>
-  </form>
+<ng-container [formGroup]="createForm" *ngIf="display">
+  <p-dialog header="新規投稿" [(visible)]="display">
+    <label>タイトル</label>
+    <input type="text" formControlName="title" /><br />
+    <label>名前</label>
+    <input type="text" formControlName="name" /><br />
+    <label>本文</label>
+    <textarea formControlName="text"></textarea><br />
+    <label>編集キー</label>
+    <input type="text" formControlName="editkey" /><br />
+    <button (click)="create()">投稿</button>
+  </p-dialog>
 </ng-container>

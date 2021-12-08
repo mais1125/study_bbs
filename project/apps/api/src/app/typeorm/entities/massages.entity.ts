@@ -21,7 +21,7 @@ export class MessageEntity extends TimeStampEntity implements Message {
   @Column({ comment: '名前' })
   name: string;
 
-  @Column({ comment: '編集キー' })
+  @Column({ name: 'editkey', select: false })
   editkey: string;
 
   @ManyToOne(() => ThreadEntity, (tid) => tid.message, {
