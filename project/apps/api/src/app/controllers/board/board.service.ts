@@ -5,18 +5,19 @@ import {
 } from '@nestjs/common';
 import { FindOneOptions } from 'typeorm';
 // entitysInterface
-import { Category } from '../../../../../common/interfaces/interface/entities/category.interface';
-import { Message } from '../../../../../common/interfaces/interface/entities/message.interface';
-import { Thread } from '../../../../../common/interfaces/interface/entities/thread.interface';
+import { Category, Message, Thread } from '@interface/entities';
 // controllerInterface
-import { BoardCreate } from '../../../../../common/interfaces/interface/controller/board.interface';
-import { ResCreate } from '../../../../../common/interfaces/interface/controller/res.interface';
-import { MessageId } from '../../../../../common/interfaces/interface/controller/messageid.interface';
-import { ThreadId } from '../../../../../common/interfaces/interface/controller/threadid.interface';
+import {
+  BoardCreate,
+  ResCreate,
+  ResponseInterface,
+} from '@interface/controllers';
 // service
-import { CategoryEntityService } from '../../service/database/rdms/entities/category.service';
-import { MessageEntityService } from '../../service/database/rdms/entities/massage.service';
-import { ThreadEntityService } from '../../service/database/rdms/entities/thread.service';
+import {
+  CategoryEntityService,
+  MessageEntityService,
+  ThreadEntityService,
+} from '@services';
 
 @Injectable()
 export class BoardService {
@@ -62,7 +63,7 @@ export class BoardService {
   /**
    * 個別に取得
    */
-  async findOne(req: ThreadId): Promise<Thread> {
+  async findOne(req: Pick<Thread, 'id'>): Promise<Thread> {
     const options: FindOneOptions<Thread> = {
       relations: ['cid', 'message'],
     };
@@ -97,7 +98,7 @@ export class BoardService {
   }
 
   /** メッセージを取得 */
-  async findMessage(req: MessageId): Promise<Message> {
+  async findMessage(req: Pick<Message, 'id'>): Promise<Message> {
     const options = { relations: ['tid'] };
 
     const res = await this.messageEntityService.findOne(req as number, options);
@@ -107,13 +108,23 @@ export class BoardService {
   /**
    * メッセージを更新
    */
-  async updateMessage(req: Message): Promise<boolean> {
-    const editMessage = await this.findMessage(req.id as MessageId);
-    const options = { select: ['editkey'] };
-    const pass = await this.messageEntityService.findOne(req.id, options);
+  async updateMessage(req: Message): Promise<ResponseInterface> {
+    const editMessage = await this.findMessage(req.id as Pick<Message, 'id'>);
+    // editkyeを取得
+    const pass = await this.messageEntityService.findOne(req.id, {
+      select: ['editkey'],
+    });
+    // editkyeが見つからない時
+    if (!pass.editkey) {
+      throw new BadRequestException();
+    }
     // editkyeが一致しているか照合
     if (pass.editkey !== req.editkey) {
-      throw new BadRequestException();
+      const result: ResponseInterface = {
+        status: false,
+        message: '編集kyeが違います',
+      };
+      return result;
     }
     // editkyeが一致していれば新たに値を書き込む(IDが一致する値に上書き)
     const updateMassage: Partial<Message> = {
@@ -122,34 +133,57 @@ export class BoardService {
       name: req.name,
     };
     await this.messageEntityService.update(updateMassage as Message);
-    return true;
+    const result: ResponseInterface = {
+      status: true,
+    };
+    return result;
   }
 
   /**
    * スレッド削除
    */
-  delete(req: Thread): Promise<Thread> {
-    return this.threadEntityService.delete(req);
+  async delete(req: Thread): Promise<ResponseInterface> {
+    await this.threadEntityService.delete(req);
+    const result: ResponseInterface = {
+      status: true,
+    };
+    return result;
   }
 
   /**
    * メッセージ削除
    */
-  async deleteRes(req: Message): Promise<Message> {
-    // 対象のスレッドを取得
-    const message = await this.findMessage(req.id as MessageId);
+  async deleteRes(req: Message): Promise<ResponseInterface> {
+    // 対象のスレッド取得
+    const message = await this.findMessage(req.id as Pick<Message, 'id'>);
+    // editkeyを取得
+    const pass = await this.messageEntityService.findOne(req.id, {
+      select: ['editkey'],
+    });
     const thread = await this.findOne(message.tid);
-    // editkyeが一致しているか照合
-    if (message.editkey !== req.editkey) {
+    // editkyeが見つからない時
+    if (!pass.editkey) {
       throw new BadRequestException();
+    }
+    // editkeyが一致しているか照合
+    if (pass.editkey !== req.editkey) {
+      const result: ResponseInterface = {
+        status: false,
+        message: '編集kyeが違います',
+      };
+      return result;
     }
     // 対象スレッドの一番若いメッセージIDとリクエストIDが同じならばスレッドも同時に削除
     if (thread.message[0].id === req.id) {
-      await this.delete(thread);
+      const result: ResponseInterface = await this.delete(thread);
+      return result;
     } else {
       // 配列の１番初めでなければ該当のレスのみ１件削除
       await this.messageEntityService.delete(req);
+      const result: ResponseInterface = {
+        status: true,
+      };
+      return result;
     }
-    return;
   }
 }

@@ -25,7 +25,7 @@ content-type: application/json
 
 {
     "tid":{"id":1},
-    "text":"変更前",
+    "text":"削除するよ ",
     "name":"あああ",
     "editkey":"1111"
 }
@@ -98,6 +98,6 @@ content-type: application/json
 
 {
 
-    "id": 7,
-    "editkey":"1122"
+    "id":10,
+    "editkey":"1111"
 }

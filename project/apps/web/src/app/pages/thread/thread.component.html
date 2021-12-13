@@ -16,7 +16,7 @@
     <textarea formControlName="text"></textarea><br />
     <label>編集キー</label>
     <input type="text" formControlName="editkye" /><br />
-    <button (click)="create()">投稿</button>
+    <button [disabled]="resForm.invalid" (click)="create()">投稿</button>
   </p-dialog>
 </ng-container>
 
@@ -39,5 +39,9 @@
       formControlName="editkey"
     />
     <button (click)="edit()">投稿</button>
+    <button (click)="deleteMessage(editMessage)">削除</button>
+    <ng-container *ngIf="response">
+      <p *ngIf="!response.status">{{ response.message }}</p>
+    </ng-container>
   </p-dialog>
 </ng-container>

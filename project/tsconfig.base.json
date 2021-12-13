@@ -14,7 +14,14 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@interface/entities": ["./apps/common/interfaces/interface/entities"],
+      "@interface/controllers": [
+        "./apps/common/interfaces/interface/controller"
+      ],
+      "@entities": ["./apps/api/src/app/typeorm/entities"],
+      "@services": ["./apps/api/src/app/service/database/rdms/entities"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }

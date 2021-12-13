@@ -3,11 +3,12 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { API_ENDPOINT } from 'apps/common/interfaces/interface/controller/endpoints.interface';
-import { Thread } from 'apps/common/interfaces/interface/entities/thread.interface';
-import { Message } from 'apps/common/interfaces/interface/entities/message.interface';
-import { ResCreate } from '../../../../../common/interfaces/interface/controller/res.interface';
 import { Subscription } from 'rxjs';
 import { ApiService } from '../../service/api.service';
+// entities interfaces
+import { Thread, Message } from '@interface/entities';
+// controllers interfaces
+import { ResCreate, ResponseInterface } from '@interface/controllers';
 
 @Component({
   selector: 'project-thread',
@@ -24,6 +25,8 @@ export class ThreadComponent implements OnInit, OnDestroy {
   createDisplay = false;
   /** 編集用Modal表示フラグ */
   editDisplay = false;
+  /** 実行結果の受け取り */
+  response!: ResponseInterface;
 
   /** 返信用FormGroup */
   resForm = new FormGroup({
@@ -125,11 +128,36 @@ export class ThreadComponent implements OnInit, OnDestroy {
       editkey: this.editMessage.editkey,
       tid: { id: this.thread.id } as Thread,
     };
-    this.apiService
-      .post<Message, Message>(API_ENDPOINT.EDIT, req)
+    await this.apiService
+      .post<Message, ResponseInterface>(API_ENDPOINT.EDIT, req)
       .toPromise()
-      .then(() => (this.editForm.value.editkey = ''));
-    await this.getThread(this.thread.id as number);
-    this.editModal();
+      .then(
+        (res) => ((this.response = res), (this.editForm.value.editkey = ''))
+      );
+
+    if (this.response.status) {
+      // status=true
+      await this.getThread(this.thread.id as number);
+      this.editModal();
+    } else {
+      // status=false
+      this.response.message;
+    }
+  }
+
+  /**
+   * レスの削除
+   */
+  async deleteMessage(message: Message): Promise<void> {
+    await this.apiService
+      .post<Message, ResponseInterface>(API_ENDPOINT.DELETE_MESSAGE, message)
+      .toPromise()
+      .then((res) => (this.response = res));
+    if (this.response.status) {
+      await this.getThread(this.thread.id as number);
+      this.editModal();
+    } else {
+      this.response.message;
+    }
   }
 }

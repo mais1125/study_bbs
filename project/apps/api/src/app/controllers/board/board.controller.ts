@@ -1,12 +1,13 @@
 import { Body, Controller, Get, Post, Query } from '@nestjs/common';
-import { BoardCreate } from '../../../../../common/interfaces/interface/controller/board.interface';
-import { MessageId } from '../../../../../common/interfaces/interface/controller/messageid.interface';
-import { ResCreate } from '../../../../../common/interfaces/interface/controller/res.interface';
-import { ThreadId } from '../../../../../common/interfaces/interface/controller/threadid.interface';
-import { Category } from '../../../../../common/interfaces/interface/entities/category.interface';
-import { Message } from '../../../../../common/interfaces/interface/entities/message.interface';
-import { Thread } from '../../../../../common/interfaces/interface/entities/thread.interface';
 import { BoardService } from './board.service';
+// Entities Interface
+import { Category, Message, Thread } from '@interface/entities';
+// controllers Interface
+import {
+  BoardCreate,
+  ResCreate,
+  ResponseInterface,
+} from '@interface/controllers';
 
 @Controller()
 export class BoardController {
@@ -23,7 +24,7 @@ export class BoardController {
   }
 
   @Get('thread')
-  findOne(@Query() req: ThreadId): Promise<Thread> {
+  findOne(@Query() req: Pick<Thread, 'id'>): Promise<Thread> {
     return this.boardService.findOne(req);
   }
 
@@ -43,22 +44,22 @@ export class BoardController {
   }
 
   @Get('findmessage')
-  findMessage(@Body() req: MessageId): Promise<Message> {
+  findMessage(@Body() req: Pick<Message, 'id'>): Promise<Message> {
     return this.boardService.findMessage(req);
   }
 
   @Post('update')
-  updateMessage(@Body() req: Message): Promise<boolean> {
+  updateMessage(@Body() req: Message): Promise<ResponseInterface> {
     return this.boardService.updateMessage(req);
   }
 
-  @Get('delete')
-  delete(@Body() req: Thread): Promise<Thread> {
+  @Post('delete')
+  delete(@Body() req: Thread): Promise<ResponseInterface> {
     return this.boardService.delete(req);
   }
 
-  @Get('deleteres')
-  deleteRes(@Body() req: Message): Promise<Message> {
+  @Post('deleteres')
+  deleteRes(@Body() req: Message): Promise<ResponseInterface> {
     return this.boardService.deleteRes(req);
   }
 }
