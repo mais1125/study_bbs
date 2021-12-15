@@ -14,5 +14,5 @@ export const API_ENDPOINT = {
   /** レスの編集 */
   EDIT: 'update',
   /** レスを削除 */
-  DELETE_MESSAGE: 'deleteres',
+  DELETE_MESSAGE: 'delete',
 } as const;

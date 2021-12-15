@@ -1,4 +1,6 @@
 <h2>スレッド一覧</h2>
-<main *ngFor="let item of threads" (click)="onClick(item)">
-  <p>{{ item.title }}</p>
-</main>
+<ng-container *ngIf="threads">
+  <main *ngFor="let item of threads" (click)="onClick(item)">
+    <p>{{ item.title }}</p>
+  </main>
+</ng-container>

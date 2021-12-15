@@ -10,12 +10,16 @@
 <ng-container [formGroup]="createForm" *ngIf="display">
   <p-dialog header="新規投稿" [(visible)]="display">
     <label>タイトル</label>
+    <p>30文字以内</p>
     <input type="text" formControlName="title" /><br />
     <label>名前</label>
+    <p>30文字以内</p>
     <input type="text" formControlName="name" /><br />
     <label>本文</label>
+    <p>300文字以内</p>
     <textarea formControlName="text"></textarea><br />
     <label>編集キー</label>
+    <p>4文字以上6文字以内</p>
     <input type="text" formControlName="editkey" /><br />
     <button (click)="create()">投稿</button>
   </p-dialog>

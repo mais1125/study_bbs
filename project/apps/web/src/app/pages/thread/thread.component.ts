@@ -2,13 +2,18 @@ import { HttpParams } from '@angular/common/http';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { API_ENDPOINT } from 'apps/common/interfaces/interface/controller/endpoints.interface';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { ApiService } from '../../service/api.service';
 // entities interfaces
 import { Thread, Message } from '@interface/entities';
 // controllers interfaces
-import { ResCreate, ResponseInterface } from '@interface/controllers';
+import {
+  ResCreate,
+  ResponseInterface,
+  API_ENDPOINT,
+} from '@interface/controllers';
+import { PAGE } from '../../app-routig.module';
 
 @Component({
   selector: 'project-thread',
@@ -30,20 +35,35 @@ export class ThreadComponent implements OnInit, OnDestroy {
 
   /** 返信用FormGroup */
   resForm = new FormGroup({
-    text: new FormControl('', Validators.required),
-    name: new FormControl('', Validators.required),
-    editkye: new FormControl('', Validators.required),
+    /** 名前 */
+    name: new FormControl('', [Validators.required, Validators.maxLength(30)]),
+    /** 本文 */
+    text: new FormControl('', [Validators.required, Validators.maxLength(30)]),
+    /** 編集キー */
+    editkye: new FormControl('', [
+      Validators.required,
+      Validators.minLength(4),
+      Validators.maxLength(6),
+    ]),
   });
 
   /** 編集FormGroup */
   editForm = new FormGroup({
     id: new FormControl('', Validators.required),
-    text: new FormControl('', Validators.required),
-    name: new FormControl('', Validators.required),
-    editkey: new FormControl('', Validators.required),
+    name: new FormControl('', [Validators.required, Validators.maxLength(30)]),
+    text: new FormControl('', [Validators.required, Validators.maxLength(300)]),
+    editkey: new FormControl('', [
+      Validators.required,
+      Validators.minLength(4),
+      Validators.maxLength(6),
+    ]),
   });
 
-  constructor(private apiService: ApiService, private route: ActivatedRoute) {}
+  constructor(
+    private apiService: ApiService,
+    private route: ActivatedRoute,
+    public router: Router
+  ) {}
 
   /**
    * クエリパラメーターを取得
@@ -69,11 +89,19 @@ export class ThreadComponent implements OnInit, OnDestroy {
     const options = {
       params: new HttpParams().set('id', id),
     };
-    const res = await this.apiService
+    await this.apiService
       .get(url, options)
       .toPromise()
-      .then((i) => (this.thread = i as Thread));
-    res.message?.reverse();
+      .then((res) => {
+        if (!res) {
+          this.router.navigateByUrl(
+            `${PAGE.CATEGORY}?id=${this.thread.cid?.id}`
+          );
+        } else {
+          this.thread = res as Thread;
+          this.thread.message?.reverse();
+        }
+      });
   }
 
   /**
@@ -154,10 +182,11 @@ export class ThreadComponent implements OnInit, OnDestroy {
       .toPromise()
       .then((res) => (this.response = res));
     if (this.response.status) {
+      // status=true
       await this.getThread(this.thread.id as number);
       this.editModal();
-    } else {
-      this.response.message;
     }
+    // status=false
+    this.response.message;
   }
 }

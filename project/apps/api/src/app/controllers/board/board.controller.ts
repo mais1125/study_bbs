@@ -24,8 +24,9 @@ export class BoardController {
   }
 
   @Get('thread')
-  findOne(@Query() req: Pick<Thread, 'id'>): Promise<Thread> {
-    return this.boardService.findOne(req);
+  async findOne(@Query() req: Pick<Thread, 'id'>): Promise<Thread> {
+    const res = await this.boardService.findOne(req);
+    return res;
   }
 
   @Get('threadall')
@@ -34,8 +35,8 @@ export class BoardController {
   }
 
   @Get('categories')
-  Categories(): Promise<Category[]> {
-    return this.boardService.Categories();
+  categories(): Promise<Category[]> {
+    return this.boardService.categories();
   }
 
   @Get('category')
@@ -44,7 +45,7 @@ export class BoardController {
   }
 
   @Get('findmessage')
-  findMessage(@Body() req: Pick<Message, 'id'>): Promise<Message> {
+  findMessage(@Body() req: Message): Promise<Message> {
     return this.boardService.findMessage(req);
   }
 
@@ -54,12 +55,7 @@ export class BoardController {
   }
 
   @Post('delete')
-  delete(@Body() req: Thread): Promise<ResponseInterface> {
+  delete(@Body() req: Message): Promise<ResponseInterface> {
     return this.boardService.delete(req);
-  }
-
-  @Post('deleteres')
-  deleteRes(@Body() req: Message): Promise<ResponseInterface> {
-    return this.boardService.deleteRes(req);
   }
 }

@@ -2,15 +2,27 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { API_ENDPOINT } from 'apps/common/interfaces/interface/controller/endpoints.interface';
-import { Category } from 'apps/common/interfaces/interface/entities/category.interface';
 import { ApiService } from '../../service/api.service';
 import { HttpParams } from '@angular/common/http';
-import { Thread } from 'apps/common/interfaces/interface/entities/thread.interface';
 import { PAGE } from '../../app-routig.module';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import {
+  AbstractControl,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
+// entities interfaces
+import { Thread, Category } from '@interface/entities';
+// controllers interfaces
+import { BoardCreate, API_ENDPOINT } from '@interface/controllers';
 
-import { BoardCreate } from '../../../../../common/interfaces/interface/controller/board.interface';
+// createForm用Type
+type createFormControls = {
+  [key in keyof BoardCreate]: AbstractControl;
+};
+type createFormGroup = FormGroup & {
+  controls: createFormControls;
+};
 
 @Component({
   selector: 'project-ctegory',
@@ -25,15 +37,15 @@ export class CategoryComponent implements OnInit, OnDestroy {
 
   /** 投稿FormGroup */
   createForm = new FormGroup({
-    /** タイトル */
-    title: new FormControl('', Validators.required),
-    /** 名前 */
-    name: new FormControl('', Validators.required),
-    /** 本文 */
-    text: new FormControl('', Validators.required),
-    /** 編集キー */
-    editkey: new FormControl('', Validators.required),
-  });
+    title: new FormControl('', [Validators.required, Validators.maxLength(30)]),
+    name: new FormControl('', [Validators.required, Validators.maxLength(30)]),
+    text: new FormControl('', [Validators.required, Validators.maxLength(300)]),
+    editkey: new FormControl('', [
+      Validators.required,
+      Validators.minLength(4),
+      Validators.maxLength(6),
+    ]),
+  } as createFormControls) as createFormGroup;
 
   constructor(
     private apiService: ApiService,
@@ -83,21 +95,14 @@ export class CategoryComponent implements OnInit, OnDestroy {
   }
 
   /**
-   * 新規投稿用Modalの切り替え
-   */
-  switchModal(): void {
-    this.display = !this.display;
-  }
-
-  /**
    * 新規投稿送信
    */
   async create(): Promise<void> {
     const req: BoardCreate = {
-      title: this.createForm.value.title,
-      name: this.createForm.value.name,
-      text: this.createForm.value.text,
-      editkey: this.createForm.value.editkey,
+      title: this.createForm.controls.title.value,
+      name: this.createForm.controls.name.value,
+      text: this.createForm.controls.text.value,
+      editkey: this.createForm.controls.editkey.value,
       cid: { id: this.category.id } as Category,
     };
     // 投稿
@@ -109,5 +114,13 @@ export class CategoryComponent implements OnInit, OnDestroy {
     await this.getCategory(req.cid?.id as number);
     // Modalを閉じる
     this.switchModal();
+  }
+
+  /**
+   * 新規投稿用Modalの切り替え
+   */
+  switchModal(): void {
+    this.display = !this.display;
+    this.createForm.reset();
   }
 }
