@@ -1,10 +1,6 @@
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
-import { ThreadEntity } from '.';
-import {
-  Category,
-  CATEGORY_TYPE,
-} from '../../../../../common/interfaces/interface/entities/category.interface';
-import { Thread } from '../../../../../common/interfaces/interface/entities/thread.interface';
+import { ThreadEntity } from '@entities';
+import { Category, CATEGORY_TYPE, Thread } from '@interface/entities';
 
 @Entity('Categories')
 export class CategoryEntity implements Category {

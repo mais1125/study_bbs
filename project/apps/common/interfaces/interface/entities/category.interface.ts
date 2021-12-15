@@ -1,4 +1,4 @@
-import { Thread } from './thread.interface';
+import { Thread } from '@interface/entities';
 
 /** カテゴリータイプ */
 export const CATEGORY_TYPE = {

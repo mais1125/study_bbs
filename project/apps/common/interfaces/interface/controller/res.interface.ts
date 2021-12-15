@@ -1,4 +1,4 @@
-import { Message } from '../entities/message.interface';
+import { Message } from '@interface/entities';
 
 export type ResCreate = Pick<
   Message,

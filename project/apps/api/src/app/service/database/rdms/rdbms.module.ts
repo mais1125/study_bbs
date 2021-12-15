@@ -1,7 +1,9 @@
 import { Module } from '@nestjs/common';
-import { CategoryEntityService } from './entities/category.service';
-import { MessageEntityService } from './entities/massage.service';
-import { ThreadEntityService } from './entities/thread.service';
+import {
+  CategoryEntityService,
+  MessageEntityService,
+  ThreadEntityService,
+} from '@services';
 
 const entitiesService = [
   CategoryEntityService,

@@ -6,8 +6,7 @@ import {
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { ThreadEntity } from '.';
-import { Message } from '../../../../../common/interfaces/interface/entities/message.interface';
-import { Thread } from '../../../../../common/interfaces/interface/entities/thread.interface';
+import { Message, Thread } from '@interface/entities';
 import { TimeStampEntity } from './abstract';
 
 @Entity('Messages')

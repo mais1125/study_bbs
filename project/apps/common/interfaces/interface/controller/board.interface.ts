@@ -1,5 +1,4 @@
-import { Message } from '../entities/message.interface';
-import { Thread } from '../entities/thread.interface';
+import { Thread, Message } from '@interface/entities';
 
 export type BoardCreate = Pick<Thread, 'title' | 'cid'> &
   Pick<Message, 'name' | 'text' | 'editkey' | 'id'>;

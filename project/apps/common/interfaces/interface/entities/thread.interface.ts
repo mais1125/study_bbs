@@ -1,5 +1,4 @@
-import { Category } from './category.interface';
-import { Message } from './message.interface';
+import { Category, Message } from '@interface/entities';
 
 /**
  * Threadモデル

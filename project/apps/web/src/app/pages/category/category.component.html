@@ -21,6 +21,6 @@
     <label>編集キー</label>
     <p>4文字以上6文字以内</p>
     <input type="text" formControlName="editkey" /><br />
-    <button (click)="create()">投稿</button>
+    <button [disabled]="createForm.invalid" (click)="create()">投稿</button>
   </p-dialog>
 </ng-container>

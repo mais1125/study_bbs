@@ -6,10 +6,8 @@ import {
   OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
-import { CategoryEntity, MessageEntity } from '.';
-import { Category } from '../../../../../common/interfaces/interface/entities/category.interface';
-import { Message } from '../../../../../common/interfaces/interface/entities/message.interface';
-import { Thread } from '../../../../../common/interfaces/interface/entities/thread.interface';
+import { CategoryEntity, MessageEntity } from '@entities';
+import { Category, Message, Thread } from '@interface/entities';
 import { TimeStampEntity } from './abstract';
 
 @Entity('Threads')

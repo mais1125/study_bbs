@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { AbstractRDBMSService } from '../abstract.service';
-import { CategoryEntity } from '../../../../typeorm/entities';
-import { Category } from '../../../../../../../common/interfaces/interface/entities/category.interface';
+import { CategoryEntity } from '@entities';
+import { Category } from '@interface/entities';
 
 @Injectable()
 export class CategoryEntityService extends AbstractRDBMSService<Category> {
