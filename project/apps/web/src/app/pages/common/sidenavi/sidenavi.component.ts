@@ -26,13 +26,6 @@ export class SidenaviComponent implements OnInit {
   }
 
   /**
-   * メインページへ遷移
-   */
-  main(): void {
-    this.router.navigateByUrl(PAGE.MAIN);
-  }
-
-  /**
    * カテゴリーページへ遷移
    */
   onClick(id: Category): void {

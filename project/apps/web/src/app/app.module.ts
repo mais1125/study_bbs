@@ -9,16 +9,18 @@ import { ThreadRoutingModule } from './pages/thread/tread-routing.module';
 import { SidenaviModule } from './pages/common/sidenavi/sidenavi.module';
 import { AppComponent } from './app.component';
 import { MainComponent } from './pages/main/main.component';
+import { HeaderModule } from './pages/common/header/header.module';
 
 const pageRouting = [CategoryRoutingModule, ThreadRoutingModule];
+const commonRouting = [SidenaviModule, HeaderModule];
 @NgModule({
   declarations: [AppComponent, MainComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    SidenaviModule,
     ...pageRouting,
+    ...commonRouting,
   ],
   providers: [],
   bootstrap: [AppComponent],
