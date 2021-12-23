@@ -4,7 +4,18 @@ import { RouterModule, Routes } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CategoryComponent } from './category.component';
+// primeNg module
 import { DialogModule } from 'primeng/dialog';
+import { InputTextModule } from 'primeng/inputtext';
+import { InputTextareaModule } from 'primeng/inputtextarea';
+import { ButtonModule } from 'primeng/button';
+
+const primengModule = [
+  DialogModule,
+  InputTextModule,
+  InputTextareaModule,
+  ButtonModule,
+];
 
 const routes: Routes = [
   {
@@ -20,7 +31,7 @@ const routes: Routes = [
     RouterModule.forRoot(routes),
     BrowserAnimationsModule,
     ReactiveFormsModule,
-    DialogModule,
+    ...primengModule,
   ],
   exports: [CategoryComponent],
 })

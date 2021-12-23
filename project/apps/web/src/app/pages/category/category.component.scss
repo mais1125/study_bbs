@@ -1,4 +1,32 @@
-::ng-deep .p-dialog {
-  width: 350px;
-  display: grid;
+@use '../../../styles.scss';
+
+// font size
+p {
+  @extend .font-s;
+}
+
+label {
+  @extend .font-m;
+}
+
+// p-button
+::ng-deep .p-button {
+  @extend .button;
+}
+
+/* modal*/
+
+// modalレイアウト
+::ng-deep.p-dialog {
+  @extend .modal;
+}
+
+// textarea
+textarea {
+  @extend .textarea;
+}
+
+// input
+::ng-deep .p-inputtext {
+  @extend .input;
 }

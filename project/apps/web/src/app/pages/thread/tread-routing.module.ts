@@ -4,7 +4,18 @@ import { RouterModule, Routes } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ThreadComponent } from './thread.component';
+// primeNg Module
 import { DialogModule } from 'primeng/dialog';
+import { ButtonModule } from 'primeng/button';
+import { InputTextModule } from 'primeng/inputtext';
+import { InputTextareaModule } from 'primeng/inputtextarea';
+
+const primengModule = [
+  DialogModule,
+  ButtonModule,
+  InputTextModule,
+  InputTextareaModule,
+];
 
 const routes: Routes = [
   {
@@ -21,7 +32,7 @@ const routes: Routes = [
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
-    DialogModule,
+    ...primengModule,
   ],
   exports: [ThreadComponent],
 })

@@ -1,0 +1,6 @@
+@use '../../../styles.scss';
+
+// font size
+p {
+  @extend .font-m;
+}

@@ -11,5 +11,5 @@ export interface Thread {
   /** カテゴリー */
   cid?: Category;
   /** 投稿 */
-  message?: Message[];
+  message: Message[];
 }

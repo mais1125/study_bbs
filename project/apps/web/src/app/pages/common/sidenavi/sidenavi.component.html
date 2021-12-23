@@ -1,7 +1,13 @@
 <div>
-  <ng-container *ngFor="let category of categories"
-    ><button (click)="onClick(category)">
+  <ng-container *ngFor="let category of categories">
+    <button
+      pButton
+      pRipple
+      type="button"
+      class="p-button-text"
+      (click)="onClick(category)"
+    >
       {{ category.name }}
-    </button></ng-container
-  >
+    </button>
+  </ng-container>
 </div>

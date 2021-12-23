@@ -1,12 +1,14 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { FindOneOptions } from 'typeorm';
+import moment = require('moment');
 // entitysInterface
-import { Category, Message, Thread } from '@interface/entities';
+import { Category, ViewMessage, Message, Thread } from '@interface/entities';
 // controllerInterface
 import {
   BoardCreate,
   ResCreate,
   ResponseInterface,
+  DATE_FORMAT,
 } from '@interface/controllers';
 // service
 import {
@@ -53,7 +55,7 @@ export class BoardService {
       editkey: req.editkey,
       tid: req.tid,
     };
-    return await this.messageEntityService.create(newMessage);
+    return await this.messageEntityService.create(newMessage as Message);
   }
 
   /**
@@ -67,6 +69,13 @@ export class BoardService {
     if (res === undefined) {
       return res;
     }
+    const hoge: ViewMessage[] = res.message;
+    res.message.filter((i) => {
+      const index = hoge.findIndex(({ id }) => id === i.id);
+      hoge[index].createAt = moment(i.createAt).format(DATE_FORMAT.FOMAT);
+      hoge[index].updateAt = moment(i.updateAt).format(DATE_FORMAT.FOMAT);
+    });
+
     return res;
   }
 

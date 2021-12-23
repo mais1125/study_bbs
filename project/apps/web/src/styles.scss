@@ -3,3 +3,58 @@
   margin: 0;
   padding: 0;
 }
+
+/* font size */
+.font-s {
+  font-size: 0.6875rem;
+  &b {
+    font-size: 0.6875rem;
+    font-weight: bold;
+  }
+}
+.font-m {
+  font-size: 0.8125rem;
+  &b {
+    font-size: 0.8125rem;
+    font-weight: bold;
+  }
+}
+.font-l {
+  font-size: 1rem;
+  &b {
+    font-size: 1rem;
+    font-weight: bold;
+  }
+}
+.font-xl {
+  font-size: 1.3rem;
+  &b {
+    font-size: 1.3rem;
+    font-weight: bold;
+  }
+}
+
+/* modal*/
+.modal {
+  width: 350px;
+  display: grid;
+}
+
+.input {
+  width: 100%;
+  height: 30px;
+}
+
+.textarea {
+  width: 100%;
+  height: 100px;
+  resize: none;
+}
+
+/* p-button*/
+.button {
+  width: 70 px;
+  height: 15px;
+  font-size: 0.5rem;
+  padding: 0.625rem;
+}

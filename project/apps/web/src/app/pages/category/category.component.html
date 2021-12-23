@@ -1,6 +1,7 @@
 <ng-container *ngIf="category">
   <h3>{{ category.name }}</h3>
-  <button (click)="switchModal()">新規作成</button>
+  <p-button label="新規作成" (click)="switchModal()"></p-button>
+
   <main *ngFor="let thread of category.thread" (click)="onClick(thread)">
     <p>{{ thread.title }}</p>
   </main>
@@ -11,16 +12,20 @@
   <p-dialog header="新規投稿" [(visible)]="display">
     <label>タイトル</label>
     <p>30文字以内</p>
-    <input type="text" formControlName="title" /><br />
+    <input type="text" pInputText formControlName="title" /><br />
     <label>名前</label>
     <p>30文字以内</p>
-    <input type="text" formControlName="name" /><br />
+    <input type="text" pInputText formControlName="name" /><br />
     <label>本文</label>
     <p>300文字以内</p>
-    <textarea formControlName="text"></textarea><br />
+    <textarea pInputTextarea formControlName="text"></textarea><br />
     <label>編集キー</label>
     <p>4文字以上6文字以内</p>
-    <input type="text" formControlName="editkey" /><br />
-    <button [disabled]="createForm.invalid" (click)="create()">投稿</button>
+    <input type="text" pInputText formControlName="editkey" /><br />
+    <p-button
+      label="投稿"
+      [disabled]="createForm.invalid"
+      (click)="create()"
+    ></p-button>
   </p-dialog>
 </ng-container>

@@ -6,20 +6,14 @@ export abstract class AbstractService {
   /**
    * GET
    */
-  get<reqEntity, resEntity>(
-    uri: string,
-    params?: reqEntity
-  ): Observable<resEntity> {
-    return this.http.get<resEntity>(`${this.endpoint}/${uri}`, params);
+  get<reqType, resType>(uri: string, params?: reqType): Observable<resType> {
+    return this.http.get<resType>(`${this.endpoint}/${uri}`, params);
   }
 
   /**
    * POST
    */
-  post<reqEntity, resEntity>(
-    uri: string,
-    params?: reqEntity
-  ): Observable<resEntity> {
-    return this.http.post<resEntity>(`${this.endpoint}/${uri}`, params);
+  post<reqType, resType>(uri: string, params?: reqType): Observable<resType> {
+    return this.http.post<resType>(`${this.endpoint}/${uri}`, params);
   }
 }

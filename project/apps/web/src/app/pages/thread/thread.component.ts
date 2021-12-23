@@ -90,7 +90,7 @@ export class ThreadComponent implements OnInit, OnDestroy {
       params: new HttpParams().set('id', id),
     };
     await this.apiService
-      .get(url, options)
+      .get<{ params: HttpParams }, Thread>(url, options)
       .toPromise()
       .then((res) => {
         if (!res) {
@@ -98,10 +98,25 @@ export class ThreadComponent implements OnInit, OnDestroy {
             `${PAGE.CATEGORY}?id=${this.thread.cid?.id}`
           );
         } else {
-          this.thread = res as Thread;
-          this.thread.message?.reverse();
+          this.thread = this.sortMessage(res);
         }
       });
+  }
+
+  /**
+   * メッセージのソート
+   */
+  sortMessage(res: Thread): Thread {
+    res.message.sort(function (a, b) {
+      let sortRes;
+      if (b.id === res.message[0].id) {
+        sortRes = (a.id as number) < (b.id as number) ? -1 : 1;
+      } else {
+        sortRes = (a.id as number) < (b.id as number) ? 1 : -1;
+      }
+      return sortRes;
+    });
+    return res;
   }
 
   /**
