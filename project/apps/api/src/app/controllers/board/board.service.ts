@@ -29,11 +29,11 @@ export class BoardService {
    */
   async create(req: BoardCreate): Promise<boolean> {
     // スレッドに新規登録
-    const thread: Thread = {
+    const thread: Partial<Thread> = {
       title: req.title,
       cid: req.cid,
     };
-    const tid = await this.threadEntityService.create(thread);
+    const tid = await this.threadEntityService.create(thread as Thread);
     // メッセージに登録
     const message: Message = {
       tid: tid,

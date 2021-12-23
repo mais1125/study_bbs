@@ -23,5 +23,5 @@ export class ThreadEntity extends TimeStampEntity implements Thread {
   cid?: Category;
 
   @OneToMany(() => MessageEntity, (message) => message.tid)
-  message?: Message[];
+  message: Message[];
 }
