@@ -1,10 +1,163 @@
 @use '../../../styles.scss';
 
-// display
-
-// font size
-p {
+// label
+%label {
+  width: 50px;
+  height: auto;
+  @extend .center-center;
   @extend .font-s;
+}
+
+// p
+%p {
+  @extend .font-s;
+  @extend .center-left;
+}
+
+// width:50%
+%width-half {
+  width: 50%;
+  display: flex;
+}
+
+// ボタン位置:中央右寄せ
+%button {
+  @extend .center-right;
+}
+
+// display
+.container {
+  display: grid;
+  grid-template-rows: auto auto;
+  grid-template-columns: 100%;
+
+  .parent {
+    grid-row: 1/2;
+    padding: 2px;
+  }
+  .child {
+    padding: 2px;
+  }
+}
+
+// 親記事
+.parent {
+  width: 100%;
+  .title {
+    display: flex;
+    background: linear-gradient(transparent 80%, #a7d6ff 70%);
+  }
+  // スレッド記事本文
+  .create-details {
+    display: flex;
+    width: 100%;
+    .name,
+    .create-date {
+      display: flex;
+      label {
+        @extend %label;
+      }
+      p {
+        @extend %p;
+      }
+    }
+    .name {
+      width: 65%;
+    }
+  }
+  .text {
+    display: flex;
+    height: auto;
+    label {
+      @extend %label;
+    }
+    p {
+      @extend %p;
+      white-space: pre-wrap;
+    }
+  }
+  .edit-button {
+    @extend %button;
+  }
+
+  // 返信投稿フォーム
+  .resForm {
+    p {
+      @extend .center-center;
+      @extend .font-m;
+    }
+    .create-name,
+    .create-text {
+      display: flex;
+      padding-bottom: 2px;
+      label {
+        @extend %label;
+      }
+    }
+    .submit {
+      display: flex;
+      width: 100%;
+      .create-editkey {
+        display: flex;
+        width: 90%;
+
+        label {
+          width: 50px;
+          height: auto;
+          @extend .center-center;
+          font-size: 0.5rem;
+        }
+      }
+      .submit-button {
+        @extend %button;
+        width: 10%;
+      }
+    }
+  }
+}
+
+// 子記事
+.child {
+  padding: 2px;
+  .res-details {
+    display: flex;
+    width: 100%;
+    .res-name,
+    .res-date {
+      display: flex;
+      padding-bottom: 2px;
+      label {
+        @extend %label;
+      }
+      p {
+        @extend %p;
+      }
+    }
+    .res-name {
+      width: 65%;
+    }
+  }
+  .res {
+    display: flex;
+
+    .res-text {
+      display: flex;
+      height: auto;
+      width: 90%;
+      label {
+        @extend %label;
+      }
+      p {
+        @extend %p;
+        width: 100px;
+        white-space: pre-wrap;
+      }
+    }
+    .edit-submit {
+      width: 10%;
+      @extend .center-right;
+    }
+  }
 }
 
 // p-button
@@ -26,3 +179,23 @@ p {
 textarea {
   @extend .textarea;
 }
+
+// test
+// .parent {
+//   background-color: rgb(144, 243, 243);
+// }
+// .child {
+//   background-color: rgb(238, 172, 125);
+// }
+// .title {
+//   background-color: white;
+// }
+// label {
+//   background-color: yellow;
+// }
+// .create-details {
+//   background-color: rgb(185, 185, 252);
+// }
+// .res-text {
+//   background-color: rgb(222, 241, 202);
+// }

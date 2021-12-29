@@ -1,31 +1,81 @@
-<ng-container *ngIf="category">
-  <h3>{{ category.name }}</h3>
-  <p-button label="新規作成" (click)="switchModal()"></p-button>
+<div class="container">
+  <ng-container *ngIf="category">
+    <h3>{{ category.name }}</h3>
+    <p-button label="新規投稿" (click)="switchModal()"></p-button>
 
-  <main *ngFor="let thread of category.thread" (click)="onClick(thread)">
-    <p>{{ thread.title }}</p>
-  </main>
-</ng-container>
+    <main *ngFor="let thread of category.thread" (click)="onClick(thread)">
+      <p>{{ thread.title }}</p>
+    </main>
+  </ng-container>
+</div>
 
 <!-- 投稿：Modal -->
+
 <ng-container [formGroup]="createForm" *ngIf="display">
   <p-dialog header="新規投稿" [(visible)]="display">
-    <label>タイトル</label>
-    <p>30文字以内</p>
-    <input type="text" pInputText formControlName="title" /><br />
-    <label>名前</label>
-    <p>30文字以内</p>
-    <input type="text" pInputText formControlName="name" /><br />
-    <label>本文</label>
-    <p>300文字以内</p>
-    <textarea pInputTextarea formControlName="text"></textarea><br />
-    <label>編集キー</label>
-    <p>4文字以上6文字以内</p>
-    <input type="text" pInputText formControlName="editkey" /><br />
-    <p-button
-      label="投稿"
-      [disabled]="createForm.invalid"
-      (click)="create()"
-    ></p-button>
+    <div class="create">
+      <div class="title">
+        <label>タイトル</label>
+        <div class="input-tittle">
+          <span class="p-float-label">
+            <input
+              id="float-input"
+              type="text"
+              pInputText
+              formControlName="title"
+            />
+            <label for="float-input">30文字以内</label>
+          </span>
+        </div>
+      </div>
+      <div class="name">
+        <label>名前</label>
+        <div class="input-name">
+          <span class="p-float-label">
+            <input
+              id="float-input"
+              type="text"
+              pInputText
+              formControlName="name"
+            />
+            <label for="float-input">30文字以内</label>
+          </span>
+        </div>
+      </div>
+      <div class="text">
+        <label>本文</label>
+        <div class="input-text">
+          <span class="p-float-label">
+            <textarea
+              id="float-input"
+              pInputTextarea
+              formControlName="text"
+            ></textarea>
+            <label for="float-input">300文字以内</label>
+          </span>
+        </div>
+      </div>
+      <div class="editkey">
+        <label>編集キー</label>
+        <div class="input-editkey">
+          <span class="p-float-label">
+            <input
+              id="float-input"
+              type="text"
+              pInputText
+              formControlName="editkey"
+            />
+            <label for="float-input">4文字以上6文字以内</label>
+          </span>
+        </div>
+      </div>
+      <div class="button">
+        <p-button
+          label="投稿"
+          [disabled]="createForm.invalid"
+          (click)="create()"
+        ></p-button>
+      </div>
+    </div>
   </p-dialog>
 </ng-container>

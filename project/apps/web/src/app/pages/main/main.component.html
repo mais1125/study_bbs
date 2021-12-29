@@ -1,6 +1,8 @@
-<h2>スレッド一覧</h2>
-<ng-container *ngIf="threads">
-  <main *ngFor="let item of threads" (click)="onClick(item)">
-    <p>{{ item.title }}</p>
-  </main>
-</ng-container>
+<div class="container">
+  <h3>スレッド一覧</h3>
+  <ng-container *ngIf="threads">
+    <main *ngFor="let item of threads" (click)="onClick(item)">
+      <p>{{ item.title }}</p>
+    </main>
+  </ng-container>
+</div>

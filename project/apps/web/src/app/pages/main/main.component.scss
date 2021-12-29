@@ -1,6 +1,23 @@
 @use '../../../styles.scss';
 
-// font size
+// コンテナ
+.container {
+  padding: 5px;
+}
+
+// 見出し
+h3 {
+  background: linear-gradient(transparent 80%, #a7d6ff 70%);
+  width: 130px;
+}
+
+// スレッドタイトルの表示
 p {
   @extend .font-m;
+  padding-top: 10px;
+  border-bottom: solid 1px #d7e0e9;
+}
+// ホバー時
+p:hover {
+  cursor: pointer;
 }

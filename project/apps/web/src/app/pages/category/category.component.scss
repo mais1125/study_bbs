@@ -1,32 +1,88 @@
 @use '../../../styles.scss';
 
-// font size
-p {
+// label
+%label {
+  width: 60px;
+  height: auto;
+  @extend .center-right;
   @extend .font-s;
 }
 
-label {
+// ボタン位置:中央右寄せ
+%button {
+  @extend .center-right;
+}
+
+h3 {
+  background: linear-gradient(transparent 80%, #a7d6ff 70%);
+  width: 130px;
+}
+
+// スレッドタイトルの表示
+p {
   @extend .font-m;
+  padding-top: 10px;
+  border-bottom: solid 1px #d7e0e9;
+}
+p:hover {
+  cursor: pointer;
 }
 
 // p-button
 ::ng-deep .p-button {
   @extend .button;
+  margin-top: 3px;
 }
 
-/* modal*/
+.container {
+  padding: 5px;
+}
 
 // modalレイアウト
 ::ng-deep.p-dialog {
   @extend .modal;
 }
-
 // textarea
 textarea {
   @extend .textarea;
 }
-
 // input
 ::ng-deep .p-inputtext {
   @extend .input;
+}
+
+// modal表示
+.create {
+  padding: 2px;
+  .title,
+  .name,
+  .text,
+  .editkey {
+    margin-top: 20px;
+    display: flex;
+    gap: 2px;
+    width: 100%;
+    label {
+      @extend %label;
+    }
+    .input-tittle,
+    .input-name,
+    .input-editkey {
+      width: 100%;
+      label {
+        font-size: 0.3rem;
+        width: auto;
+      }
+    }
+    .input-text {
+      width: 100%;
+      label {
+        font-size: 0.3rem;
+        width: auto;
+      }
+    }
+  }
+  .button {
+    @extend %button;
+  }
 }

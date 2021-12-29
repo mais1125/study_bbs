@@ -5,7 +5,7 @@
 div {
   display: grid;
   grid-template-rows: var(--header-height) 1fr;
-  grid-template-columns: 150px 1fr;
+  grid-template-columns: 100px 1fr;
 
   header {
     grid-row: 1/2;
@@ -27,15 +27,15 @@ div {
 }
 
 // test用
-div {
-  background-color: rgb(128, 207, 207);
-  header {
-    background-color: darkseagreen;
-  }
-  nav {
-    background-color: rgb(236, 192, 236);
-  }
-  main {
-    background-color: rgb(211, 201, 175);
-  }
-}
+// div {
+//   background-color: rgb(128, 207, 207);
+//   header {
+//     background-color: darkseagreen;
+//   }
+//   nav {
+//     background-color: rgb(236, 192, 236);
+//   }
+//   main {
+//     background-color: rgb(211, 201, 175);
+//   }
+// }

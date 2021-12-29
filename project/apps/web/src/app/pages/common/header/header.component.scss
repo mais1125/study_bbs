@@ -3,3 +3,10 @@
 .pi {
   @extend .font-s;
 }
+.pi:hover {
+  cursor: pointer;
+}
+
+div {
+  background-color: rgba(103, 103, 107, 0.541);
+}
