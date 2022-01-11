@@ -1,8 +1,14 @@
 @use '../../../styles.scss';
 
 // コンテナ
-.container {
-  padding: 5px;
+
+:host {
+  display: grid;
+  place-items: center;
+  .container {
+    padding: 5px;
+    width: 95%;
+  }
 }
 
 // 見出し

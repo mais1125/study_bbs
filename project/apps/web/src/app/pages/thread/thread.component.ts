@@ -38,7 +38,7 @@ export class ThreadComponent implements OnInit, OnDestroy {
     /** 名前 */
     name: new FormControl('', [Validators.required, Validators.maxLength(30)]),
     /** 本文 */
-    text: new FormControl('', [Validators.required, Validators.maxLength(30)]),
+    text: new FormControl('', [Validators.required, Validators.maxLength(300)]),
     /** 編集キー */
     editkye: new FormControl('', [
       Validators.required,

@@ -2,7 +2,7 @@
 
 // label
 %label {
-  width: 50px;
+  width: 60px;
   height: auto;
   @extend .center-center;
   @extend .font-s;
@@ -25,18 +25,46 @@
   @extend .center-right;
 }
 
-// display
-.container {
-  display: grid;
-  grid-template-rows: auto auto;
-  grid-template-columns: 100%;
+h5 {
+  background: linear-gradient(transparent 80%, #abc6ddda);
+}
 
-  .parent {
-    grid-row: 1/2;
-    padding: 2px;
-  }
-  .child {
-    padding: 2px;
+// p-button
+::ng-deep .p-button {
+  @extend .button;
+}
+
+//modal
+::ng-deep.p-dialog {
+  @extend .modal;
+}
+
+// input
+::ng-deep .p-inputtext {
+  @extend .input;
+}
+
+// textarea
+textarea {
+  @extend .textarea;
+}
+
+// display
+:host {
+  display: grid;
+  place-items: center;
+
+  .container {
+    display: grid;
+
+    width: 70%;
+    .parent {
+      grid-row: 1/2;
+      padding: 2px;
+    }
+    .child {
+      padding: 2px;
+    }
   }
 }
 
@@ -45,7 +73,7 @@
   width: 100%;
   .title {
     display: flex;
-    background: linear-gradient(transparent 80%, #a7d6ff 70%);
+    background: linear-gradient(transparent 80%, #abc6ddda);
   }
   // スレッド記事本文
   .create-details {
@@ -58,7 +86,7 @@
         @extend %label;
       }
       p {
-        @extend %p;
+        @extend .font-s;
       }
     }
     .name {
@@ -72,7 +100,7 @@
       @extend %label;
     }
     p {
-      @extend %p;
+      @extend .font-l;
       white-space: pre-wrap;
     }
   }
@@ -82,6 +110,9 @@
 
   // 返信投稿フォーム
   .resForm {
+    display: grid;
+    gap: 5px;
+    margin-bottom: 10px;
     p {
       @extend .center-center;
       @extend .font-m;
@@ -96,16 +127,14 @@
     }
     .submit {
       display: flex;
-      width: 100%;
+
       .create-editkey {
         display: flex;
         width: 90%;
-
         label {
-          width: 50px;
+          width: 60px;
           height: auto;
-          @extend .center-center;
-          font-size: 0.5rem;
+          @extend %label;
         }
       }
       .submit-button {
@@ -122,6 +151,7 @@
   .res-details {
     display: flex;
     width: 100%;
+    background-color: #d3e3f0da;
     .res-name,
     .res-date {
       display: flex;
@@ -160,42 +190,21 @@
   }
 }
 
-// p-button
-::ng-deep .p-button {
-  @extend .button;
-}
+// 編集modalの表示
+.edit {
+  padding: 2px;
 
-/* modal*/
-::ng-deep.p-dialog {
-  @extend .modal;
+  .edit-name,
+  .edit-text,
+  .edit-submit {
+    display: flex;
+    width: 100%;
+    margin-bottom: 5px;
+    label {
+      @extend %label;
+    }
+  }
+  .button {
+    @extend .center-right;
+  }
 }
-
-// input
-::ng-deep .p-inputtext {
-  @extend .input;
-}
-
-// textarea
-textarea {
-  @extend .textarea;
-}
-
-// test
-// .parent {
-//   background-color: rgb(144, 243, 243);
-// }
-// .child {
-//   background-color: rgb(238, 172, 125);
-// }
-// .title {
-//   background-color: white;
-// }
-// label {
-//   background-color: yellow;
-// }
-// .create-details {
-//   background-color: rgb(185, 185, 252);
-// }
-// .res-text {
-//   background-color: rgb(222, 241, 202);
-// }

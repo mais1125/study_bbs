@@ -9,12 +9,14 @@ import { DialogModule } from 'primeng/dialog';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { InputTextareaModule } from 'primeng/inputtextarea';
+import { DividerModule } from 'primeng/divider';
 
 const primengModule = [
   DialogModule,
   ButtonModule,
   InputTextModule,
   InputTextareaModule,
+  DividerModule,
 ];
 
 const routes: Routes = [

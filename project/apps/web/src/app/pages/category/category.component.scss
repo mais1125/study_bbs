@@ -4,7 +4,7 @@
 %label {
   width: 60px;
   height: auto;
-  @extend .center-right;
+  @extend .center-center;
   @extend .font-s;
 }
 
@@ -19,13 +19,20 @@ h3 {
 }
 
 // スレッドタイトルの表示
-p {
-  @extend .font-m;
-  padding-top: 10px;
-  border-bottom: solid 1px #d7e0e9;
-}
-p:hover {
-  cursor: pointer;
+:host {
+  display: grid;
+  place-items: center;
+  .container {
+    width: 95%;
+    p {
+      @extend .font-m;
+      padding-top: 10px;
+      border-bottom: solid 1px #d7e0e9;
+    }
+    p:hover {
+      cursor: pointer;
+    }
+  }
 }
 
 // p-button
@@ -60,7 +67,6 @@ textarea {
   .editkey {
     margin-top: 20px;
     display: flex;
-    gap: 2px;
     width: 100%;
     label {
       @extend %label;

@@ -1,12 +1,10 @@
-<div class="container">
-  <ng-container *ngIf="thread">
-    <!-- 記事表示 -->
-    <ng-container
-      *ngFor="let message of thread.message; index as i"
-      [ngTemplateOutlet]="params"
-      [ngTemplateOutletContext]="{ message: message, index: i }"
-    >
-    </ng-container>
+<div class="container" *ngIf="thread">
+  <!-- 記事表示 -->
+  <ng-container
+    *ngFor="let message of thread.message; index as i"
+    [ngTemplateOutlet]="params"
+    [ngTemplateOutletContext]="{ message: message, index: i }"
+  >
   </ng-container>
 </div>
 
@@ -44,16 +42,30 @@
       <p>返信投稿</p>
       <div class="create-name">
         <label>名前</label>
-        <input type="text" pInputText formControlName="name" />
+        <input
+          type="text"
+          pInputText
+          formControlName="name"
+          placeholder="30文字以内"
+        />
       </div>
       <div class="create-text">
         <label>本文</label>
-        <textarea pInputTextarea formControlName="text"></textarea>
+        <textarea
+          pInputTextarea
+          formControlName="text"
+          placeholder="300文字以内"
+        ></textarea>
       </div>
       <div class="submit">
         <div class="create-editkey">
           <label>編集キー</label>
-          <input type="text" pInputText formControlName="editkye" />
+          <input
+            type="text"
+            pInputText
+            formControlName="editkye"
+            placeholder="半角英数4文字以上6文字以内"
+          />
         </div>
         <div class="submit-button">
           <p-button
@@ -64,6 +76,7 @@
         </div>
       </div>
     </div>
+    <h5>返信一覧</h5>
   </div>
 
   <!-- 子記事 -->
@@ -87,36 +100,45 @@
         <p-button label="編集" (click)="update(message)"></p-button>
       </div>
     </div>
+    <p-divider></p-divider>
   </div>
 </ng-template>
 
 <!-- 編集：Modal -->
 <ng-container [formGroup]="editForm" *ngIf="editMessage">
-  <p-dialog header="編集" [(visible)]="editDisplay">
-    <label>名前</label>
-    <input
-      type="text"
-      pInputText
-      [(ngModel)]="editMessage.name"
-      formControlName="name"
-    /><br />
-    <label>本文</label>
-    <textarea
-      pInputTextarea
-      [(ngModel)]="editMessage.text"
-      formControlName="text"
-    ></textarea
-    ><br />
-    <label>編集キー</label>
-    <input
-      type="text"
-      pInputText
-      [(ngModel)]="editMessage.editkey"
-      formControlName="editkey"
-    />
-    <p-button label="編集" (click)="edit()"></p-button>
-    <p-button label="削除" (click)="deleteMessage(editMessage)"></p-button>
-
+  <p-dialog header="投稿編集" [(visible)]="editDisplay">
+    <div class="edit">
+      <div class="edit-name">
+        <label>名前</label>
+        <input
+          type="text"
+          pInputText
+          [(ngModel)]="editMessage.name"
+          formControlName="name"
+        />
+      </div>
+      <div class="edit-text">
+        <label>本文</label>
+        <textarea
+          pInputTextarea
+          [(ngModel)]="editMessage.text"
+          formControlName="text"
+        ></textarea>
+      </div>
+      <div class="edit-submit">
+        <label>編集キー</label>
+        <input
+          type="text"
+          pInputText
+          [(ngModel)]="editMessage.editkey"
+          formControlName="editkey"
+        />
+      </div>
+      <div class="button">
+        <p-button label="編集" (click)="edit()"></p-button>
+        <p-button label="削除" (click)="deleteMessage(editMessage)"></p-button>
+      </div>
+    </div>
     <ng-container *ngIf="response">
       <p *ngIf="!response.status">{{ response.message }}</p>
     </ng-container>

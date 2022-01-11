@@ -10,7 +10,6 @@
 </div>
 
 <!-- 投稿：Modal -->
-
 <ng-container [formGroup]="createForm" *ngIf="display">
   <p-dialog header="新規投稿" [(visible)]="display">
     <div class="create">
@@ -65,7 +64,7 @@
               pInputText
               formControlName="editkey"
             />
-            <label for="float-input">4文字以上6文字以内</label>
+            <label for="float-input">半角英数4文字以上6文字以内</label>
           </span>
         </div>
       </div>

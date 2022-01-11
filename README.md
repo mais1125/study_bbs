@@ -1,94 +1,241 @@
+# プロダクト名：SAMPLE
 
+## **概要**
 
-# Project
+study_bbs
 
-This project was generated using [Nx](https://nx.dev).
+---
 
-<p style="text-align: center;"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="450"></p>
+## **前提条件**
 
-🔎 **Smart, Extensible Build Framework**
+お使いの環境が利用可能でない場合は[こちら](https://code.visualstudio.com/docs/remote/containers)を参考に事前作業を行ってください。
 
-## Adding capabilities to your workspace
+1. VSCode Remote Containers が利用可能である事
 
-Nx supports many plugins which add capabilities for developing different types of applications and different tools.
+---
 
-These capabilities include generating applications, libraries, etc as well as the devtools to test, and build projects as well.
+# プロダクト名：SAMPLE
 
-Below are our core plugins:
+## **概要**
 
-- [React](https://reactjs.org)
-  - `npm install --save-dev @nrwl/react`
-- Web (no framework frontends)
-  - `npm install --save-dev @nrwl/web`
-- [Angular](https://angular.io)
-  - `npm install --save-dev @nrwl/angular`
-- [Nest](https://nestjs.com)
-  - `npm install --save-dev @nrwl/nest`
-- [Express](https://expressjs.com)
-  - `npm install --save-dev @nrwl/express`
-- [Node](https://nodejs.org)
-  - `npm install --save-dev @nrwl/node`
+SAMPLE
 
-There are also many [community plugins](https://nx.dev/community) you could add.
+---
 
-## Generate an application
+## **前提条件**
 
-Run `nx g @nrwl/react:app my-app` to generate an application.
+お使いの環境が利用可能でない場合は[こちら](https://code.visualstudio.com/docs/remote/containers)を参考に事前作業を行ってください。
 
-> You can use any of the plugins above to generate applications as well.
+1. VSCode Remote Containers が利用可能である事
 
-When using Nx, you can create multiple applications and libraries in the same workspace.
+---
 
-## Generate a library
+## **環境構築手順**
 
-Run `nx g @nrwl/react:lib my-lib` to generate a library.
+以下の手順に従って下さい。
 
-> You can also use any of the plugins above to generate libraries as well.
+1. 本リポジトリを git clone します
 
-Libraries are shareable across libraries and applications. They can be imported from `@project/mylib`.
+   ```bash
+   $ git clone git@github.com:mai1125/study_bbs.git
+   ```
 
-## Development server
+1. クローン後、以下コマンドでコンテナを起動します。
 
-Run `nx serve my-app` for a dev server. Navigate to http://localhost:4200/. The app will automatically reload if you change any of the source files.
+   ```bash
+   $ arg="study_bbs" \
+     && cd ${arg} \
+     && code --folder-uri vscode-remote://dev-container+$(echo -n $(pwd) | xxd -p)/workspace
+   ```
 
-## Code scaffolding
+---
 
-Run `nx g @nrwl/react:component my-component --project=my-app` to generate a new component.
+## **サービス起動手順**
 
-## Build
+| システム       | 起動コマンド      | アクセス URL          |
+| -------------- | ----------------- | --------------------- |
+| すべて起動     | **$ npm start**   | -                     |
+| バックエンド   | **$ npm run api** | http://localhost:3333 |
+| フロントエンド | **$ npm run web** | http://localhost:4200 |
 
-Run `nx build my-app` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+---
 
-## Running unit tests
+## **作業の進め方**
 
-Run `nx test my-app` to execute the unit tests via [Jest](https://jestjs.io).
+本プロジェクトでは与えられたタスクもしくは作業が必要なタスク毎にブランチを作成します。
 
-Run `nx affected:test` to execute the unit tests affected by a change.
+### **作業の開始**
 
-## Running end-to-end tests
+1. 既に起票中のタスクを割り当てられた場合
 
-Run `ng e2e my-app` to execute the end-to-end tests via [Cypress](https://www.cypress.io).
+   1-1. ブランチを作成する前にチケット ID(XX-X)を確認するため[プロジェクトボード](https://id.atlassian.com/)へ移動します。
 
-Run `nx affected:e2e` to execute the end-to-end tests affected by a change.
+   1-2. 割り当てられたタスクのチケット ID (例:DC-1)を確認します。
 
-## Understand your workspace
+   1-3. ブランチを作成します。
 
-Run `nx dep-graph` to see a diagram of the dependencies of your projects.
+   ```bash
+   $ git checkout -b ${チケットID}
+   ```
 
-## Further help
+   `(例：$ git checkout -b DC-1)`
 
-Visit the [Nx Documentation](https://nx.dev) to learn more.
+   1-4. 作成したブランチをリポジトリへ反映します。
 
+   ```bash
+   $ git push --set-upstream origin ${チケットID}
+   ```
 
+   `(例：$ git push --set-upstream origin DC-1)`
 
-## ☁ Nx Cloud
+1. 新たにチケット ID を発行して作業を行う場合
 
-### Distributed Computation Caching & Distributed Task Execution
+   2-1. [プロジェクトボード](https://id.atlassian.com/)へ移動します。
 
-<p style="text-align: center;"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-cloud-card.png"></p>
+   2-2. 適所にタスクを起票してチケット ID (例:DC-1)を発行します。
 
-Nx Cloud pairs with Nx in order to enable you to build and test code more rapidly, by up to 10 times. Even teams that are new to Nx can connect to Nx Cloud and start saving time instantly.
+   2-3. ブランチを作成します。
 
-Teams using Nx gain the advantage of building full-stack applications with their preferred framework alongside Nx’s advanced code generation and project dependency graph, plus a unified experience for both frontend and backend developers.
+   ```bash
+   $ git checkout -b ${チケットID}
+   ```
 
-Visit [Nx Cloud](https://nx.app/) to learn more.
+   `(例：$ git checkout -b DC-1)`
+
+   2-4. 作成したブランチをリポジトリへ反映します。
+
+   ```bash
+   $ git push --set-upstream origin ${チケットID}
+   ```
+
+   `(例：$ git push --set-upstream origin DC-1)`
+
+### **Pull Request を出す**
+
+1. Github の[プロジェクト](https://id.atlassian.com/)へアクセスして任意のブランチから`Pull request`をクリックします。
+
+1. 修正内容を記入します。
+
+1. 最後に`Create pull request`をクリックします。
+
+---
+
+## **開発するにあたって**
+
+### コーディング規約
+
+- `any`は極力利用しないで下さい！
+
+  TypeScript なので`any`は極力使用せず型を指定するようにしてください。
+  型を利用することでプロパティへ安全にアクセスできる、インテリセンスが利く、どんなデータを扱いたいのかわかりやすく可読性が上がる等のメリットがあります。
+  any を使う理由がある場合は以下のようにコメントで理由を記載して該当箇所だけ Lint を無効にしてください。
+
+  ```ts
+  // anyを使う理由
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  ```
+
+## **環境構築手順**
+
+以下の手順に従って下さい。
+
+1. 本リポジトリを git clone します
+
+   ```bash
+   $ git clone git@github.com:s-duu-jp/sample.git
+   ```
+
+1. クローン後、以下コマンドでコンテナを起動します。
+
+   ```bash
+   $ arg="sample" \
+     && cd ${arg} \
+     && code --folder-uri vscode-remote://dev-container+$(echo -n $(pwd) | xxd -p)/workspace
+   ```
+
+---
+
+## **サービス起動手順**
+
+| システム       | 起動コマンド      | アクセス URL          |
+| -------------- | ----------------- | --------------------- |
+| すべて起動     | **$ npm start**   | -                     |
+| バックエンド   | **$ npm run api** | http://localhost:3333 |
+| フロントエンド | **$ npm run web** | http://localhost:4200 |
+
+---
+
+## **作業の進め方**
+
+本プロジェクトでは与えられたタスクもしくは作業が必要なタスク毎にブランチを作成します。
+
+### **作業の開始**
+
+1. 既に起票中のタスクを割り当てられた場合
+
+   1-1. ブランチを作成する前にチケット ID(XX-X)を確認するため[プロジェクトボード](https://id.atlassian.com/)へ移動します。
+
+   1-2. 割り当てられたタスクのチケット ID (例:DC-1)を確認します。
+
+   1-3. ブランチを作成します。
+
+   ```bash
+   $ git checkout -b ${チケットID}
+   ```
+
+   `(例：$ git checkout -b DC-1)`
+
+   1-4. 作成したブランチをリポジトリへ反映します。
+
+   ```bash
+   $ git push --set-upstream origin ${チケットID}
+   ```
+
+   `(例：$ git push --set-upstream origin DC-1)`
+
+1. 新たにチケット ID を発行して作業を行う場合
+
+   2-1. [プロジェクトボード](https://id.atlassian.com/)へ移動します。
+
+   2-2. 適所にタスクを起票してチケット ID (例:DC-1)を発行します。
+
+   2-3. ブランチを作成します。
+
+   ```bash
+   $ git checkout -b ${チケットID}
+   ```
+
+   `(例：$ git checkout -b DC-1)`
+
+   2-4. 作成したブランチをリポジトリへ反映します。
+
+   ```bash
+   $ git push --set-upstream origin ${チケットID}
+   ```
+
+   `(例：$ git push --set-upstream origin DC-1)`
+
+### **Pull Request を出す**
+
+1. Github の[プロジェクト](https://id.atlassian.com/)へアクセスして任意のブランチから`Pull request`をクリックします。
+
+1. 修正内容を記入します。
+
+1. 最後に`Create pull request`をクリックします。
+
+---
+
+## **開発するにあたって**
+
+### コーディング規約
+
+- `any`は極力利用しないで下さい！
+
+  TypeScript なので`any`は極力使用せず型を指定するようにしてください。
+  型を利用することでプロパティへ安全にアクセスできる、インテリセンスが利く、どんなデータを扱いたいのかわかりやすく可読性が上がる等のメリットがあります。
+  any を使う理由がある場合は以下のようにコメントで理由を記載して該当箇所だけ Lint を無効にしてください。
+
+  ```ts
+  // anyを使う理由
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  ```
