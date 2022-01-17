@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { CategoryComponent } from './pages/category/category.component';
+import { CategoryComponent } from './pages/main/category/category.component';
 import { MainComponent } from './pages/main/main.component';
-import { ThreadComponent } from './pages/thread/thread.component';
+import { ThreadComponent } from './pages/main/thread/thread.component';
 
 export const PAGE = {
   /** メイン */

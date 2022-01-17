@@ -1,4 +1,7 @@
 <div class="container">
+  <div class="breadcrumb">
+    <project-breadcrumb></project-breadcrumb>
+  </div>
   <div class="name">カテゴリ名</div>
   <ng-container *ngIf="threads">
     <main *ngFor="let item of threads" (click)="onClick(item)">

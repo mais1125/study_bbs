@@ -2,9 +2,9 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { ApiService } from '../../service/api.service';
+import { ApiService } from '../../../service/api.service';
 import { HttpParams } from '@angular/common/http';
-import { PAGE } from '../../app-routig.module';
+import { PAGE } from '../../../app-routig.module';
 import {
   AbstractControl,
   FormControl,

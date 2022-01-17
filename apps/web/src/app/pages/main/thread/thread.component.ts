@@ -4,7 +4,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { ApiService } from '../../service/api.service';
+import { ApiService } from '../../../service/api.service';
 // entities interfaces
 import { Thread, Message } from '@interface/entities';
 // controllers interfaces
@@ -13,7 +13,7 @@ import {
   ResponseInterface,
   API_ENDPOINT,
 } from '@interface/controllers';
-import { PAGE } from '../../app-routig.module';
+import { PAGE } from '../../../app-routig.module';
 
 @Component({
   selector: 'project-thread',
