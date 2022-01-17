@@ -1,12 +1,14 @@
 @use '../../../../styles.scss';
 
-.pi {
-  @extend .font-s;
-}
-.pi:hover {
-  cursor: pointer;
-}
-
 div {
-  background-color: rgba(103, 103, 107, 0.541);
+  background-color: #99d3e5;
+  height: 60px;
+  @extend .center-left;
+  .pi {
+    @extend .font-xl;
+    color: white;
+  }
+  .pi:hover {
+    cursor: pointer;
+  }
 }

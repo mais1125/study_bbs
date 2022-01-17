@@ -1,5 +1,10 @@
 import { Injectable } from '@nestjs/common';
-import { FindOneOptions, getRepository } from 'typeorm';
+import {
+  FindManyOptions,
+  FindOneOptions,
+  getRepository,
+  ObjectID,
+} from 'typeorm';
 
 abstract class AbstractRDBMSInterface {
   constructor(entity: Partial<AbstractRDBMSInterface>) {
@@ -23,14 +28,17 @@ export abstract class AbstractRDBMSService<
   /**
    * データを1件だけ個別取得(read)
    */
-  findOne(params?: number, options?: FindOneOptions): Promise<Entity> {
-    return getRepository<Entity>(this.entityName).findOne(params, options);
+  findOne(
+    id?: string | number | Date | ObjectID,
+    options?: FindOneOptions<Entity>
+  ): Promise<Entity> {
+    return getRepository<Entity>(this.entityName).findOne(id, options);
   }
 
   /**
    * データを全て取得(read)
    */
-  find(options?: FindOneOptions<Entity>): Promise<Entity[]> {
+  find(options?: FindManyOptions<Entity>): Promise<Entity[]> {
     return getRepository<Entity>(this.entityName).find(options);
   }
 

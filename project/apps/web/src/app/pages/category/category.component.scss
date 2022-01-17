@@ -24,13 +24,20 @@ h3 {
   place-items: center;
   .container {
     width: 95%;
-    p {
-      @extend .font-m;
+    main {
       padding-top: 10px;
-      border-bottom: solid 1px #d7e0e9;
-    }
-    p:hover {
-      cursor: pointer;
+      div {
+        p {
+          @extend .font-mb;
+        }
+        span {
+          @extend .font-s;
+        }
+        &:hover {
+          cursor: pointer;
+          background-color: rgb(240, 240, 240);
+        }
+      }
     }
   }
 }

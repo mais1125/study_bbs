@@ -4,7 +4,10 @@
     <p-button label="新規投稿" (click)="switchModal()"></p-button>
 
     <main *ngFor="let thread of category.thread" (click)="onClick(thread)">
-      <p>{{ thread.title }}</p>
+      <div>
+        <p>{{ thread.title }}</p>
+        <span>{{ thread.createAt }}</span>
+      </div>
     </main>
   </ng-container>
 </div>

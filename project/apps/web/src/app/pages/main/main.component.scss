@@ -7,19 +7,18 @@
   place-items: center;
   .container {
     padding: 5px;
-    width: 95%;
+    width: 85%;
   }
 }
 
 // 見出し
-h3 {
-  background: linear-gradient(transparent 80%, #a7d6ff 70%);
-  width: 130px;
+.name {
 }
 
 // スレッドタイトルの表示
 p {
-  @extend .font-m;
+  @extend .font-s;
+  @extend .center-center;
   padding-top: 10px;
   border-bottom: solid 1px #d7e0e9;
 }

@@ -3,8 +3,8 @@ import { CreateDateColumn, UpdateDateColumn } from 'typeorm';
 
 export abstract class TimeStampEntity implements TimeStamp {
   @CreateDateColumn()
-  readonly createAt?: Date;
+  createAt?: Date | string;
 
   @UpdateDateColumn()
-  readonly updateAt?: Date;
+  updateAt?: Date | string;
 }

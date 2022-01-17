@@ -1,8 +1,9 @@
 <div class="container">
-  <h3>スレッド一覧</h3>
+  <div class="name">カテゴリ名</div>
   <ng-container *ngIf="threads">
     <main *ngFor="let item of threads" (click)="onClick(item)">
       <p>{{ item.title }}</p>
+      <p>{{ item.createAt }}</p>
     </main>
   </ng-container>
 </div>
