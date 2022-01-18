@@ -13,10 +13,29 @@ import { PAGE } from '../../app-routig.module';
 export class MainComponent implements OnInit {
   threads: Thread[] = [];
 
+  // 求めるデータ
+  categoryies = [
+    {
+      id: 1,
+      name: 'カテゴリA',
+      theards: [{}, {}, {}, {}, {}],
+    },
+    {
+      id: 2,
+      name: 'カテゴリB',
+      theards: [{}, {}, {}, {}, {}],
+    },
+    {
+      id: 3,
+      name: 'カテゴリC',
+      theards: [{}, {}, {}, {}, {}],
+    },
+  ];
+
   constructor(private apiService: ApiService, public router: Router) {}
 
   async ngOnInit(): Promise<void> {
-    const url = API_ENDPOINT.THREAD_ALL;
+    const url = API_ENDPOINT.THREADALL_READ;
     await this.apiService
       .get(url)
       .toPromise()

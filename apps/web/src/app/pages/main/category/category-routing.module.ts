@@ -2,7 +2,6 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CategoryComponent } from './category.component';
 // primeNg module
 import { DialogModule } from 'primeng/dialog';
@@ -28,11 +27,10 @@ const routes: Routes = [
   declarations: [CategoryComponent],
   imports: [
     CommonModule,
-    RouterModule.forRoot(routes),
-    BrowserAnimationsModule,
+    RouterModule.forChild(routes),
     ReactiveFormsModule,
     ...primengModule,
   ],
-  exports: [CategoryComponent],
+  exports: [RouterModule],
 })
 export class CategoryRoutingModule {}

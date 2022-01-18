@@ -1,12 +1,36 @@
 @use '../../../../styles.scss';
 
-div {
-  display: grid;
-  grid-template-rows: 1fr;
-  grid-template-columns: 1fr;
-  grid-gap: 20px;
+:host {
+  @extend .background-4;
 }
-.p-button-text {
-  @extend .font-s;
-  @extend .button;
+
+.heading {
+  @extend .font-sb;
+  @extend .color-4;
+  @extend .center-left;
+  @extend .background-2;
+  width: 100%;
+  height: 30px;
+
+  p {
+    margin: 5px;
+  }
+}
+
+.button {
+  display: grid;
+  height: 90px;
+  padding: 0%;
+  button {
+    @extend .font-s;
+    @extend .color-4;
+    @extend .background-3;
+    border: none;
+  }
+  button:hover {
+    @extend .font-s;
+    @extend .color-3;
+    cursor: pointer;
+    background-color: #a7a7a7;
+  }
 }

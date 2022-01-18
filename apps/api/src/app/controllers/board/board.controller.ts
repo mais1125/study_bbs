@@ -4,6 +4,7 @@ import { BoardService } from './board.service';
 import { Category, Message, Thread } from '@interface/entities';
 // controllers Interface
 import {
+  API_ENDPOINT,
   BoardCreate,
   ResCreate,
   ResponseInterface,
@@ -13,48 +14,48 @@ import {
 export class BoardController {
   constructor(private boardService: BoardService) {}
 
-  @Post('message')
+  @Post(API_ENDPOINT.THREAD_CREATE)
   create(@Body() req: BoardCreate): Promise<boolean> {
     return this.boardService.create(req);
   }
 
-  @Post('createmessage')
+  @Post(API_ENDPOINT.MESSAGE_CREATE)
   createMessage(@Body() req: ResCreate): Promise<Message> {
     return this.boardService.createMessage(req);
   }
 
-  @Get('thread')
+  @Get(API_ENDPOINT.THREAD_READ)
   async findOne(@Query() req: Pick<Thread, 'id'>): Promise<Thread> {
     const res = await this.boardService.findOne(req);
     return res;
   }
 
-  @Get('threadall')
+  @Get(API_ENDPOINT.THREADALL_READ)
   findAll(): Promise<Thread[]> {
     return this.boardService.findAll();
   }
 
-  @Get('categories')
+  @Get(API_ENDPOINT.CATEGORIES_READ)
   categories(): Promise<Category[]> {
     return this.boardService.categories();
   }
 
-  @Get('category')
+  @Get(API_ENDPOINT.CATEGORY_READ)
   findCategory(@Query() id: number): Promise<Category> {
     return this.boardService.findCategory(id);
   }
 
-  @Get('findmessage')
+  @Get(API_ENDPOINT.MESSAGE_READ)
   findMessage(@Body() req: Message): Promise<Message> {
     return this.boardService.findMessage(req);
   }
 
-  @Post('update')
+  @Post(API_ENDPOINT.MESSAGE_UPDATE)
   updateMessage(@Body() req: Message): Promise<ResponseInterface> {
     return this.boardService.updateMessage(req);
   }
 
-  @Post('delete')
+  @Post(API_ENDPOINT.MESSAGE_DELETE)
   delete(@Body() req: Message): Promise<ResponseInterface> {
     return this.boardService.delete(req);
   }

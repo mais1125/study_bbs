@@ -1,18 +1,28 @@
 export const API_ENDPOINT = {
+  /** カテゴリーの読み込み */
+  CATEGORIES_READ: 'categoriesread',
+
+  /** カテゴリーごとの読み込み */
+  CATEGORY_READ: 'categoryread',
+
+  /** スレッドの投稿 */
+  THREAD_CREATE: 'threadcreate',
+
   /** スレッド読み込み */
-  THREAD: 'thread',
-  /** 全スレッド読み込み */
-  THREAD_ALL: 'threadall',
-  /** カテゴリーを読み込み */
-  CATEGORIES: 'categories',
-  /** カテゴリーごとに読み込み */
-  CATEGORY: 'category',
-  /** 新規投稿 */
-  MESSAGE: 'message',
-  /** 返信投稿 */
-  RES: 'createmessage',
-  /** レスの編集 */
-  EDIT: 'update',
-  /** レスを削除 */
-  DELETE_MESSAGE: 'delete',
+  THREAD_READ: 'threadread',
+
+  /** 全スレッドの読み込み */
+  THREADALL_READ: 'threadallread',
+
+  /** メッセージの投稿 */
+  MESSAGE_CREATE: 'messagecreate',
+
+  /** メッセージの読み込み */
+  MESSAGE_READ: 'messageread',
+
+  /** メッセージの編集 */
+  MESSAGE_UPDATE: 'messageupdate',
+
+  /** メッセージの削除 */
+  MESSAGE_DELETE: 'messagedelete',
 } as const;

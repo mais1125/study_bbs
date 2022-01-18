@@ -1,8 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { CategoryComponent } from './pages/main/category/category.component';
 import { MainComponent } from './pages/main/main.component';
-import { ThreadComponent } from './pages/main/thread/thread.component';
 
 export const PAGE = {
   /** メイン */
@@ -20,11 +18,17 @@ const routes: Routes = [
   },
   {
     path: PAGE.CATEGORY,
-    component: CategoryComponent,
+    loadChildren: () =>
+      import('./pages/main/category/category-routing.module').then(
+        (m) => m.CategoryRoutingModule
+      ),
   },
   {
     path: PAGE.THREAD,
-    component: ThreadComponent,
+    loadChildren: () =>
+      import('./pages/main/thread/tread-routing.module').then(
+        (m) => m.ThreadRoutingModule
+      ),
   },
 ];
 

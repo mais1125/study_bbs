@@ -34,6 +34,20 @@
   }
 }
 
+/* font color*/
+.color-1 {
+  color: #0000;
+}
+.color-2 {
+  color: #bebebe;
+}
+.color-3 {
+  color: #ffff;
+}
+.color-4 {
+  color: #273d75;
+}
+
 /* modal*/
 .modal {
   width: 375px;
@@ -80,4 +94,41 @@
   display: flex;
   align-items: center;
   justify-content: flex-end;
+}
+
+/* 背景*/
+
+// 背景1
+.background-1 {
+  background-color: #99d3e5;
+}
+
+// 背景2
+.background-2 {
+  background-color: #f2f2f2;
+}
+
+// 背景3
+.background-3 {
+  background-color: #fafafa;
+}
+
+// 背景4
+.background-4 {
+  background-color: #fdfdfd;
+}
+
+// 背景5
+.background-5 {
+  background-color: #00aee4;
+}
+
+// 背景6
+.background-6 {
+  background-color: #e5e5e5;
+}
+
+// 背景7
+.background-7 {
+  background-color: #99c1fc;
 }

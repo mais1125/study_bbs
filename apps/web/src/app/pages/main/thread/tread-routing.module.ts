@@ -30,12 +30,11 @@ const routes: Routes = [
   declarations: [ThreadComponent],
   imports: [
     CommonModule,
-    RouterModule.forRoot(routes),
-    BrowserAnimationsModule,
+    RouterModule.forChild(routes),
     FormsModule,
     ReactiveFormsModule,
     ...primengModule,
   ],
-  exports: [ThreadComponent],
+  exports: [RouterModule],
 })
 export class ThreadRoutingModule {}

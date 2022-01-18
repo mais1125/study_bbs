@@ -1,12 +1,31 @@
-<div class="container">
-  <div class="breadcrumb">
-    <project-breadcrumb></project-breadcrumb>
-  </div>
-  <div class="name">カテゴリ名</div>
+<!-- ぱんくず -->
+<project-breadcrumb></project-breadcrumb>
+
+<!-- main -->
+
+<!--
   <ng-container *ngIf="threads">
+    <div class="category">◼ カテゴリ名</div>
     <main *ngFor="let item of threads" (click)="onClick(item)">
-      <p>{{ item.title }}</p>
-      <p>{{ item.createAt }}</p>
+      <div class="thread-list">
+        <div class="contents">
+          <div class="title">
+            <p>{{ item.title }}</p>
+          </div>
+          <div class="details">
+            <div class="name">
+              <p>{{ item.message[0].name }}</p>
+            </div>
+            <div class="date">
+              <p>{{ item.createAt }}</p>
+            </div>
+          </div>
+        </div>
+        <div class="counter">
+          <i class="pi pi-comment"></i>
+          {{ item.message.length - 1 }}
+        </div>
+      </div>
     </main>
-  </ng-container>
-</div>
+  </ng-container> -->
+<!-- </div> -->

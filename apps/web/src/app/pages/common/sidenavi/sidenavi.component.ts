@@ -18,7 +18,7 @@ export class SidenaviComponent implements OnInit {
    * ngOnInitでカテゴリーを取得
    */
   async ngOnInit(): Promise<void> {
-    const url = API_ENDPOINT.CATEGORIES;
+    const url = API_ENDPOINT.CATEGORIES_READ;
     await this.apiService
       .get(url)
       .toPromise()

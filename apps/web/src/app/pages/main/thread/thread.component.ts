@@ -85,7 +85,7 @@ export class ThreadComponent implements OnInit, OnDestroy {
    *  スレッドを取得
    */
   async getThread(id: number): Promise<void> {
-    const url = API_ENDPOINT.THREAD;
+    const url = API_ENDPOINT.THREAD_READ;
     const options = {
       params: new HttpParams().set('id', id),
     };
@@ -137,7 +137,7 @@ export class ThreadComponent implements OnInit, OnDestroy {
       tid: { id: this.thread.id } as Thread,
     };
     await this.apiService
-      .post<ResCreate, ResCreate>(API_ENDPOINT.RES, req)
+      .post<ResCreate, ResCreate>(API_ENDPOINT.MESSAGE_CREATE, req)
       .toPromise()
       .then(() => this.resForm.reset());
 
@@ -172,7 +172,7 @@ export class ThreadComponent implements OnInit, OnDestroy {
       tid: { id: this.thread.id } as Thread,
     };
     await this.apiService
-      .post<Message, ResponseInterface>(API_ENDPOINT.EDIT, req)
+      .post<Message, ResponseInterface>(API_ENDPOINT.MESSAGE_UPDATE, req)
       .toPromise()
       .then(
         (res) => ((this.response = res), (this.editForm.value.editkey = ''))
@@ -193,7 +193,7 @@ export class ThreadComponent implements OnInit, OnDestroy {
    */
   async deleteMessage(message: Message): Promise<void> {
     await this.apiService
-      .post<Message, ResponseInterface>(API_ENDPOINT.DELETE_MESSAGE, message)
+      .post<Message, ResponseInterface>(API_ENDPOINT.MESSAGE_DELETE, message)
       .toPromise()
       .then((res) => (this.response = res));
     if (this.response.status) {

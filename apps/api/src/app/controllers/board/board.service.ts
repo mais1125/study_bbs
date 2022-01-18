@@ -2,13 +2,7 @@ import { BadRequestException, Injectable } from '@nestjs/common';
 import { FindOneOptions } from 'typeorm';
 import moment = require('moment');
 // entitysInterface
-import {
-  Category,
-  ViewMessage,
-  Message,
-  Thread,
-  ViewThread,
-} from '@interface/entities';
+import { Category, ViewMessage, Message, Thread } from '@interface/entities';
 // controllerInterface
 import {
   BoardCreate,
@@ -22,7 +16,6 @@ import {
   MessageEntityService,
   ThreadEntityService,
 } from '@services';
-import { format } from 'path';
 import { ThreadEntity } from '../../typeorm/entities/threads.entity';
 
 @Injectable()
@@ -91,7 +84,7 @@ export class BoardService {
    * 記事を全件取得
    */
   async findAll(): Promise<ThreadEntity[]> {
-    const options = { relations: ['cid'] };
+    const options = { relations: ['cid', 'message'] };
     const res = await this.threadEntityService.find(options);
     res.filter((i) => {
       i.createAt = moment(i.createAt).format(DATE_FORMAT.FOMAT);

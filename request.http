@@ -15,7 +15,8 @@ content-type: application/json
     "title": "新規投稿する",
     "name":"name",
     "text": "あああ",
-    "editkey":"1122"
+    "editkey":"1122",
+
 }
 
 ###
@@ -51,8 +52,13 @@ content-type: application/json
 
 ###
 # READ category カテゴリーごとに読み込み
-GET  http://localhost:3333/api/v1/category?id=3 HTTP/1.1
+GET  http://localhost:3333/api/v1/category?id=1 HTTP/1.1
 content-type: application/json
+
+###
+
+
+
 
 
 ###
