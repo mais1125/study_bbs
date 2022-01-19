@@ -1,8 +1,14 @@
 import { ThreadEntity } from '@entities';
-import { BoardCreate, DATE_FORMAT } from '@interface/controllers';
-import { Message, Thread, ViewMessage } from '@interface/entities';
+
 import { Injectable } from '@nestjs/common';
 import { ThreadEntityService, MessageEntityService } from '@services/entities';
+import {
+  BoardCreate,
+  DATE_FORMAT,
+  Message,
+  Thread,
+  ViewMessage,
+} from 'apps/common/models/_index';
 import moment = require('moment');
 import { FindOneOptions } from 'typeorm';
 

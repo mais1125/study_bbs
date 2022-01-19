@@ -5,14 +5,14 @@ import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { ApiService } from '../../../service/api.service';
-// entities interfaces
-import { Thread, Message } from '@interface/entities';
-// controllers interfaces
+// interfaces
 import {
-  ResCreate,
+  Thread,
+  Message,
+  MessageCreate,
   ResponseInterface,
   API_ENDPOINT,
-} from '@interface/controllers';
+} from '@common/models';
 import { PAGE } from '../../../app-routig.module';
 
 @Component({
@@ -130,14 +130,14 @@ export class ThreadComponent implements OnInit, OnDestroy {
    * レス投稿送信
    */
   async create(): Promise<void> {
-    const req: ResCreate = {
+    const req: MessageCreate = {
       text: this.resForm.value.text,
       name: this.resForm.value.name,
       editkey: this.resForm.value.editkye,
       tid: { id: this.thread.id } as Thread,
     };
     await this.apiService
-      .post<ResCreate, ResCreate>(API_ENDPOINT.MESSAGE_CREATE, req)
+      .post<MessageCreate, MessageCreate>(API_ENDPOINT.MESSAGE_CREATE, req)
       .toPromise()
       .then(() => this.resForm.reset());
 

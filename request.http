@@ -12,7 +12,7 @@ content-type: application/json
     "title": "新規投稿する",
     "name":"name",
     "text": "あああ",
-    "editkey":"1122",
+    "editkey":"1122"
 
 }
 

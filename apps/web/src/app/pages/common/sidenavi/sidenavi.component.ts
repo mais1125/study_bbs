@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { API_ENDPOINT } from 'apps/common/interfaces/interface/controller/endpoints.interface';
-import { Category } from 'apps/common/interfaces/interface/entities/category.interface';
+import { Category, API_ENDPOINT } from '@common/models';
 import { PAGE } from '../../../app-routig.module';
 import { ApiService } from '../../../service/api.service';
 

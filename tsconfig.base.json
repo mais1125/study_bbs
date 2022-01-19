@@ -24,7 +24,8 @@
         "./apps/api/src/app/service/database/rdms/entities"
       ],
       "@services/controllers": ["./apps/api/src/app/controllers"],
-      "@controllers": ["./apps/api/src/app/controllers"]
+      "@controllers": ["./apps/api/src/app/controllers"],
+      "@common/models": ["./apps/common/models/_index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

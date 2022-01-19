@@ -1,4 +1,4 @@
-import { Category } from '@interface/entities';
+import { Category } from '@common/models';
 import { Injectable } from '@nestjs/common';
 import { CategoryEntityService } from '@services/entities';
 import { FindOneOptions } from 'typeorm';

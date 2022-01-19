@@ -1,5 +1,5 @@
 import { MigrationInterface, QueryRunner } from 'typeorm';
-import { Category } from '../../../../../common/interfaces/interface/entities/category.interface';
+import { Category } from '@common/models';
 import { CategoryEntity } from '../entities';
 
 export class init1635404189281 implements MigrationInterface {

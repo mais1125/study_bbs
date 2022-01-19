@@ -1,4 +1,4 @@
-import { TimeStamp } from 'apps/common/interfaces/interface/entities/abstract';
+import { TimeStamp } from '@common/models';
 import { CreateDateColumn, UpdateDateColumn } from 'typeorm';
 
 export abstract class TimeStampEntity implements TimeStamp {

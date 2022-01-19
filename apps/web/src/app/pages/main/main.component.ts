@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../../service/api.service';
-import { API_ENDPOINT } from '@interface/controllers';
-import { Thread } from '@interface/entities';
+import { Thread, API_ENDPOINT } from '@common/models';
 import { Router } from '@angular/router';
 import { PAGE } from '../../app-routig.module';
 

@@ -1,9 +1,9 @@
 import {
   API_ENDPOINT,
-  ResCreate,
+  Message,
+  MessageCreate,
   ResponseInterface,
-} from '@interface/controllers';
-import { Message } from '@interface/entities';
+} from '@common/models';
 import { Body, Controller, Get, Post } from '@nestjs/common';
 import { MessageService } from '@services/controllers';
 
@@ -15,7 +15,7 @@ export class MessageController {
    *  メッセージを投稿
    */
   @Post(API_ENDPOINT.MESSAGE_CREATE)
-  messageCreate(@Body() req: ResCreate): Promise<Message> {
+  messageCreate(@Body() req: MessageCreate): Promise<Message> {
     return this.messageService.messageCreate(req);
   }
   /**

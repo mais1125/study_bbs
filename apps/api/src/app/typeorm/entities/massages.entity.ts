@@ -1,3 +1,4 @@
+import { Message, Thread } from 'apps/common/models/_index';
 import {
   Column,
   Entity,
@@ -6,7 +7,7 @@ import {
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { ThreadEntity } from '.';
-import { Message, Thread } from '@interface/entities';
+
 import { TimeStampEntity } from './abstract';
 
 @Entity('Messages')

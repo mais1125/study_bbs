@@ -11,10 +11,8 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
-// entities interfaces
-import { Thread, Category } from '@interface/entities';
-// controllers interfaces
-import { BoardCreate, API_ENDPOINT } from '@interface/controllers';
+// interfaces
+import { Thread, Category, BoardCreate, API_ENDPOINT } from '@common/models';
 
 // createForm用Type
 type createFormControls = {

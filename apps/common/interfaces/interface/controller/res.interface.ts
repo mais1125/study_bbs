@@ -1,6 +1,6 @@
-import { Message } from '@interface/entities';
+// import { Message } from '@interface/entities';
 
-export type ResCreate = Pick<
-  Message,
-  'name' | 'text' | 'editkey' | 'id' | 'tid'
->;
+// export type MessageCreate = Pick<
+//   Message,
+//   'name' | 'text' | 'editkey' | 'id' | 'tid'
+// >;

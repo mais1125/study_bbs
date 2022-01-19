@@ -7,8 +7,9 @@ import {
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { CategoryEntity, MessageEntity } from '@entities';
-import { Category, Message, Thread } from '@interface/entities';
+
 import { TimeStampEntity } from './abstract';
+import { Category, Message, Thread } from 'apps/common/models/_index';
 
 @Entity('Threads')
 export class ThreadEntity extends TimeStampEntity implements Thread {

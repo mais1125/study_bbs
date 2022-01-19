@@ -1,7 +1,6 @@
-import { API_ENDPOINT } from '@interface/controllers';
-import { Category } from '@interface/entities';
 import { Controller, Get, Query } from '@nestjs/common';
 import { CategoryService } from '@services/controllers';
+import { API_ENDPOINT, Category } from '@common/models';
 
 @Controller()
 export class CategoryController {

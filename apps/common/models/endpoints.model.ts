@@ -1,3 +1,4 @@
+/** API ENDPOINT */
 export const API_ENDPOINT = {
   /** カテゴリーの読み込み */
   CATEGORIES_READ: 'categoriesread',

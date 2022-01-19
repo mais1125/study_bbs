@@ -1,5 +1,4 @@
-import { ResCreate, ResponseInterface } from '@interface/controllers';
-import { Message } from '@interface/entities';
+import { Message, MessageCreate, ResponseInterface } from '@common/models';
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { MessageEntityService, ThreadEntityService } from '@services/entities';
 import { ThreadService } from '@services/controllers';
@@ -15,7 +14,7 @@ export class MessageService {
   /**
    *  メッセージを投稿
    */
-  async messageCreate(req: ResCreate): Promise<Message> {
+  async messageCreate(req: MessageCreate): Promise<Message> {
     const newMessage: Message = {
       text: req.text,
       name: req.name,
@@ -75,7 +74,7 @@ export class MessageService {
     }
     // 対象のメッセージを取得
     const message = await this.messageRead(req);
-    const thread = await this.threadService.findOne(message.tid);
+    const thread = await this.threadService.threadRead(message.tid);
     // const thread = await this.findOne(message.tid);
     // 削除対象が親コメントの場合はスレッドごと削除する
     if (thread.message[0].id === req.id) {

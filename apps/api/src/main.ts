@@ -5,10 +5,8 @@
 
 import { Logger } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
-
 import { AppModule } from './app/app.module';
 
-import {} from '../../common/interfaces/interface/controller/index';
 import * as dotenv from 'dotenv';
 dotenv.config();
 

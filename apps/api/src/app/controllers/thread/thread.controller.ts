@@ -1,5 +1,4 @@
-import { API_ENDPOINT, BoardCreate } from '@interface/controllers';
-import { Thread } from '@interface/entities';
+import { API_ENDPOINT, BoardCreate, Thread } from '@common/models';
 import { Body, Controller, Get, Post, Query } from '@nestjs/common';
 import { ThreadService } from '@services/controllers';
 
