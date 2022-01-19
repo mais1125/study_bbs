@@ -5,14 +5,24 @@ import { TypeOrmModule } from './typeorm/typeorm.module';
 import { RDBMSModule } from './service/database/rdms/rdbms.module';
 
 // service
-import { BoardService } from './controllers/board/board.service';
+import {
+  CategoryService,
+  ThreadService,
+  MessageService,
+} from '@services/controllers';
 
 // controllers
-import { BoardController } from './controllers/board/board.controller';
+import {
+  CategoryController,
+  ThreadController,
+  MessageController,
+} from '@controllers';
 
+const services = [CategoryService, ThreadService, MessageService];
+const controllers = [CategoryController, ThreadController, MessageController];
 @Module({
   imports: [TypeOrmModule, RDBMSModule],
-  providers: [BoardService],
-  controllers: [BoardController],
+  providers: [...services],
+  controllers: [...controllers],
 })
 export class AppModule {}

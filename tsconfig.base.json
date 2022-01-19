@@ -20,7 +20,11 @@
         "./apps/common/interfaces/interface/controller"
       ],
       "@entities": ["./apps/api/src/app/typeorm/entities"],
-      "@services": ["./apps/api/src/app/service/database/rdms/entities"]
+      "@services/entities": [
+        "./apps/api/src/app/service/database/rdms/entities"
+      ],
+      "@services/controllers": ["./apps/api/src/app/controllers"],
+      "@controllers": ["./apps/api/src/app/controllers"]
     }
   },
   "exclude": ["node_modules", "tmp"]

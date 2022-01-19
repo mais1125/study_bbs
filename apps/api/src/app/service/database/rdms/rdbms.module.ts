@@ -3,7 +3,7 @@ import {
   CategoryEntityService,
   MessageEntityService,
   ThreadEntityService,
-} from '@services';
+} from '@services/entities';
 
 const entitiesService = [
   CategoryEntityService,
