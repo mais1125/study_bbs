@@ -1,0 +1,130 @@
+@endpoint=http://localhost:3333/api/v1
+
+###
+# READ Message メッセージごとに読み込み
+GET  {{endpoint}}/messageread HTTP/1.1
+content-type: application/json
+
+{
+
+    "id": 1
+}
+
+###
+# UPDATE Message メッセージを更新
+POST   {{endpoint}}/messageupdate HTTP/1.1
+content-type: application/json
+
+{
+
+   "id":1,
+    "name":"・ω・",
+    "text": "・x・",
+    "editkey":"1111",
+     "tid":{"id":1}
+
+
+}
+
+
+###
+# DELETE Message メッセージ削除
+POST  {{endpoint}}/messagedelete HTTP/1.1
+content-type: application/json
+
+{
+
+    "id":6,
+    "editkey":"1111"
+}
+
+
+###
+# CREATE メッセージの投稿
+POST {{endpoint}}/messagecreate HTTP/1.1
+content-type: application/json
+
+{
+    "tid":{"id":1},
+    "text":"削除するよ ",
+    "name":"あああ",
+    "editkey":"1111"
+}
+
+
+###
+# READ threadごとに読み込み
+GET  {{endpoint}}/threadread?id=1 HTTP/1.1
+content-type: application/json
+
+
+###
+# READ thread すべて読み込み
+GET  {{endpoint}}/threadallread HTTP/1.1
+content-type: application/json
+
+
+###
+# READ category カテゴリーだけを読み込み
+GET  {{endpoint}}/categoriesread HTTP/1.1
+content-type: application/json
+
+
+###
+# READ category カテゴリーごとに読み込み
+GET  {{endpoint}}/categoryread?id=1 HTTP/1.1
+content-type: application/json
+
+
+
+
+
+
+###
+# READ Message メッセージごとに読み込み
+GET  {{endpoint}}/messageread HTTP/1.1
+content-type: application/json
+
+{
+
+    "id": 1
+}
+
+###
+# UPDATE Message メッセージを更新
+POST   {{endpoint}}/messageupdate HTTP/1.1
+content-type: application/json
+
+{
+
+   "id":1,
+    "name":"・ω・",
+    "text": "・x・",
+    "editkey":"1111",
+     "tid":{"id":1}
+
+
+}
+
+
+###
+# DELETE Message メッセージ削除
+POST  {{endpoint}}/messagedelete HTTP/1.1
+content-type: application/json
+
+{
+
+    "id":6,
+    "editkey":"1111"
+}
+
+
+###
+# DELETE Thread スレッド削除
+GET  {{endpoint}}/delete HTTP/1.1
+content-type: application/json
+
+{
+    "id": 1
+}
+

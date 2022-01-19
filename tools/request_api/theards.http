@@ -1,0 +1,27 @@
+@endpoint=http://localhost:3333/api/v1
+
+###
+# CREATE スレッドの投稿
+POST {{endpoint}}/threadcreate HTTP/1.1
+content-type: application/json
+
+{
+    "cid":{"id":1},
+    "title": "a",
+    "message" : [{
+        "name": "name",
+        "text": "",
+        "editkey": "1122"
+    }]
+}
+
+###
+# READ threadごとに読み込み
+GET  {{endpoint}}/threadread?id=1 HTTP/1.1
+content-type: application/json
+
+
+###
+# READ thread すべて読み込み
+GET  {{endpoint}}/threadallread HTTP/1.1
+content-type: application/json
