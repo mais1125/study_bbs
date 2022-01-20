@@ -8,11 +8,9 @@ content-type: application/json
 {
     "cid":{"id":1},
     "title": "a",
-    "message" : [{
-        "name": "name",
-        "text": "",
-        "editkey": "1122"
-    }]
+    "name": "name",
+    "text": "",
+    "editkey": "1122"
 }
 
 ###
