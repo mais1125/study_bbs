@@ -8,5 +8,11 @@ content-type: application/json
 
 ###
 # READ category カテゴリーごとに読み込み
-GET  {{endpoint}}/categoryread?id=1 HTTP/1.1
+GET  {{endpoint}}/categoryread?id=2 HTTP/1.1
+content-type: application/json
+
+
+###
+# READ thread すべて読み込み
+GET  {{endpoint}}/threadallread HTTP/1.1
 content-type: application/json

@@ -1,4 +1,5 @@
-import { API_ENDPOINT, BoardCreate, Thread } from '@common/models';
+import { API_ENDPOINT, Thread } from '@common/models';
+import { ThreadCreate } from '@entities';
 import { Body, Controller, Get, Post, Query } from '@nestjs/common';
 import { ThreadService } from '@services/controllers';
 
@@ -10,17 +11,17 @@ export class ThreadController {
    * スレッドの投稿
    */
   @Post(API_ENDPOINT.THREAD_CREATE)
-  thredCreate(@Body() req: BoardCreate): Promise<boolean> {
+  thredCreate(@Body() req: ThreadCreate): Promise<boolean> {
     return this.threadService.thredCreate(req);
   }
 
-  /**
-   * スレッドの全件取得
-   */
-  @Get(API_ENDPOINT.THREADS_READ)
-  thradsRead(): Promise<Thread[]> {
-    return this.threadService.thradsRead();
-  }
+  // /**
+  //  * スレッドの全件取得
+  //  */
+  // @Get(API_ENDPOINT.THREADS_READ)
+  // thradsRead(): Promise<Thread[]> {
+  //   return this.threadService.thradsRead();
+  // }
 
   /**
    * スレッドの個別取得

@@ -44,8 +44,9 @@ export class ThreadService {
    * スレッドを全件取得
    */
   async thradsRead(): Promise<ThreadEntity[]> {
-    const options = { relations: ['cid', 'message'] };
-    const res = await this.threadEntityService.find(options);
+    const res = await this.threadEntityService.find({
+      relations: ['cid', 'message'],
+    });
     res.filter((i) => {
       i.createAt = moment(i.createAt).format(DATE_FORMAT.FOMAT);
       i.updateAt = moment(i.updateAt).format(DATE_FORMAT.FOMAT);
@@ -57,18 +58,17 @@ export class ThreadService {
    * スレッドを個別に取得
    */
   async threadRead(req: Pick<Thread, 'id'>): Promise<Thread> {
-    const options: FindOneOptions<Thread> = {
+    const res = await this.threadEntityService.findOne(req.id, {
       relations: ['cid', 'message'],
-    };
-    const res = await this.threadEntityService.findOne(req.id, options);
+    });
     if (res === undefined) {
       return res;
     }
-    const hoge: ViewMessage[] = res.message;
+    const format: ViewMessage[] = res.message;
     res.message.filter((i) => {
-      const index = hoge.findIndex(({ id }) => id === i.id);
-      hoge[index].createAt = moment(i.createAt).format(DATE_FORMAT.FOMAT);
-      hoge[index].updateAt = moment(i.updateAt).format(DATE_FORMAT.FOMAT);
+      const index = format.findIndex(({ id }) => id === i.id);
+      format[index].createAt = moment(i.createAt).format(DATE_FORMAT.FOMAT);
+      format[index].updateAt = moment(i.updateAt).format(DATE_FORMAT.FOMAT);
     });
 
     return res;

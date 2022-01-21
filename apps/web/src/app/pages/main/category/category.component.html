@@ -5,7 +5,8 @@
 
     <main *ngFor="let thread of category.thread" (click)="onClick(thread)">
       <div>
-        <p>{{ thread.title }}</p>
+        <span>{{ thread.title }}</span>
+        <span>{{ thread.message[0].name }}</span>
         <span>{{ thread.createAt }}</span>
       </div>
     </main>

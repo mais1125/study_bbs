@@ -9,7 +9,13 @@ import {
 import { CategoryEntity, MessageEntity } from '@entities';
 
 import { TimeStampEntity } from './abstract';
-import { Category, Message, Thread } from 'apps/common/models/_index';
+import {
+  BoardCreate,
+  Category,
+  Message,
+  Thread,
+} from 'apps/common/models/_index';
+import { IsNotEmpty } from 'class-validator';
 
 @Entity('Threads')
 export class ThreadEntity extends TimeStampEntity implements Thread {
@@ -25,4 +31,22 @@ export class ThreadEntity extends TimeStampEntity implements Thread {
 
   @OneToMany(() => MessageEntity, (message) => message.tid)
   message: Message[];
+}
+
+export class ThreadCreate implements BoardCreate {
+  cid?: Category;
+
+  @IsNotEmpty()
+  title: string;
+
+  @IsNotEmpty()
+  name: string;
+
+  @IsNotEmpty()
+  text: string;
+
+  @IsNotEmpty()
+  editkey: string;
+
+  id?: number;
 }

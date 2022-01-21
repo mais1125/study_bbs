@@ -21,4 +21,12 @@ export class CategoryController {
   categoryRead(@Query() id: number): Promise<Category> {
     return this.categoryService.categoryRead(id);
   }
+
+  /**
+   * スレッドの全件取得
+   */
+  @Get(API_ENDPOINT.THREADS_READ)
+  thradsRead(): Promise<Category[]> {
+    return this.categoryService.thradsRead();
+  }
 }

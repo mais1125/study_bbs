@@ -19,3 +19,8 @@ export interface ResponseInterface {
   /** メッセージ */
   message?: string;
 }
+
+/** 型変換 */
+export type UnionProp<T, KEY extends keyof T, TYPE> = {
+  [P in keyof T]: P extends KEY ? T[P] | TYPE : T[P];
+};

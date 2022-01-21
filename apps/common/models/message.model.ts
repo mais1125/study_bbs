@@ -1,9 +1,4 @@
-import { Thread, TimeStamp } from './_index';
-
-/** 型変換：これは他で共通として切り出していいかも（UnionPropはたくさん使いそう） */
-type UnionProp<T, KEY extends keyof T, TYPE> = {
-  [P in keyof T]: P extends KEY ? T[P] | TYPE : T[P];
-};
+import { Thread, TimeStamp, UnionProp } from './_index';
 
 /**
  * Messageモデル
