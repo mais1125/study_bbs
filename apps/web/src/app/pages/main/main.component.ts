@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../../service/api.service';
-import { Thread, API_ENDPOINT } from '@common/models';
+import { Thread, API_ENDPOINT, Category } from '@common/models';
 import { Router } from '@angular/router';
 import { PAGE } from '../../app-routig.module';
 
@@ -11,25 +11,26 @@ import { PAGE } from '../../app-routig.module';
 })
 export class MainComponent implements OnInit {
   threads: Thread[] = [];
+  categoryies: Category[] = [];
 
-  // 求めるデータ
-  categoryies = [
-    {
-      id: 1,
-      name: 'カテゴリA',
-      theards: [{}, {}, {}, {}, {}],
-    },
-    {
-      id: 2,
-      name: 'カテゴリB',
-      theards: [{}, {}, {}, {}, {}],
-    },
-    {
-      id: 3,
-      name: 'カテゴリC',
-      theards: [{}, {}, {}, {}, {}],
-    },
-  ];
+  // // 求めるデータ
+  // categoryies = [
+  //   {
+  //     id: 1,
+  //     name: 'カテゴリA',
+  //     theards: [{}, {}, {}, {}, {}],
+  //   },
+  //   {
+  //     id: 2,
+  //     name: 'カテゴリB',
+  //     theards: [{}, {}, {}, {}, {}],
+  //   },
+  //   {
+  //     id: 3,
+  //     name: 'カテゴリC',
+  //     theards: [{}, {}, {}, {}, {}],
+  //   },
+  // ];
 
   constructor(private apiService: ApiService, public router: Router) {}
 
@@ -39,8 +40,9 @@ export class MainComponent implements OnInit {
       .get(url)
       .toPromise()
       .then((i) => {
-        this.threads = i as Thread[];
+        this.categoryies = i as Category[];
       });
+    this.categoryies.reverse();
   }
 
   /**

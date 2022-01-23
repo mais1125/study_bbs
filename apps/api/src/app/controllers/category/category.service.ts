@@ -1,11 +1,14 @@
 import { Category, DATE_FORMAT } from '@common/models';
 import { Injectable } from '@nestjs/common';
-import { CategoryEntityService } from '@services/entities';
+import { CategoryEntityService, ThreadEntityService } from '@services/entities';
 import moment = require('moment');
 
 @Injectable()
 export class CategoryService {
-  constructor(private categoryEntityService: CategoryEntityService) {}
+  constructor(
+    private categoryEntityService: CategoryEntityService,
+    private threadEntityService: ThreadEntityService
+  ) {}
 
   /**
    * カテゴリーを取得
@@ -21,9 +24,9 @@ export class CategoryService {
     const res = await this.categoryEntityService.findOne(id, {
       relations: ['thread', 'thread.message'],
     });
-    res.thread.filter((i) => {
-      i.createAt = moment(i.createAt).format(DATE_FORMAT.FOMAT);
-      i.updateAt = moment(i.updateAt).format(DATE_FORMAT.FOMAT);
+    res.thread.filter((item) => {
+      item.createAt = moment(item.createAt).format(DATE_FORMAT.FOMAT);
+      item.updateAt = moment(item.updateAt).format(DATE_FORMAT.FOMAT);
     });
     return res;
   }
@@ -32,16 +35,34 @@ export class CategoryService {
    * スレッドを全件取得
    */
   async thradsRead(): Promise<Category[]> {
-    const res = await this.categoryEntityService.find({
-      relations: ['thread', 'thread.message'],
+    // category を取得する
+    const categories = await this.categoryEntityService.find();
+    const result = categories.filter((i) => {
+      i.thread.filter((i) => {
+        i.cid;
+        this.threadEntityService.find();
+      });
     });
-    res.filter((item) =>
-      item.thread.filter((item) => {
-        item.createAt = moment(item.createAt).format(DATE_FORMAT.FOMAT);
-        item.updateAt = moment(item.updateAt).format(DATE_FORMAT.FOMAT);
-      })
-    );
 
-    return res;
+    // threadを取得する
+    // const threads =
+    return categories;
   }
+
+  // /**
+  //  * スレッドを全件取得
+  //  */
+  // async thradsRead(): Promise<Category[]> {
+  //   const res = await this.categoryEntityService.find({
+  //     relations: ['thread', 'thread.message'],
+  //   });
+  //   res.filter((item) =>
+  //     item.thread.filter((item) => {
+  //       item.createAt = moment(item.createAt).format(DATE_FORMAT.FOMAT);
+  //       item.updateAt = moment(item.updateAt).format(DATE_FORMAT.FOMAT);
+  //     })
+  //   );
+
+  //   return res;
+  // }
 }

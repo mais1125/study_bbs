@@ -1,5 +1,3 @@
-import { ThreadEntity } from '@entities';
-
 import { Injectable } from '@nestjs/common';
 import { ThreadEntityService, MessageEntityService } from '@services/entities';
 import {
@@ -10,7 +8,6 @@ import {
   ViewMessage,
 } from 'apps/common/models/_index';
 import moment = require('moment');
-import { FindOneOptions } from 'typeorm';
 
 @Injectable()
 export class ThreadService {
@@ -40,19 +37,19 @@ export class ThreadService {
     return true;
   }
 
-  /**
-   * スレッドを全件取得
-   */
-  async thradsRead(): Promise<ThreadEntity[]> {
-    const res = await this.threadEntityService.find({
-      relations: ['cid', 'message'],
-    });
-    res.filter((i) => {
-      i.createAt = moment(i.createAt).format(DATE_FORMAT.FOMAT);
-      i.updateAt = moment(i.updateAt).format(DATE_FORMAT.FOMAT);
-    });
-    return res;
-  }
+  // /**
+  //  * スレッドを全件取得
+  //  */
+  // async thradsRead(): Promise<ThreadEntity[]> {
+  //   const res = await this.threadEntityService.find({
+  //     relations: ['cid', 'message'],
+  //   });
+  //   res.filter((i) => {
+  //     i.createAt = moment(i.createAt).format(DATE_FORMAT.FOMAT);
+  //     i.updateAt = moment(i.updateAt).format(DATE_FORMAT.FOMAT);
+  //   });
+  //   return res;
+  // }
 
   /**
    * スレッドを個別に取得
