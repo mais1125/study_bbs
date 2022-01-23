@@ -37,7 +37,7 @@ SAMPLE
 1. 本リポジトリを git clone します
 
    ```bash
-   $ git clone git@github.com:mai1125/study_bbs.git
+   $ git@github.com:mais1125/study_bbs.git
    ```
 
 1. クローン後、以下コマンドでコンテナを起動します。
