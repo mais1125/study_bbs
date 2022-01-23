@@ -37,15 +37,13 @@ export class CategoryService {
   async thradsRead(): Promise<Category[]> {
     // category を取得する
     const categories = await this.categoryEntityService.find();
-    const result = categories.filter((i) => {
-      i.thread.filter((i) => {
-        i.cid;
-        this.threadEntityService.find();
+    await categories.reduce(async (_null, item) => {
+      item.thread = await this.threadEntityService.find({
+        where: [{ cid: item.id }],
+        order: { createAt: 'DESC' },
+        take: 3,
       });
-    });
-
-    // threadを取得する
-    // const threads =
+    }, Promise.resolve());
     return categories;
   }
 

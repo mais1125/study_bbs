@@ -38,8 +38,8 @@ export abstract class AbstractRDBMSService<
   /**
    * データを全て取得(read)
    */
-  find(options?: FindManyOptions<Entity>): Promise<Entity[]> {
-    return getRepository<Entity>(this.entityName).find(options);
+  async find(options?: FindManyOptions<Entity>): Promise<Entity[]> {
+    return await getRepository<Entity>(this.entityName).find(options);
   }
 
   /**

@@ -11,5 +11,5 @@ export class CategoryEntity implements Category {
   name: typeof CATEGORY_TYPE[keyof typeof CATEGORY_TYPE];
 
   @OneToMany(() => ThreadEntity, (thread) => thread.cid)
-  thread?: Thread[];
+  thread?: ThreadEntity[];
 }

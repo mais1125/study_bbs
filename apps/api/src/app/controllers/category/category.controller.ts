@@ -15,18 +15,18 @@ export class CategoryController {
   }
 
   /**
-   * カテゴリーごとにスレッドの取得
-   */
-  @Get(API_ENDPOINT.CATEGORY_READ)
-  categoryRead(@Query() id: number): Promise<Category> {
-    return this.categoryService.categoryRead(id);
-  }
-
-  /**
    * スレッドの全件取得
    */
   @Get(API_ENDPOINT.THREADS_READ)
   thradsRead(): Promise<Category[]> {
     return this.categoryService.thradsRead();
+  }
+
+  /**
+   * カテゴリーごとにスレッドの取得
+   */
+  @Get(API_ENDPOINT.CATEGORY_READ)
+  categoryRead(@Query() id: number): Promise<Category> {
+    return this.categoryService.categoryRead(id);
   }
 }
