@@ -1,12 +1,36 @@
 <!-- ぱんくず -->
-<project-breadcrumb></project-breadcrumb>
-<main>
-  <div *ngFor="let item of categoryies">
-    <p>{{ item.name }}</p>
-  </div>
-</main>
+<div class="breadcrumb">
+  <project-breadcrumb></project-breadcrumb>
+</div>
+
+<!-- メインコンテンツ -->
+<div class="conainer" *ngFor="let item of categoryies">
+  <section>
+    <h1>{{ item.name }}</h1>
+    <div class="contents" *ngFor="let child of item.thread">
+      <div class="thread-list">
+        <h3>{{ child.title }}</h3>
+        <span> {{ child.createAt }}</span>
+        <p>{{ child.message[0].name }}</p>
+      </div>
+      <div class="counter"><p>コメント数</p></div>
+    </div>
+  </section>
+</div>
 
 <!-- main -->
+<!-- <div class="category" *ngFor="let item of categoryies">
+    <div clas="category-name">
+      <p>{{ item.name }}</p>
+    </div>
+    <div class="thread-list">a</div> -->
+<!-- <div *ngFor="let child of item.thread">
+      <p>タイトル:{{ child.title }}</p>
+      <p>名前:{{ child.message[0].name }}</p>
+      <p>投稿日時:{{ child.createAt }}</p>
+      <p>コメント数:{{ child.message.length - 1 }}</p>
+    </div> -->
+<!-- </div> -->
 
 <!--
   <ng-container *ngIf="threads">

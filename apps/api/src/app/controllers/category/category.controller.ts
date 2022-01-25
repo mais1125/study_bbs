@@ -17,9 +17,9 @@ export class CategoryController {
   /**
    * スレッドの全件取得
    */
-  @Get(API_ENDPOINT.THREADS_READ)
-  thradsRead(): Promise<Category[]> {
-    return this.categoryService.thradsRead();
+  @Get(API_ENDPOINT.THREADALL_READ)
+  threadAllRead(): Promise<Category[]> {
+    return this.categoryService.threadAllRead();
   }
 
   /**

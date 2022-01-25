@@ -13,7 +13,7 @@ export const API_ENDPOINT = {
   THREAD_READ: 'threadread',
 
   /** 全スレッドの読み込み */
-  THREADS_READ: 'threadallread',
+  THREADALL_READ: 'threadallread',
 
   /** メッセージの投稿 */
   MESSAGE_CREATE: 'messagecreate',

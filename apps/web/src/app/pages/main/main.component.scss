@@ -1,67 +1,36 @@
 @use '../../../styles.scss';
 
-// コンテナ
-
-:host {
-  display: grid;
-  place-items: center;
-  .container {
-    width: 85%;
-  }
-}
-
 // breadcrumb
 .breadcrumb {
   width: 100%;
   height: 30px;
+  @extend .center-left;
   background-color: violet;
 }
 
-.a {
-  background-color: rgb(224, 240, 199);
-  .b {
-    width: 100%;
-    background-color: rgb(233, 219, 243);
-  }
-  .c {
-    width: 100%;
-    height: 100px;
-    background-color: rgb(217, 240, 248);
+.conainer {
+  @extend .center-center;
+  background-color: rgb(229, 201, 243);
+  section {
+    width: 90%;
+
+    background-color: rgb(205, 236, 247);
+    h1 {
+      width: 100%;
+      @extend .center-left;
+      background-color: hotpink;
+    }
+    .contents {
+      @extend .center-center;
+      background-color: ivory;
+      .thread-list {
+        width: 80%;
+        display: grid;
+        background-color: lightcoral;
+      }
+      .counter {
+        background-color: honeydew;
+      }
+    }
   }
 }
-
-// // 見出し
-// .category {
-//   @extend .font-lb;
-//   text-decoration: underline #bec2c7;
-// }
-
-// .thread-list {
-//   display: flex;
-//   width: 100%;
-//   background-color: coral;
-//   .contents {
-//     width: 85%;
-//     background-color: aqua;
-//     .title {
-//       @extend .font-sb;
-//       width: 100%;
-//       background-color: cornflowerblue;
-//     }
-//     .details {
-//       display: flex;
-//       @extend .font-s;
-//       .name {
-//         width: 50%;
-//       }
-//       .date {
-//         width: 50%;
-//       }
-//     }
-//   }
-//   .counter {
-//     width: 15%;
-//     @extend .center-center;
-//     background-color: blueviolet;
-//   }
-// }

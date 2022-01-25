@@ -35,7 +35,7 @@ export class MainComponent implements OnInit {
   constructor(private apiService: ApiService, public router: Router) {}
 
   async ngOnInit(): Promise<void> {
-    const url = API_ENDPOINT.THREADS_READ;
+    const url = API_ENDPOINT.THREADALL_READ;
     await this.apiService
       .get(url)
       .toPromise()
