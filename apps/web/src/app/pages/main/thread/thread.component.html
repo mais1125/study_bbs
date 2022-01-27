@@ -1,3 +1,6 @@
+<!-- ぱんくず -->
+<!-- <project-breadcrumb></project-breadcrumb> -->
+
 <div class="container" *ngIf="thread">
   <!-- 記事表示 -->
   <ng-container
@@ -11,97 +14,28 @@
 <!-- 記事表示 -->
 <ng-template #params let-message="message" let-index="index">
   <!-- 親記事 -->
-  <div class="parent" *ngIf="index === 0">
-    <!-- スレッドタイトル -->
-    <div class="title">
-      <h4>{{ thread.title }}</h4>
-    </div>
-    <!-- 本文 -->
-    <div class="content">
-      <div class="create-details">
-        <div class="name">
-          <label>名前</label>
-          <p>{{ message.name }}</p>
-        </div>
-        <div class="create-date">
-          <label>投稿日時</label>
-          <p>{{ message.createAt }}</p>
-        </div>
-      </div>
-      <div class="text">
-        <label>本文</label>
-        <p>{{ message.text }}</p>
-      </div>
-      <div class="edit-button">
-        <p-button label="編集" (click)="update(message)"></p-button>
-      </div>
-    </div>
 
-    <!-- 返信投稿 -->
-    <div class="resForm" [formGroup]="resForm">
-      <p>返信投稿</p>
-      <div class="create-name">
-        <label>名前</label>
-        <input
-          type="text"
-          pInputText
-          formControlName="name"
-          placeholder="30文字以内"
-        />
-      </div>
-      <div class="create-text">
-        <label>本文</label>
-        <textarea
-          pInputTextarea
-          formControlName="text"
-          placeholder="300文字以内"
-        ></textarea>
-      </div>
-      <div class="submit">
-        <div class="create-editkey">
-          <label>編集キー</label>
-          <input
-            type="text"
-            pInputText
-            formControlName="editkye"
-            placeholder="半角英数4文字以上6文字以内"
-          />
-        </div>
-        <div class="submit-button">
-          <p-button
-            label="投稿"
-            [disabled]="resForm.invalid"
-            (click)="create()"
-          ></p-button>
-        </div>
-      </div>
-    </div>
-    <h5>返信一覧</h5>
+  <div class="parent" *ngIf="index === 0">
+    <h1>{{ thread.title }}</h1>
+    <span>投稿日時：{{ message.createAt }}</span>
+    <p-button label="編集" (click)="update(message)"></p-button>
+    <p>{{ message.text }}</p>
+    <label>投稿者：{{ message.name }}</label>
   </div>
 
   <!-- 子記事 -->
-  <div class="child" *ngIf="index !== 0">
-    <div class="res-details">
-      <div class="res-name">
-        <label>名前</label>
-        <p>{{ message.name }}</p>
-      </div>
-      <div class="res-date">
-        <label>投稿日時</label>
-        <p>{{ message.createAt }}</p>
-      </div>
-    </div>
-    <div class="res">
-      <div class="res-text">
-        <label>本文</label>
-        <p>{{ message.text }}</p>
-      </div>
-      <div class="edit-submit">
-        <p-button label="編集" (click)="update(message)"></p-button>
-      </div>
-    </div>
-    <p-divider></p-divider>
-  </div>
+  <!-- <div class="child" *ngIf="index !== 0">
+    <label>名前</label>
+    <p>{{ message.name }}</p>
+
+    <label>投稿日時</label>
+    <p>{{ message.createAt }}</p>
+
+    <label>本文</label>
+    <p>{{ message.text }}</p>
+
+    <p-button label="編集" (click)="update(message)"></p-button>
+  </div> -->
 </ng-template>
 
 <!-- 編集：Modal -->
@@ -144,3 +78,42 @@
     </ng-container>
   </p-dialog>
 </ng-container>
+<!-- 返信投稿 -->
+<!-- <div class="resForm" [formGroup]="resForm">
+      <p>返信投稿</p>
+      <div class="create-name">
+        <label>名前</label>
+        <input
+          type="text"
+          pInputText
+          formControlName="name"
+          placeholder="30文字以内"
+        />
+      </div>
+      <div class="create-text">
+        <label>本文</label>
+        <textarea
+          pInputTextarea
+          formControlName="text"
+          placeholder="300文字以内"
+        ></textarea>
+      </div>
+      <div class="submit">
+        <div class="create-editkey">
+          <label>編集キー</label>
+          <input
+            type="text"
+            pInputText
+            formControlName="editkye"
+            placeholder="半角英数4文字以上6文字以内"
+          />
+        </div>
+        <div class="submit-button">
+          <p-button
+            label="投稿"
+            [disabled]="resForm.invalid"
+            (click)="create()"
+          ></p-button>
+        </div>
+      </div>
+    </div> -->

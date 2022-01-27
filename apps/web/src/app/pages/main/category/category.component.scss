@@ -1,101 +1,20 @@
 @use '../../../../styles.scss';
 
-// label
-%label {
-  width: 60px;
-  height: auto;
-  @extend .center-center;
-  @extend .font-s;
-}
-
-// ボタン位置:中央右寄せ
-%button {
-  @extend .center-right;
-}
-
-h3 {
-  background: linear-gradient(transparent 80%, #a7d6ff 70%);
-  width: 130px;
-}
-
-// スレッドタイトルの表示
 :host {
-  display: grid;
-  place-items: center;
-  .container {
-    width: 95%;
-    main {
-      padding-top: 10px;
-      div {
-        p {
-          @extend .font-mb;
-        }
-        span {
-          @extend .font-s;
-        }
-        &:hover {
-          cursor: pointer;
-          background-color: rgb(240, 240, 240);
-        }
-      }
+  > div {
+    padding: 10px;
+    > section {
+      display: grid;
+      gap: 10px;
     }
   }
-}
-
-// p-button
-::ng-deep .p-button {
-  @extend .button;
-  margin-top: 3px;
-}
-
-.container {
-  padding: 5px;
 }
 
 // modalレイアウト
 ::ng-deep.p-dialog {
   @extend .modal;
 }
-// textarea
-textarea {
-  @extend .textarea;
-}
-// input
-::ng-deep .p-inputtext {
-  @extend .input;
-}
-
-// modal表示
-.create {
-  padding: 2px;
-  .title,
-  .name,
-  .text,
-  .editkey {
-    margin-top: 20px;
-    display: flex;
-    width: 100%;
-    label {
-      @extend %label;
-    }
-    .input-tittle,
-    .input-name,
-    .input-editkey {
-      width: 100%;
-      label {
-        font-size: 0.3rem;
-        width: auto;
-      }
-    }
-    .input-text {
-      width: 100%;
-      label {
-        font-size: 0.3rem;
-        width: auto;
-      }
-    }
-  }
-  .button {
-    @extend %button;
-  }
+::ng-deep.p-dialog .p-dialog-header {
+  @extend .background-1;
+  @extend .color-3;
 }

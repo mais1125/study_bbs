@@ -1,0 +1,9 @@
+@use '../../../../../styles.scss';
+
+// breadcrumb
+:host {
+  width: 100%;
+  height: 30px;
+  @extend .center-left;
+  background-color: violet;
+}

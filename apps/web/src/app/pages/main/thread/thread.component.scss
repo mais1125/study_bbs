@@ -1,210 +1,227 @@
 @use '../../../../styles.scss';
 
-// label
-%label {
-  width: 60px;
-  height: auto;
-  @extend .center-center;
-  @extend .font-s;
-}
-
-// p
-%p {
-  @extend .font-s;
-  @extend .center-left;
-}
-
-// width:50%
-%width-half {
-  width: 50%;
-  display: flex;
-}
-
-// ボタン位置:中央右寄せ
-%button {
-  @extend .center-right;
-}
-
-h5 {
-  background: linear-gradient(transparent 80%, #abc6ddda);
-}
-
-// p-button
-::ng-deep .p-button {
-  @extend .button;
-}
-
-//modal
-::ng-deep.p-dialog {
-  @extend .modal;
-}
-
-// input
-::ng-deep .p-inputtext {
-  @extend .input;
-}
-
-// textarea
-textarea {
-  @extend .textarea;
-}
-
-// display
 :host {
-  display: grid;
-  place-items: center;
-
-  .container {
-    display: grid;
-
-    width: 70%;
-    .parent {
-      grid-row: 1/2;
-      padding: 2px;
-    }
-    .child {
-      padding: 2px;
-    }
-  }
-}
-
-// 親記事
-.parent {
-  width: 100%;
-  .title {
-    display: flex;
-    background: linear-gradient(transparent 80%, #abc6ddda);
-  }
-  // スレッド記事本文
-  .create-details {
-    display: flex;
-    width: 100%;
-    .name,
-    .create-date {
-      display: flex;
-      label {
-        @extend %label;
-      }
-      p {
-        @extend .font-s;
-      }
-    }
-    .name {
-      width: 65%;
-    }
-  }
-  .text {
-    display: flex;
-    height: auto;
+  // 親記事
+  .parent {
+    span,
     label {
-      @extend %label;
+      @extend .font-s;
     }
     p {
-      @extend .font-l;
-      white-space: pre-wrap;
+      @extend .background-8;
+      text-align: center;
     }
-  }
-  .edit-button {
-    @extend %button;
-  }
-
-  // 返信投稿フォーム
-  .resForm {
-    display: grid;
-    gap: 5px;
-    margin-bottom: 10px;
-    p {
-      @extend .center-center;
-      @extend .font-m;
-    }
-    .create-name,
-    .create-text {
-      display: flex;
-      padding-bottom: 2px;
-      label {
-        @extend %label;
-      }
-    }
-    .submit {
-      display: flex;
-
-      .create-editkey {
-        display: flex;
-        width: 90%;
-        label {
-          width: 60px;
-          height: auto;
-          @extend %label;
-        }
-      }
-      .submit-button {
-        @extend %button;
-        width: 10%;
-      }
+    ::ng-deep .p-button {
+      height: 20px;
     }
   }
 }
 
-// 子記事
-.child {
-  padding: 2px;
-  .res-details {
-    display: flex;
-    width: 100%;
-    background-color: #d3e3f0da;
-    .res-name,
-    .res-date {
-      display: flex;
-      padding-bottom: 2px;
-      label {
-        @extend %label;
-      }
-      p {
-        @extend %p;
-      }
-    }
-    .res-name {
-      width: 65%;
-    }
-  }
-  .res {
-    display: flex;
+// // label
+// %label {
+//   width: 60px;
+//   height: auto;
+//   @extend .center-center;
+//   @extend .font-s;
+// }
 
-    .res-text {
-      display: flex;
-      height: auto;
-      width: 90%;
-      label {
-        @extend %label;
-      }
-      p {
-        @extend %p;
-        width: 100px;
-        white-space: pre-wrap;
-      }
-    }
-    .edit-submit {
-      width: 10%;
-      @extend .center-right;
-    }
-  }
-}
+// // p
+// %p {
+//   @extend .font-s;
+//   @extend .center-left;
+// }
 
-// 編集modalの表示
-.edit {
-  padding: 2px;
+// // width:50%
+// %width-half {
+//   width: 50%;
+//   display: flex;
+// }
 
-  .edit-name,
-  .edit-text,
-  .edit-submit {
-    display: flex;
-    width: 100%;
-    margin-bottom: 5px;
-    label {
-      @extend %label;
-    }
-  }
-  .button {
-    @extend .center-right;
-  }
-}
+// // ボタン位置:中央右寄せ
+// %button {
+//   @extend .center-right;
+// }
+
+// h5 {
+//   background: linear-gradient(transparent 80%, #abc6ddda);
+// }
+
+// // p-button
+// ::ng-deep .p-button {
+//   @extend .button;
+// }
+
+// //modal
+// ::ng-deep.p-dialog {
+//   @extend .modal;
+// }
+
+// // input
+// ::ng-deep .p-inputtext {
+//   @extend .input;
+// }
+
+// // textarea
+// textarea {
+//   @extend .textarea;
+// }
+
+// // display
+// :host {
+//   display: grid;
+//   place-items: center;
+
+//   .container {
+//     display: grid;
+
+//     width: 70%;
+//     .parent {
+//       grid-row: 1/2;
+//       padding: 2px;
+//     }
+//     .child {
+//       padding: 2px;
+//     }
+//   }
+// }
+
+// // 親記事
+// .parent {
+//   width: 100%;
+//   .title {
+//     display: flex;
+//     background: linear-gradient(transparent 80%, #abc6ddda);
+//   }
+//   // スレッド記事本文
+//   .create-details {
+//     display: flex;
+//     width: 100%;
+//     .name,
+//     .create-date {
+//       display: flex;
+//       label {
+//         @extend %label;
+//       }
+//       p {
+//         @extend .font-s;
+//       }
+//     }
+//     .name {
+//       width: 65%;
+//     }
+//   }
+//   .text {
+//     display: flex;
+//     height: auto;
+//     label {
+//       @extend %label;
+//     }
+//     p {
+//       @extend .font-l;
+//       white-space: pre-wrap;
+//     }
+//   }
+//   .edit-button {
+//     @extend %button;
+//   }
+
+//   // 返信投稿フォーム
+//   .resForm {
+//     display: grid;
+//     gap: 5px;
+//     margin-bottom: 10px;
+//     p {
+//       @extend .center-center;
+//       @extend .font-m;
+//     }
+//     .create-name,
+//     .create-text {
+//       display: flex;
+//       padding-bottom: 2px;
+//       label {
+//         @extend %label;
+//       }
+//     }
+//     .submit {
+//       display: flex;
+
+//       .create-editkey {
+//         display: flex;
+//         width: 90%;
+//         label {
+//           width: 60px;
+//           height: auto;
+//           @extend %label;
+//         }
+//       }
+//       .submit-button {
+//         @extend %button;
+//         width: 10%;
+//       }
+//     }
+//   }
+// }
+
+// // 子記事
+// .child {
+//   padding: 2px;
+//   .res-details {
+//     display: flex;
+//     width: 100%;
+//     background-color: #d3e3f0da;
+//     .res-name,
+//     .res-date {
+//       display: flex;
+//       padding-bottom: 2px;
+//       label {
+//         @extend %label;
+//       }
+//       p {
+//         @extend %p;
+//       }
+//     }
+//     .res-name {
+//       width: 65%;
+//     }
+//   }
+//   .res {
+//     display: flex;
+
+//     .res-text {
+//       display: flex;
+//       height: auto;
+//       width: 90%;
+//       label {
+//         @extend %label;
+//       }
+//       p {
+//         @extend %p;
+//         width: 100px;
+//         white-space: pre-wrap;
+//       }
+//     }
+//     .edit-submit {
+//       width: 10%;
+//       @extend .center-right;
+//     }
+//   }
+// }
+
+// // 編集modalの表示
+// .edit {
+//   padding: 2px;
+
+//   .edit-name,
+//   .edit-text,
+//   .edit-submit {
+//     display: flex;
+//     width: 100%;
+//     margin-bottom: 5px;
+//     label {
+//       @extend %label;
+//     }
+//   }
+//   .button {
+//     @extend .center-right;
+//   }
+// }
