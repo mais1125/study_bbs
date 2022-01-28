@@ -27,7 +27,7 @@ export class MainComponent implements OnInit {
   }
 
   /**
-   * 各カテゴリーのページへ遷移
+   * 各スレッドのページへ遷移
    */
   onClick(id: Thread): void {
     this.router.navigate([PAGE.THREAD], {

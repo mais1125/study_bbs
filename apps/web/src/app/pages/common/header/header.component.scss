@@ -3,9 +3,9 @@
 div {
   background-color: #99d3e5;
   height: 60px;
-  @extend .center-left;
+  @extend %center-left;
   .pi {
-    @extend .font-xl;
+    @extend %font-xl;
     color: white;
   }
   .pi:hover {

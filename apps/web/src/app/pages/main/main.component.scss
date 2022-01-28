@@ -10,61 +10,8 @@
       gap: 10px;
       // タイトル
       > h1 {
-        @extend .font-xlb;
+        @extend %font-xlb;
       }
     }
   }
 }
-
-// @use '../../../styles.scss';
-
-// :host {
-//   div {
-//     display: grid;
-//     gap: 50px;
-//     section {
-//       h1 {
-//         // width: 150px;
-//         // @extend .under-line;
-//       }
-//       div {
-//         flex-wrap: wrap;
-//         .contents {
-//           width: 90%;
-//           @extend .background-4;
-//           @extend .under-line;
-//           .thread-list {
-//             width: 90%;
-//             padding-left: 20px;
-//             flex-wrap: wrap;
-//             h3,
-//             span,
-//             p {
-//               width: 100%;
-//             }
-//           }
-//           .thread-list:hover {
-//             cursor: pointer;
-//           }
-//           .counter {
-//             display: flex;
-//             width: 10%;
-
-//             i {
-//               width: 50%;
-//               @extend .center-center;
-//             }
-//             p {
-//               width: 50%;
-//               @extend .center-left;
-//             }
-//           }
-//         }
-//         .contents:hover {
-//           background-color: #a7a7a7;
-//           @extend .color-3;
-//         }
-//       }
-//     }
-//   }
-// }

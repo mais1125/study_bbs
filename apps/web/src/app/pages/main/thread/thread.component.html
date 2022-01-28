@@ -15,13 +15,18 @@
 <ng-template #params let-message="message" let-index="index">
   <!-- 親記事 -->
 
-  <div class="parent" *ngIf="index === 0">
+  <article class="parent" *ngIf="index === 0">
     <h1>{{ thread.title }}</h1>
-    <span>投稿日時：{{ message.createAt }}</span>
-    <p-button label="編集" (click)="update(message)"></p-button>
-    <p>{{ message.text }}</p>
-    <label>投稿者：{{ message.name }}</label>
-  </div>
+    <div>
+      <span>投稿日時：{{ message.createAt }}</span>
+      <p-button label="編集" (click)="update(message)"></p-button>
+      <p-card>
+        <p>{{ message.text }}</p>
+      </p-card>
+      <label>投稿者：{{ message.name }}</label>
+      <button>ぼたん</button>
+    </div>
+  </article>
 
   <!-- 子記事 -->
   <!-- <div class="child" *ngIf="index !== 0">

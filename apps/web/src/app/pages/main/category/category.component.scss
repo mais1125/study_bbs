@@ -12,9 +12,9 @@
 
 // modalレイアウト
 ::ng-deep.p-dialog {
-  @extend .modal;
+  @extend %modal;
 }
 ::ng-deep.p-dialog .p-dialog-header {
-  @extend .background-1;
-  @extend .color-3;
+  @extend %background-1;
+  @extend %color-3;
 }

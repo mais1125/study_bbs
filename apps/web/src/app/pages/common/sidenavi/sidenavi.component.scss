@@ -1,14 +1,14 @@
 @use '../../../../styles.scss';
 
 :host {
-  @extend .background-4;
+  @extend %background-4;
 }
 
 .heading {
-  @extend .font-sb;
-  @extend .color-4;
-  @extend .center-left;
-  @extend .background-2;
+  @extend %font-sb;
+  @extend %color-4;
+  @extend %center-left;
+  @extend %background-2;
   width: 100%;
   height: 30px;
 
@@ -23,14 +23,14 @@
   width: 100%;
   padding: 0%;
   button {
-    @extend .font-s;
-    @extend .color-4;
-    @extend .background-3;
+    @extend %font-s;
+    @extend %color-4;
+    @extend %background-3;
     border: none;
   }
   button:hover {
-    @extend .font-s;
-    @extend .color-3;
+    @extend %font-s;
+    @extend %color-3;
     cursor: pointer;
     background-color: #a7a7a7;
   }

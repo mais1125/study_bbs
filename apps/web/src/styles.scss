@@ -5,7 +5,7 @@
 }
 
 /* font size 11px*/
-.font-ss {
+%font-ss {
   font-size: 0.687rem;
   &b {
     font-size: 0.687rem;
@@ -14,7 +14,7 @@
 }
 
 /* font size 14px*/
-.font-s {
+%font-s {
   font-size: 0.875rem;
   &b {
     font-size: 0.875rem;
@@ -23,7 +23,7 @@
 }
 
 /* font size 16px*/
-.font-m {
+%font-m {
   font-size: 1rem;
   &b {
     font-size: 1rem;
@@ -32,7 +32,7 @@
 }
 
 /* font size 18px*/
-.font-l {
+%font-l {
   font-size: 1.125rem;
   &b {
     font-size: 1.125rem;
@@ -41,7 +41,7 @@
 }
 
 /* font size 24px*/
-.font-xl {
+%font-xl {
   font-size: 1.5rem;
   &b {
     font-size: 1.5rem;
@@ -50,46 +50,54 @@
 }
 
 /* under-line*/
-.under-line {
+%under-line {
   border-bottom: solid 3px rgb(194, 193, 193);
 }
 
 /* font color*/
-.color-1 {
+%color-1 {
   color: #0000;
 }
-.color-2 {
+%color-2 {
   color: #bebebe;
 }
-.color-3 {
+%color-3 {
   color: #ffff;
 }
-.color-4 {
+%color-4 {
   color: #273d75;
 }
 
 /* input*/
-.input {
-  width: 100%;
-  height: 30px;
+@mixin baseInput($biWidth, $biHeight) {
+  width: $biWidth;
+  height: $biHeight;
 }
+
 /* textarea*/
-.textarea {
+%textarea {
   width: 100%;
   height: 60px;
   resize: none;
 }
 
 /* p-button*/
-.button {
-  width: 50px;
-  height: 13px;
+@mixin baseButton($bbWidth, $bbHeight) {
+  width: $bbWidth;
+  height: $bbHeight;
   font-size: 0.2rem;
   padding: 0.625rem;
 }
 
+// %button {
+//   width: 50px;
+//   height: 13px;
+//   font-size: 0.2rem;
+//   padding: 0.625rem;
+// }
+
 /* modal*/
-.modal {
+%modal {
   width: 375px;
   height: auto;
   display: grid;
@@ -98,27 +106,27 @@
 
 /* 要素の位置*/
 // 中央左寄せ
-.center-left {
+%center-left {
   display: flex;
   align-items: center;
 }
 
 // 中央寄せ
-.center-center {
+%center-center {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 // 中央右寄せ
-.center-right {
+%center-right {
   display: flex;
   align-items: center;
   justify-content: flex-end;
 }
 
 // 下部左寄せ
-.bottom-left {
+%bottom-left {
   display: flex;
   align-items: flex-end;
 }
@@ -126,41 +134,41 @@
 /* 背景*/
 
 // 背景1
-.background-1 {
+%background-1 {
   background-color: #99d3e5;
 }
 
 // 背景2
-.background-2 {
+%background-2 {
   background-color: #f2f2f2;
 }
 
 // 背景3
-.background-3 {
+%background-3 {
   background-color: #fafafa;
 }
 
 // 背景4
-.background-4 {
+%background-4 {
   background-color: #fdfdfd;
 }
 
 // 背景5
-.background-5 {
+%background-5 {
   background-color: #00aee4;
 }
 
 // 背景6
-.background-6 {
+%background-6 {
   background-color: #e5e5e5;
 }
 
 // 背景7
-.background-7 {
+%background-7 {
   background-color: #99c1fc;
 }
 
-.background-8 {
+%background-8 {
   background-color: #f3f3f3;
 }
 
@@ -185,21 +193,22 @@ article.threads {
     li {
       display: grid;
       label {
-        @extend .font-m;
+        @extend %font-m;
         span {
           color: firebrick;
-          @extend .font-ss;
+          @extend %font-ss;
         }
       }
+
       input {
-        @extend .input;
+        @include baseInput(100%, 30px);
       }
       textarea {
-        @extend .textarea;
+        @extend %textarea;
       }
       ::ng-deep .p-button {
         width: 100%;
-        @extend .background-1;
+        @extend %background-1;
       }
     }
   }
