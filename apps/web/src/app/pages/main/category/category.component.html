@@ -4,7 +4,12 @@
 <div *ngIf="category">
   <section>
     <h1>{{ category.name }}</h1>
-    <p-button label="新規投稿" (click)="switchModal()"></p-button>
+    <button
+      pButton
+      type="button"
+      label="新規投稿"
+      (click)="switchModal()"
+    ></button>
     <article
       class="threads"
       *ngFor="let thread of category.thread"
@@ -50,11 +55,13 @@
         <input type="text" pInputText formControlName="editkey" />
       </li>
       <li>
-        <p-button
+        <button
+          pButton
+          type="button"
           label="投稿"
           [disabled]="createForm.invalid"
           (click)="create()"
-        ></p-button>
+        ></button>
       </li>
     </ul>
   </p-dialog>

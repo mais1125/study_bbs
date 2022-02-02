@@ -1,267 +1,202 @@
 @use '../../../../styles.scss';
+@use '../template-style.scss';
 
 :host {
-  // 親記事
-  .parent {
+  display: grid;
+  grid-template-columns: 10% 1fr 10%;
+  > div {
     display: grid;
+    grid-column: 2/3;
     gap: 10px;
 
-    div {
-      padding-left: 5%;
-      padding-right: 5%;
-      display: grid;
-      grid-template-columns: 1fr 150px;
-      grid-template-rows: 30px 1fr 30px 30px;
-      span {
-        @extend %font-s;
-        grid-column: 1/2;
-        grid-row: 1/2;
-      }
-      p-button {
-        grid-column: 2/3;
-        grid-row: 1/2;
-        display: grid;
-        justify-content: right;
-      }
-      p-card {
-        grid-column: 1/3;
-        grid-row: 2/3;
+    // タイトル
+    > h1 {
+      border-left: 8px solid #4e4e4e;
+      padding: 5px;
+    }
 
-        p {
-          @extend %font-l;
+    // 親記事
+    > article:first-of-type {
+      display: grid;
+      gap: 10px;
+      > ul {
+        @include template-style.ul-style();
+        > li:first-child {
+          display: grid;
+          grid-template-columns: 1fr 60px;
+          > span {
+            grid-column: 1/2;
+          }
+          > button {
+            grid-column: 2/3;
+            @include template-style.baseButton(60px);
+          }
+        }
+        > li {
+          display: grid;
+          > div {
+            @extend %messageBody;
+            > p {
+              white-space: pre-wrap;
+            }
+          }
+          > label {
+            text-align: right;
+          }
         }
       }
-      label {
-        @extend %font-s;
-        grid-column: 2/3;
-        grid-row: 3/4;
-        display: grid;
-        justify-items: center;
-        align-items: center;
+      > button {
+        height: 30px;
+        border: none;
+        border-radius: 5px;
+        @extend %font-m;
+        @extend %background-7;
+        &:hover {
+          color: #ffff;
+          background-color: rgb(126, 126, 129);
+        }
       }
-      button {
-        grid-column: 1/3;
-        grid-row: 4/5;
+    }
+
+    // 子記事
+    > article {
+      display: grid;
+      > div {
+        display: grid;
+        grid-template-columns: 1fr 1fr 60px;
+        gap: 10px;
+        @extend %messageBody;
+        > p {
+          grid-column: 1/4;
+          white-space: pre-wrap;
+        }
+        > label {
+          grid-column: 1/2;
+          @extend %font-s;
+        }
+        > span {
+          grid-column: 2/3;
+          @extend %font-s;
+        }
+        > button {
+          grid-column: 3/4;
+          @include template-style.baseButton(60px);
+        }
       }
     }
   }
 }
 
-// p-card
-::ng-deep .p-card {
+// 編集modal
+.edit {
+  ul {
+    > li:last-child {
+      display: grid;
+      grid-template-columns: 70% 30%;
+      > button:first-child {
+        grid-column: 1/2;
+      }
+      > button:last-child {
+        grid-column: 2/3;
+      }
+    }
+  }
+}
+
+// modalレイアウト
+::ng-deep.p-dialog {
+  @extend %modal;
+}
+::ng-deep.p-dialog .p-dialog-header {
+  @extend %background-1;
+  @extend %color-3;
+}
+
+// 投稿記事・返信記事
+%messageBody {
   @extend %background-8;
   box-shadow: none;
+  border-radius: 8px;
+  padding: 0.5rem;
 }
 
-::ng-deep .p-button {
-  height: 20px;
-}
-
-// // label
-// %label {
-//   width: 60px;
-//   height: auto;
-//   @extend .center-center;
-//   @extend .font-s;
-// }
-
-// // p
-// %p {
-//   @extend .font-s;
-//   @extend .center-left;
-// }
-
-// // width:50%
-// %width-half {
-//   width: 50%;
-//   display: flex;
-// }
-
-// // ボタン位置:中央右寄せ
-// %button {
-//   @extend .center-right;
-// }
-
-// h5 {
-//   background: linear-gradient(transparent 80%, #abc6ddda);
-// }
-
-// // p-button
-// ::ng-deep .p-button {
-//   @extend .button;
-// }
-
-// //modal
-// ::ng-deep.p-dialog {
-//   @extend .modal;
-// }
-
-// // input
-// ::ng-deep .p-inputtext {
-//   @extend .input;
-// }
-
-// // textarea
-// textarea {
-//   @extend .textarea;
-// }
-
-// // display
 // :host {
-//   display: grid;
-//   place-items: center;
-
-//   .container {
-//     display: grid;
-
-//     width: 70%;
-//     .parent {
-//       grid-row: 1/2;
-//       padding: 2px;
-//     }
-//     .child {
-//       padding: 2px;
-//     }
-//   }
-// }
-
-// // 親記事
-// .parent {
-//   width: 100%;
-//   .title {
-//     display: flex;
-//     background: linear-gradient(transparent 80%, #abc6ddda);
-//   }
-//   // スレッド記事本文
-//   .create-details {
-//     display: flex;
-//     width: 100%;
-//     .name,
-//     .create-date {
-//       display: flex;
-//       label {
-//         @extend %label;
+//   > div {
+//     // 親記事
+//     > article.parent {
+//       display: grid;
+//       gap: 10px;
+//       > h1 {
+//         border-left: 8px solid #4e4e4e;
+//         padding: 5px;
 //       }
-//       p {
-//         @extend .font-s;
-//       }
-//     }
-//     .name {
-//       width: 65%;
-//     }
-//   }
-//   .text {
-//     display: flex;
-//     height: auto;
-//     label {
-//       @extend %label;
-//     }
-//     p {
-//       @extend .font-l;
-//       white-space: pre-wrap;
-//     }
-//   }
-//   .edit-button {
-//     @extend %button;
-//   }
+//       > ul {
+//         padding-left: 10%;
+//         padding-right: 10%;
+//         @include template-style.ul-style();
 
-//   // 返信投稿フォーム
-//   .resForm {
-//     display: grid;
-//     gap: 5px;
-//     margin-bottom: 10px;
-//     p {
-//       @extend .center-center;
-//       @extend .font-m;
-//     }
-//     .create-name,
-//     .create-text {
-//       display: flex;
-//       padding-bottom: 2px;
-//       label {
-//         @extend %label;
-//       }
-//     }
-//     .submit {
-//       display: flex;
-
-//       .create-editkey {
-//         display: flex;
-//         width: 90%;
-//         label {
-//           width: 60px;
-//           height: auto;
-//           @extend %label;
+//         > li {
+//           display: grid;
+//           grid-template-columns: 1fr 60px;
+//           > span {
+//             grid-column: 1/2;
+//           }
+//           > .edit {
+//             grid-column: 2/3;
+//             @include template-style.baseButton(60px 30px);
+//           }
+//           > div {
+//             grid-column: 1/3;
+//             @extend %messageBody;
+//           }
+//           > label {
+//             text-align: right;
+//             grid-column: 1/3;
+//           }
+//           > .submit {
+//             grid-column: 1/3;
+//             height: 30px;
+//             border: none;
+//             border-radius: 5px;
+//             @extend %background-7;
+//             &:hover {
+//               color: #ffff;
+//               background-color: rgb(126, 126, 129);
+//             }
+//           }
 //         }
 //       }
-//       .submit-button {
-//         @extend %button;
-//         width: 10%;
+//     }
+//     // 子記事
+//     > article.child {
+//       padding-left: 10%;
+//       padding-right: 10%;
+//       // background-color: brown;
+//       > ul {
+//         @include template-style.ul-style();
+//         > li:first-child {
+//           > div {
+//             width: 100%;
+//             @extend %messageBody;
+//           }
+//         }
+//         > li:last-child {
+//           display: grid;
+//           column-gap: 5px;
+//           grid-template-columns: 1fr 1fr 50px;
+//           > label {
+//             grid-column: 1/2;
+//           }
+//           > span {
+//             grid-column: 2/3;
+//             text-align: right;
+//           }
+//           > button {
+//             grid-column: 3/4;
+//             @include template-style.baseButton();
+//           }
+//         }
 //       }
 //     }
-//   }
-// }
-
-// // 子記事
-// .child {
-//   padding: 2px;
-//   .res-details {
-//     display: flex;
-//     width: 100%;
-//     background-color: #d3e3f0da;
-//     .res-name,
-//     .res-date {
-//       display: flex;
-//       padding-bottom: 2px;
-//       label {
-//         @extend %label;
-//       }
-//       p {
-//         @extend %p;
-//       }
-//     }
-//     .res-name {
-//       width: 65%;
-//     }
-//   }
-//   .res {
-//     display: flex;
-
-//     .res-text {
-//       display: flex;
-//       height: auto;
-//       width: 90%;
-//       label {
-//         @extend %label;
-//       }
-//       p {
-//         @extend %p;
-//         width: 100px;
-//         white-space: pre-wrap;
-//       }
-//     }
-//     .edit-submit {
-//       width: 10%;
-//       @extend .center-right;
-//     }
-//   }
-// }
-
-// // 編集modalの表示
-// .edit {
-//   padding: 2px;
-
-//   .edit-name,
-//   .edit-text,
-//   .edit-submit {
-//     display: flex;
-//     width: 100%;
-//     margin-bottom: 5px;
-//     label {
-//       @extend %label;
-//     }
-//   }
-//   .button {
-//     @extend .center-right;
 //   }
 // }

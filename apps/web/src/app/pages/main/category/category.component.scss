@@ -1,4 +1,5 @@
 @use '../../../../styles.scss';
+@use '../template-style.scss';
 
 :host {
   > div {
@@ -6,6 +7,9 @@
     > section {
       display: grid;
       gap: 10px;
+      > button {
+        @include template-style.baseButton(100px, 40px);
+      }
     }
   }
 }
