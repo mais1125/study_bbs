@@ -4,9 +4,16 @@
 :host {
   display: grid;
   grid-template-columns: 10% 1fr 10%;
+  grid-template-rows: 35px 1fr;
+  gap: 10px;
+  > project-breadcrumb {
+    grid-column: 1/4;
+    grid-row: 1/2;
+  }
   > div {
     display: grid;
     grid-column: 2/3;
+    grid-row: 2/3;
     gap: 10px;
 
     // タイトル

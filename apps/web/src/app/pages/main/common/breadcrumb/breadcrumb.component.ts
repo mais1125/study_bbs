@@ -11,14 +11,14 @@ import { MenuItem } from 'primeng/api';
 export class BreadcrumbComponent implements OnDestroy {
   subscription!: Subscription;
   items: MenuItem[] = [];
-  constructor(private sessionService: SessionService) {}
-  ngOnInit() {
+  constructor(private sessionService: SessionService) {
     this.subscription = this.sessionService.myBreadCrumbsRec.subscribe(
       (data) => {
-        this.items.push(data);
+        this.items = data;
       }
     );
   }
+
   ngOnDestroy(): void {
     if (this.subscription) {
       this.subscription.unsubscribe();

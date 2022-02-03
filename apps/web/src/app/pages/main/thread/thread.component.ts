@@ -14,6 +14,7 @@ import {
   API_ENDPOINT,
 } from '@common/models';
 import { PAGE } from '../../../app-routig.module';
+import { SessionService } from '../../../service/session.service';
 
 @Component({
   selector: 'project-thread',
@@ -62,7 +63,8 @@ export class ThreadComponent implements OnInit, OnDestroy {
   constructor(
     private apiService: ApiService,
     private route: ActivatedRoute,
-    public router: Router
+    public router: Router,
+    public sessionService: SessionService
   ) {}
 
   /**
@@ -101,6 +103,12 @@ export class ThreadComponent implements OnInit, OnDestroy {
           this.thread = this.sortMessage(res);
         }
       });
+    // パンくずリスト
+    this.sessionService.myBreadCrumbsSec([
+      { label: 'TOP' },
+      { label: this.thread.cid?.name },
+      { label: this.thread.title },
+    ]);
   }
 
   /**

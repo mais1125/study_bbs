@@ -3,12 +3,14 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ThreadComponent } from './thread.component';
+import { BreadcrumbModule } from '../common/breadcrumb/breadcrumb.module';
 // primeNg Module
 import { DialogModule } from 'primeng/dialog';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { CardModule } from 'primeng/card';
+import { BreadcrumbModule as Breadcrumb } from 'primeng/breadcrumb';
 
 const primengModule = [
   DialogModule,
@@ -16,6 +18,7 @@ const primengModule = [
   InputTextModule,
   InputTextareaModule,
   CardModule,
+  Breadcrumb,
 ];
 
 const routes: Routes = [
@@ -32,6 +35,7 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     FormsModule,
     ReactiveFormsModule,
+    BreadcrumbModule,
     ...primengModule,
   ],
   exports: [RouterModule],

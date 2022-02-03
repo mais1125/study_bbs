@@ -84,7 +84,11 @@ export class CategoryComponent implements OnInit, OnDestroy {
         this.category = i as Category;
         return this.category;
       });
-    this.sessionService.myBreadCrumbsSec({ label: this.category.name });
+    // パンくずリスト
+    this.sessionService.myBreadCrumbsSec([
+      { label: 'TOP' },
+      { label: this.category.name },
+    ]);
     res.thread?.reverse();
   }
 
