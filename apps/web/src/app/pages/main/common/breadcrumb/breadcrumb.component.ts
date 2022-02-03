@@ -1,8 +1,27 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
+import { SessionService } from 'apps/web/src/app/service/session.service';
+import { Subscription } from 'rxjs';
+import { MenuItem } from 'primeng/api';
 
 @Component({
   selector: 'project-breadcrumb',
   templateUrl: './breadcrumb.component.html',
   styleUrls: ['./breadcrumb.component.scss'],
 })
-export class BreadcrumbComponent {}
+export class BreadcrumbComponent implements OnDestroy {
+  subscription!: Subscription;
+  items: MenuItem[] = [];
+  constructor(private sessionService: SessionService) {}
+  ngOnInit() {
+    this.subscription = this.sessionService.myBreadCrumbsRec.subscribe(
+      (data) => {
+        this.items.push(data);
+      }
+    );
+  }
+  ngOnDestroy(): void {
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
+  }
+}

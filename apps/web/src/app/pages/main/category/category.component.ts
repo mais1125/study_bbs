@@ -13,6 +13,7 @@ import {
 } from '@angular/forms';
 // interfaces
 import { Thread, Category, BoardCreate, API_ENDPOINT } from '@common/models';
+import { SessionService } from '../../../service/session.service';
 
 // createForm用Type
 type createFormControls = {
@@ -48,7 +49,8 @@ export class CategoryComponent implements OnInit, OnDestroy {
   constructor(
     private apiService: ApiService,
     private route: ActivatedRoute,
-    public router: Router
+    public router: Router,
+    public sessionService: SessionService
   ) {}
 
   /**
@@ -78,7 +80,11 @@ export class CategoryComponent implements OnInit, OnDestroy {
     const res = await this.apiService
       .get(url, options)
       .toPromise()
-      .then((i) => (this.category = i as Category));
+      .then((i) => {
+        this.category = i as Category;
+        return this.category;
+      });
+    this.sessionService.myBreadCrumbsSec({ label: this.category.name });
     res.thread?.reverse();
   }
 

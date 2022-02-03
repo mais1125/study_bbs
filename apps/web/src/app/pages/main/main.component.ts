@@ -3,6 +3,7 @@ import { ApiService } from '../../service/api.service';
 import { Thread, API_ENDPOINT, Category } from '@common/models';
 import { Router } from '@angular/router';
 import { PAGE } from '../../app-routig.module';
+import { SessionService } from '../../service/session.service';
 
 @Component({
   selector: 'project-main',
@@ -13,11 +14,16 @@ export class MainComponent implements OnInit {
   threads: Thread[] = [];
   categoryies: Category[] = [];
 
-  constructor(private apiService: ApiService, public router: Router) {}
+  constructor(
+    private apiService: ApiService,
+    public router: Router,
+    public sessionService: SessionService
+  ) {}
 
-  async ngOnInit(): Promise<void> {
+  ngOnInit(): void {
+    this.sessionService.myBreadCrumbsSec({ label: 'TOP' });
     const url = API_ENDPOINT.THREADALL_READ;
-    await this.apiService
+    this.apiService
       .get(url)
       .toPromise()
       .then((i) => {
