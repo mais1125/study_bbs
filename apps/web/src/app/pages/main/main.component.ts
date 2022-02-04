@@ -24,7 +24,7 @@ export class MainComponent implements OnInit {
 
   ngOnInit(): void {
     // パンくずリスト
-    this.sessionService.myBreadCrumbsSec([{ label: 'TOP' }]);
+    this.sessionService.myBreadCrumbsSec([{}]);
 
     // const url = API_ENDPOINT.THREADALL_READ;
     // this.apiService

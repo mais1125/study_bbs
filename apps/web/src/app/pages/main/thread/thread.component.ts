@@ -105,7 +105,6 @@ export class ThreadComponent implements OnInit, OnDestroy {
       });
     // パンくずリスト
     this.sessionService.myBreadCrumbsSec([
-      { label: 'TOP' },
       { label: this.thread.cid?.name },
       { label: this.thread.title },
     ]);

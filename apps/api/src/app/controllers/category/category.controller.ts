@@ -7,14 +7,6 @@ export class CategoryController {
   constructor(private categoryService: CategoryService) {}
 
   /**
-   * カテゴリーの取得
-   */
-  @Get(API_ENDPOINT.CATEGORIES_READ)
-  categoriesRead(): Promise<Category[]> {
-    return this.categoryService.categoriesRead();
-  }
-
-  /**
    * スレッドの全件取得
    */
   @Get(API_ENDPOINT.THREADALL_READ)
