@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ApiService } from '../../service/api.service';
 import { Thread, API_ENDPOINT, Category } from '@common/models';
 import { Router } from '@angular/router';
@@ -12,7 +12,9 @@ import { SessionService } from '../../service/session.service';
 })
 export class MainComponent implements OnInit {
   threads: Thread[] = [];
-  categoryies: Category[] = [];
+
+  // app.componentで取得した値を受け取る
+  @Input() categoryies: Category[] = [];
 
   constructor(
     private apiService: ApiService,
@@ -24,14 +26,14 @@ export class MainComponent implements OnInit {
     // パンくずリスト
     this.sessionService.myBreadCrumbsSec([{ label: 'TOP' }]);
 
-    const url = API_ENDPOINT.THREADALL_READ;
-    this.apiService
-      .get(url)
-      .toPromise()
-      .then((i) => {
-        this.categoryies = i as Category[];
-      });
-    this.categoryies.reverse();
+    // const url = API_ENDPOINT.THREADALL_READ;
+    // this.apiService
+    //   .get(url)
+    //   .toPromise()
+    //   .then((i) => {
+    //     this.categoryies = i as Category[];
+    //     this.categoryies.reverse();
+    //   });
   }
 
   /**
