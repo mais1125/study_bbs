@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ApiService } from '../../service/api.service';
 import { Thread, Category, API_ENDPOINT } from '@common/models';
 import { Router } from '@angular/router';
@@ -14,14 +14,14 @@ import { Subscription } from 'rxjs';
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.scss'],
 })
-export class MainComponent implements OnInit {
+export class MainComponent implements OnInit, OnDestroy {
   subscription!: Subscription;
   threads: Thread[] = [];
   categories: Category[] = [];
 
   constructor(
     private apiService: ApiService,
-    public router: Router,
+    private router: Router,
     private sessionService: SessionService,
     private categoryService: CategoryService
   ) {
@@ -35,14 +35,11 @@ export class MainComponent implements OnInit {
   ngOnInit(): void {
     // パンくずリスト
     this.sessionService.myBreadCrumbsSec([{}]);
-    // const url = API_ENDPOINT.THREADALL_READ;
-    // this.apiService
-    //   .get(url)
-    //   .toPromise()
-    //   .then((i) => {
-    //     this.categoryies = i as Category[];
-    //     this.categoryService.myCategoriesSec(this.categoryies);
-    //   });
+  }
+
+  ngOnDestroy(): void {
+    // 購読廃棄
+    this.subscription.unsubscribe();
   }
 
   /**
