@@ -64,7 +64,7 @@ export class ThreadComponent implements OnInit, OnDestroy {
     private apiService: ApiService,
     private route: ActivatedRoute,
     public router: Router,
-    public sessionService: SessionService
+    private sessionService: SessionService
   ) {}
 
   /**

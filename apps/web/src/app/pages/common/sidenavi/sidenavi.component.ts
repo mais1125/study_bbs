@@ -1,19 +1,38 @@
-import { Component, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Category } from '@common/models';
+import { API_ENDPOINT, Category } from '@common/models';
+import { Subscription } from 'rxjs';
 import { PAGE } from '../../../app-routig.module';
 import { ApiService } from '../../../service/api.service';
+import { CategoryService } from '../../../service/category.service';
 
 @Component({
   selector: 'project-sidenavi',
   templateUrl: './sidenavi.component.html',
   styleUrls: ['./sidenavi.component.scss'],
 })
-export class SidenaviComponent {
-  // app.componentで取得した値を受け取る
-  @Input() categories: Category[] = [];
+export class SidenaviComponent implements OnInit {
+  // main.componentで取得した値を受け取る
+  subscription!: Subscription;
+  categories: Category[] = [];
 
-  constructor(private apiService: ApiService, public router: Router) {}
+  constructor(
+    private apiService: ApiService,
+    public router: Router,
+    private categoryService: CategoryService
+  ) {}
+  ngOnInit(): void {
+    const url = API_ENDPOINT.THREADALL_READ;
+    this.apiService
+      .get(url)
+      .toPromise()
+      .then((i) => {
+        this.categories = i as Category[];
+        this.categories.reverse();
+        this.categoryService.myCategoriesSec(this.categories);
+      });
+  }
+
   /**
    * カテゴリーページへ遷移
    */

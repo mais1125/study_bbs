@@ -1,9 +1,13 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../../service/api.service';
-import { Thread, API_ENDPOINT, Category } from '@common/models';
+import { Thread, Category, API_ENDPOINT } from '@common/models';
 import { Router } from '@angular/router';
 import { PAGE } from '../../app-routig.module';
+
+// service
 import { SessionService } from '../../service/session.service';
+import { CategoryService } from '../../service/category.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'project-main',
@@ -11,28 +15,33 @@ import { SessionService } from '../../service/session.service';
   styleUrls: ['./main.component.scss'],
 })
 export class MainComponent implements OnInit {
+  subscription!: Subscription;
   threads: Thread[] = [];
-
-  // app.componentで取得した値を受け取る
-  @Input() categoryies: Category[] = [];
+  categories: Category[] = [];
 
   constructor(
     private apiService: ApiService,
     public router: Router,
-    public sessionService: SessionService
-  ) {}
+    private sessionService: SessionService,
+    private categoryService: CategoryService
+  ) {
+    this.subscription = this.categoryService.myCategoriesRec.subscribe(
+      (data) => {
+        this.categories = data;
+      }
+    );
+  }
 
   ngOnInit(): void {
     // パンくずリスト
     this.sessionService.myBreadCrumbsSec([{}]);
-
     // const url = API_ENDPOINT.THREADALL_READ;
     // this.apiService
     //   .get(url)
     //   .toPromise()
     //   .then((i) => {
     //     this.categoryies = i as Category[];
-    //     this.categoryies.reverse();
+    //     this.categoryService.myCategoriesSec(this.categoryies);
     //   });
   }
 

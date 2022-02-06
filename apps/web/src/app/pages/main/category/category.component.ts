@@ -13,6 +13,7 @@ import {
 } from '@angular/forms';
 // interfaces
 import { Thread, Category, BoardCreate, API_ENDPOINT } from '@common/models';
+// service
 import { SessionService } from '../../../service/session.service';
 
 // createForm用Type
@@ -50,7 +51,7 @@ export class CategoryComponent implements OnInit, OnDestroy {
     private apiService: ApiService,
     private route: ActivatedRoute,
     public router: Router,
-    public sessionService: SessionService
+    private sessionService: SessionService
   ) {}
 
   /**
@@ -84,7 +85,7 @@ export class CategoryComponent implements OnInit, OnDestroy {
         this.category = i as Category;
         return this.category;
       });
-    // パンくずリスト
+    // パンくずリストへ値を送る
     this.sessionService.myBreadCrumbsSec([{ label: this.category.name }]);
     res.thread?.reverse();
   }
