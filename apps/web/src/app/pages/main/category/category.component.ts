@@ -74,15 +74,14 @@ export class CategoryComponent implements OnInit, OnDestroy {
    * カテゴリーの値を取得
    */
   async getCategory(id: number): Promise<void> {
-    const url = API_ENDPOINT.CATEGORY_READ;
     const options = {
       params: new HttpParams().set('id', id),
     };
     const res = await this.apiService
-      .get(url, options)
+      .get<Category>(API_ENDPOINT.CATEGORY_READ, options)
       .toPromise()
       .then((i) => {
-        this.category = i as Category;
+        this.category = i;
         return this.category;
       });
     // パンくずリストへ値を送る
@@ -113,7 +112,7 @@ export class CategoryComponent implements OnInit, OnDestroy {
     };
     // 投稿
     await this.apiService
-      .post<BoardCreate, BoardCreate>(API_ENDPOINT.THREAD_CREATE, req)
+      .post<BoardCreate>(API_ENDPOINT.THREAD_CREATE, req)
       .toPromise()
       .then(() => this.createForm.reset());
     // スレッドの再取得

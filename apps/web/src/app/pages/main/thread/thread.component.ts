@@ -92,7 +92,7 @@ export class ThreadComponent implements OnInit, OnDestroy {
       params: new HttpParams().set('id', id),
     };
     await this.apiService
-      .get<{ params: HttpParams }, Thread>(url, options)
+      .get<Thread>(url, options)
       .toPromise()
       .then((res) => {
         if (!res) {
@@ -144,7 +144,7 @@ export class ThreadComponent implements OnInit, OnDestroy {
       tid: { id: this.thread.id } as Thread,
     };
     await this.apiService
-      .post<MessageCreate, MessageCreate>(API_ENDPOINT.MESSAGE_CREATE, req)
+      .post<MessageCreate>(API_ENDPOINT.MESSAGE_CREATE, req)
       .toPromise()
       .then(() => this.resForm.reset());
 
@@ -179,7 +179,7 @@ export class ThreadComponent implements OnInit, OnDestroy {
       tid: { id: this.thread.id } as Thread,
     };
     await this.apiService
-      .post<Message, ResponseInterface>(API_ENDPOINT.MESSAGE_UPDATE, req)
+      .post<ResponseInterface>(API_ENDPOINT.MESSAGE_UPDATE, req)
       .toPromise()
       .then(
         (res) => ((this.response = res), (this.editForm.value.editkey = ''))
@@ -200,7 +200,7 @@ export class ThreadComponent implements OnInit, OnDestroy {
    */
   async deleteMessage(message: Message): Promise<void> {
     await this.apiService
-      .post<Message, ResponseInterface>(API_ENDPOINT.MESSAGE_DELETE, message)
+      .post<ResponseInterface>(API_ENDPOINT.MESSAGE_DELETE, message)
       .toPromise()
       .then((res) => (this.response = res));
     if (this.response.status) {

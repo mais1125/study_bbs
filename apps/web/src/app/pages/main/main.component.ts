@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ApiService } from '../../service/api.service';
-import { Thread, Category, API_ENDPOINT } from '@common/models';
+import { Thread, Category } from '@common/models';
 import { Router } from '@angular/router';
 import { PAGE } from '../../app-routig.module';
 
@@ -28,6 +28,7 @@ export class MainComponent implements OnInit, OnDestroy {
     this.subscription = this.categoryService.myCategoriesRec.subscribe(
       (data) => {
         this.categories = data;
+        this.categories.reverse();
       }
     );
   }

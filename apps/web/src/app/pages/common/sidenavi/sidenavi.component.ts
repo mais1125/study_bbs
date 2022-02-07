@@ -1,9 +1,8 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
-import { API_ENDPOINT, Category } from '@common/models';
+import { Category } from '@common/models';
 import { Subscription } from 'rxjs';
 import { PAGE } from '../../../app-routig.module';
-import { ApiService } from '../../../service/api.service';
 import { CategoryService } from '../../../service/category.service';
 
 @Component({

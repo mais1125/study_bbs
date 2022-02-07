@@ -10,6 +10,7 @@ import { CategoryService } from './service/category.service';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
+  categories: Category[] = [];
   constructor(
     private apiService: ApiService,
     private categoryService: CategoryService,
@@ -21,7 +22,7 @@ export class AppComponent implements OnInit {
     this.router.events.subscribe((val) => {
       if (val instanceof NavigationEnd && val.url === '/') {
         this.apiService
-          .get<'', Category[]>(API_ENDPOINT.THREADALL_READ)
+          .get<Category[]>(API_ENDPOINT.THREADALL_READ)
           .toPromise()
           .then((i) => {
             this.categoryService.myCategoriesSec(i);
