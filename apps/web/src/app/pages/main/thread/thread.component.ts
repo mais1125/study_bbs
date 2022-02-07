@@ -87,25 +87,27 @@ export class ThreadComponent implements OnInit, OnDestroy {
    *  スレッドを取得
    */
   async getThread(id: number): Promise<void> {
-    const url = API_ENDPOINT.THREAD_READ;
     const options = {
       params: new HttpParams().set('id', id),
     };
     await this.apiService
-      .get<Thread>(url, options)
+      .get<Thread>(API_ENDPOINT.THREAD_READ, options)
       .toPromise()
       .then((res) => {
-        if (!res) {
+        if (res) {
+          this.thread = this.sortMessage(res);
+        } else {
           this.router.navigateByUrl(
             `${PAGE.CATEGORY}?id=${this.thread.cid?.id}`
           );
-        } else {
-          this.thread = this.sortMessage(res);
         }
       });
     // パンくずリスト
     this.sessionService.myBreadCrumbsSec([
-      { label: this.thread.cid?.name },
+      {
+        label: this.thread.cid?.name,
+        url: `/category?id=${this.thread.cid?.id}`,
+      },
       { label: this.thread.title },
     ]);
   }

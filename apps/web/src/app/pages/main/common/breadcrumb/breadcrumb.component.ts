@@ -14,7 +14,7 @@ export class BreadcrumbComponent implements OnDestroy {
   constructor(private sessionService: SessionService) {
     this.subscription = this.sessionService.myBreadCrumbsRec.subscribe(
       (data) => {
-        const hoge: MenuItem = { label: 'TOP' };
+        const hoge: MenuItem = { label: 'TOP', url: '/' };
         data.unshift(hoge);
         this.items = data;
       }

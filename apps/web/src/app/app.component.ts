@@ -20,7 +20,7 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     // TOPの場合は記事を再取得
     this.router.events.subscribe((val) => {
-      if (val instanceof NavigationEnd && val.url === '/') {
+      if (val instanceof NavigationEnd) {
         this.apiService
           .get<Category[]>(API_ENDPOINT.THREADALL_READ)
           .toPromise()
