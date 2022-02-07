@@ -6,7 +6,7 @@ import { PAGE } from '../../app-routig.module';
 
 // service
 import { SessionService } from '../../service/session.service';
-import { CategoryService } from '../../service/category.service';
+import { RxJSService } from '../../service/category.service';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -23,14 +23,12 @@ export class MainComponent implements OnInit, OnDestroy {
     private apiService: ApiService,
     private router: Router,
     private sessionService: SessionService,
-    private categoryService: CategoryService
+    private rxjsService: RxJSService
   ) {
-    this.subscription = this.categoryService.myCategoriesRec.subscribe(
-      (data) => {
-        this.categories = data;
-        this.categories.reverse();
-      }
-    );
+    this.subscription = this.rxjsService.myCategoriesRec.subscribe((data) => {
+      this.categories = data;
+      this.categories.reverse();
+    });
   }
 
   ngOnInit(): void {

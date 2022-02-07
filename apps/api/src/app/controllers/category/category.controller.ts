@@ -1,17 +1,17 @@
 import { Controller, Get, Query } from '@nestjs/common';
-import { CategoryService } from '@services/controllers';
+import { RxJSService } from '@services/controllers';
 import { API_ENDPOINT, Category } from '@common/models';
 
 @Controller()
 export class CategoryController {
-  constructor(private categoryService: CategoryService) {}
+  constructor(private rxjsService: RxJSService) {}
 
   /**
    * スレッドの全件取得
    */
   @Get(API_ENDPOINT.THREADALL_READ)
   threadAllRead(): Promise<Category[]> {
-    return this.categoryService.threadAllRead();
+    return this.rxjsService.threadAllRead();
   }
 
   /**
@@ -19,6 +19,6 @@ export class CategoryController {
    */
   @Get(API_ENDPOINT.CATEGORY_READ)
   categoryRead(@Query() id: number): Promise<Category> {
-    return this.categoryService.categoryRead(id);
+    return this.rxjsService.categoryRead(id);
   }
 }

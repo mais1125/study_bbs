@@ -4,7 +4,7 @@ import { CategoryEntityService, ThreadEntityService } from '@services/entities';
 import moment = require('moment');
 
 @Injectable()
-export class CategoryService {
+export class RxJSService {
   constructor(
     private categoryEntityService: CategoryEntityService,
     private threadEntityService: ThreadEntityService

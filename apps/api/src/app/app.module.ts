@@ -6,7 +6,7 @@ import { RDBMSModule } from './service/database/rdms/rdbms.module';
 
 // service
 import {
-  CategoryService,
+  RxJSService,
   ThreadService,
   MessageService,
 } from '@services/controllers';
@@ -18,7 +18,7 @@ import {
   MessageController,
 } from '@controllers';
 
-const services = [CategoryService, ThreadService, MessageService];
+const services = [RxJSService, ThreadService, MessageService];
 const controllers = [CategoryController, ThreadController, MessageController];
 @Module({
   imports: [TypeOrmModule, RDBMSModule],

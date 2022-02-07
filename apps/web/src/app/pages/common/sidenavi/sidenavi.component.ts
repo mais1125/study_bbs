@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { Category } from '@common/models';
 import { Subscription } from 'rxjs';
 import { PAGE } from '../../../app-routig.module';
-import { CategoryService } from '../../../service/category.service';
+import { RxJSService } from '../../../service/category.service';
 
 @Component({
   selector: 'project-sidenavi',
@@ -15,12 +15,10 @@ export class SidenaviComponent implements OnDestroy {
   subscription!: Subscription;
   categories: Category[] = [];
 
-  constructor(public router: Router, private categoryService: CategoryService) {
-    this.subscription = this.categoryService.myCategoriesRec.subscribe(
-      (data) => {
-        this.categories = data;
-      }
-    );
+  constructor(public router: Router, private rxjsService: RxJSService) {
+    this.subscription = this.rxjsService.myCategoriesRec.subscribe((data) => {
+      this.categories = data;
+    });
   }
 
   ngOnDestroy(): void {

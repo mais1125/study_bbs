@@ -6,7 +6,7 @@ POST {{endpoint}}/threadcreate HTTP/1.1
 content-type: application/json
 
 {
-    "cid":{"id":1},
+    "cid":{"id":3},
     "title": "aaaaaaaaaaaa",
     "name": "name",
     "text": "zzzz",

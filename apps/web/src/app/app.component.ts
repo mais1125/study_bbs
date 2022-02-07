@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { API_ENDPOINT, Category } from '@common/models';
 import { ApiService } from './service/api.service';
-import { CategoryService } from './service/category.service';
+import { RxJSService } from './service/category.service';
 
 @Component({
   selector: 'project-root',
@@ -13,7 +13,7 @@ export class AppComponent implements OnInit {
   categories: Category[] = [];
   constructor(
     private apiService: ApiService,
-    private categoryService: CategoryService,
+    private rxjsService: RxJSService,
     private router: Router
   ) {}
 
@@ -25,7 +25,7 @@ export class AppComponent implements OnInit {
           .get<Category[]>(API_ENDPOINT.THREADALL_READ)
           .toPromise()
           .then((i) => {
-            this.categoryService.myCategoriesSec(i);
+            this.rxjsService.myCategoriesSec(i);
           });
       }
     });

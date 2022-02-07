@@ -5,7 +5,7 @@ import { Category } from '@common/models';
 @Injectable({
   providedIn: 'root',
 })
-export class CategoryService {
+export class RxJSService {
   myCategories = new Subject<Category[]>();
 
   myCategoriesRec = this.myCategories.asObservable();
