@@ -6,10 +6,10 @@ POST {{endpoint}}/threadcreate HTTP/1.1
 content-type: application/json
 
 {
-    "cid":{"id":3},
-    "title": "aaaaaaaaaaaa",
-    "name": "name",
-    "text": "zzzz",
+    "cid":{"id":1},
+    "title": "カテゴリAに投稿",
+    "name": "名前",
+    "text": "これは本文",
     "editkey": "1122"
 }
 

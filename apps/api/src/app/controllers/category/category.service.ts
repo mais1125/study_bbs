@@ -25,6 +25,12 @@ export class RxJSService {
     const categories = await this.categoryEntityService.find({
       relations: ['thread'],
     });
+    // 各カテゴリに属するスレッド最新5件取得
+    //const thread
+
+    // 最新スレッドの親メッセージをそれぞれ取得
+    //const message
+
     await categories.reduce(async (_null, item) => {
       item.thread = await this.threadEntityService.find({
         relations: ['message'],

@@ -14,10 +14,10 @@ import { Subscription } from 'rxjs';
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.scss'],
 })
-export class MainComponent implements OnInit, OnDestroy {
+export class MainComponent implements OnDestroy {
   subscription!: Subscription;
   threads: Thread[] = [];
-  categories: Category[] = [];
+  lsit: Category[] = [];
 
   constructor(
     private apiService: ApiService,
@@ -26,14 +26,9 @@ export class MainComponent implements OnInit, OnDestroy {
     private rxjsService: RxJSService
   ) {
     this.subscription = this.rxjsService.myCategoriesRec.subscribe((data) => {
-      this.categories = data;
-      this.categories.reverse();
+      this.lsit = JSON.parse(JSON.stringify(data));
+      this.lsit.reverse();
     });
-  }
-
-  ngOnInit(): void {
-    // パンくずリスト
-    this.sessionService.myBreadCrumbsSec([{}]);
   }
 
   ngOnDestroy(): void {

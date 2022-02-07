@@ -2,7 +2,7 @@
   <p>カテゴリー</p>
 </div>
 <div class="button" *ngIf="categories">
-  <ng-container *ngFor="let category of categories">
-    <button (click)="onClick(category)">◼{{ category.name }}</button>
+  <ng-container *ngFor="let item of categories">
+    <button (click)="onClick(item)">◼{{ item.name }}</button>
   </ng-container>
 </div>

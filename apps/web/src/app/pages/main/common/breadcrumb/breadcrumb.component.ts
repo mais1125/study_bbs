@@ -12,11 +12,11 @@ export class BreadcrumbComponent implements OnDestroy {
   subscription!: Subscription;
   items: MenuItem[] = [];
   constructor(private sessionService: SessionService) {
+    this.items = [{ label: 'TOP', url: '/' }];
     this.subscription = this.sessionService.myBreadCrumbsRec.subscribe(
       (data) => {
-        const hoge: MenuItem = { label: 'TOP', url: '/' };
-        data.unshift(hoge);
-        this.items = data;
+        data.push(this.items[0]);
+        this.items = data.reverse();
       }
     );
   }

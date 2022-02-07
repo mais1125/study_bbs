@@ -2,23 +2,29 @@
 <project-breadcrumb></project-breadcrumb>
 
 <!-- メインコンテンツ -->
-<div *ngIf="categories">
-  <section *ngFor="let item of categories">
-    <h1>{{ item.name }}</h1>
-    <article
+<div *ngIf="lsit">
+  <section *ngFor="let cat of lsit">
+    <h1>{{ cat.name }}</h1>
+    <div *ngFor="let thread of cat.thread">
+      {{ thread.title }}
+    </div>
+    <!-- <article
       class="threads"
-      *ngFor="let child of item.thread"
-      (click)="onClick(child)"
+      *ngFor="let thread of cat.thread"
+      (click)="onClick(thread)"
     >
-      <h3>タイトル：{{ child.title }}</h3>
-      <span>投稿日時：{{ child.createAt }}</span>
+
+
+    </ng-component>
+      <h3>タイトル：{{ thread.title }}</h3>
+      <span>投稿日時：{{ thread.createAt }}</span>
 
       <p>
-        投稿者：{{ child.message[0].name }}&nbsp;&nbsp;&nbsp;<i
+        投稿者：{{ thread.message[0].name }}&nbsp;&nbsp;&nbsp;<i
           class="pi pi-comments"
         ></i>
-        ：{{ child.message.length - 1 }}件
+        ：{{ thread.message.length - 1 }}件
       </p>
-    </article>
+    </article> -->
   </section>
 </div>
