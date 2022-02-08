@@ -1,3 +1,4 @@
+import { _ThreadEntity } from './thread.model';
 import { Thread } from './_index';
 
 /** カテゴリータイプ */
@@ -18,3 +19,13 @@ export interface Category {
   /** スレッド */
   thread?: Thread[];
 }
+
+/**
+ * CategoryEntityモデル
+ */
+export type _CategoryEntity = Category;
+
+/**
+ * Category取得モデル
+ */
+export type CategoryRead = _CategoryEntity & _ThreadEntity;

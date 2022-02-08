@@ -2,7 +2,7 @@
 
 ###
 # READ thread すべて読み込み
-GET  {{endpoint}}/threadallread HTTP/1.1
+GET  {{endpoint}}/allread HTTP/1.1
 content-type: application/json
 
 

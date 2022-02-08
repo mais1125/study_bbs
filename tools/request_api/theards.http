@@ -6,8 +6,8 @@ POST {{endpoint}}/threadcreate HTTP/1.1
 content-type: application/json
 
 {
-    "cid":{"id":1},
-    "title": "カテゴリAに投稿",
+    "cid":{"id":3},
+    "title": "カテゴリCに投稿1",
     "name": "名前",
     "text": "これは本文",
     "editkey": "1122"
@@ -21,5 +21,5 @@ content-type: application/json
 
 ###
 # READ thread すべて読み込み
-GET  {{endpoint}}/threadallread HTTP/1.1
+GET  {{endpoint}}/allread HTTP/1.1
 content-type: application/json

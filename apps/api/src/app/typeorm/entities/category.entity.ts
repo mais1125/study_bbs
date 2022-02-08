@@ -1,9 +1,9 @@
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { ThreadEntity } from '@entities';
-import { Category, CATEGORY_TYPE, Thread } from 'apps/common/models/_index';
+import { CATEGORY_TYPE, _CategoryEntity } from '@common/models';
 
 @Entity('Categories')
-export class CategoryEntity implements Category {
+export class CategoryEntity implements _CategoryEntity {
   @PrimaryGeneratedColumn()
   id: number;
 

@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import {
+  FindConditions,
   FindManyOptions,
   FindOneOptions,
   getRepository,
@@ -54,5 +55,12 @@ export abstract class AbstractRDBMSService<
    */
   delete(params: Entity): Promise<Entity> {
     return getRepository<Entity>(this.entityName).remove(params);
+  }
+
+  /**
+   * データ件数取得(Count)
+   */
+  findAndCount(options?: FindManyOptions<Entity>): Promise<[Entity[], number]> {
+    return getRepository<Entity>(this.entityName).findAndCount(options);
   }
 }

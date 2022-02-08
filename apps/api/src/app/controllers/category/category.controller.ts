@@ -9,9 +9,9 @@ export class CategoryController {
   /**
    * スレッドの全件取得
    */
-  @Get(API_ENDPOINT.THREADALL_READ)
-  threadAllRead(): Promise<Category[]> {
-    return this.rxjsService.threadAllRead();
+  @Get(API_ENDPOINT.ALL_READ)
+  allRead(): Promise<Category[]> {
+    return this.rxjsService.allRead();
   }
 
   /**

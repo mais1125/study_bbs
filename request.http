@@ -37,7 +37,7 @@ content-type: application/json
 
 ###
 # READ thread すべて読み込み
-GET  http://localhost:3333/api/v1/threadallread HTTP/1.1
+GET  http://localhost:3333/api/v1/allRead HTTP/1.1
 content-type: application/json
 
 

@@ -7,9 +7,9 @@ POST {{endpoint}}/messagecreate HTTP/1.1
 content-type: application/json
 
 {
-    "tid":{"id":10},
-    "text":"あああああ ",
-    "name":"いいい",
+    "tid":{"id":6},
+    "text":"コメントを投稿 ",
+    "name":"返信した名前",
     "editkey":"1111"
 }
 

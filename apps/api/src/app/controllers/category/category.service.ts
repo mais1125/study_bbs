@@ -1,13 +1,25 @@
-import { Category, DATE_FORMAT } from '@common/models';
+import {
+  Category,
+  CategoryRead,
+  DATE_FORMAT,
+  ThreadRead,
+} from '@common/models';
 import { Injectable } from '@nestjs/common';
-import { CategoryEntityService, ThreadEntityService } from '@services/entities';
+import {
+  CategoryEntityService,
+  MessageEntityService,
+  ThreadEntityService,
+} from '@services/entities';
 import moment = require('moment');
+
+import { CategoryEntity } from '../../typeorm/entities/category.entity';
 
 @Injectable()
 export class RxJSService {
   constructor(
     private categoryEntityService: CategoryEntityService,
-    private threadEntityService: ThreadEntityService
+    private threadEntityService: ThreadEntityService,
+    private messageEntityService: MessageEntityService
   ) {}
 
   /**
@@ -20,32 +32,28 @@ export class RxJSService {
   /**
    * スレッドを各カテゴリー最新から５件ずつ取得
    */
-  async threadAllRead(): Promise<Category[]> {
+  async allRead(): Promise<CategoryRead[]> {
     // category を取得する
-    const categories = await this.categoryEntityService.find({
-      relations: ['thread'],
-    });
+    const categories =
+      (await this.categoryEntityService.find()) as CategoryRead[];
     // 各カテゴリに属するスレッド最新5件取得
-    //const thread
-
-    // 最新スレッドの親メッセージをそれぞれ取得
-    //const message
-
-    await categories.reduce(async (_null, item) => {
-      item.thread = await this.threadEntityService.find({
-        relations: ['message'],
-        where: [{ cid: item.id }],
+    for (let i = 0; i < categories.length; i++) {
+      const res = (await this.threadEntityService.find({
+        where: [{ cid: categories[i].id }],
         order: { createAt: 'DESC' },
-        take: 5,
-      });
-    }, Promise.resolve());
-    categories.filter((item) => {
-      item.thread.filter((item) => {
-        item.createAt = moment(item.createAt).format(DATE_FORMAT.FOMAT);
-        item.updateAt = moment(item.updateAt).format(DATE_FORMAT.FOMAT);
-      });
-    });
-
+        take: 2,
+      })) as ThreadRead[];
+      for (let i = 0; i < res.length; i++) {
+        const [messages, total] = await this.messageEntityService.findAndCount({
+          where: { tid: res[i].id },
+          take: 1,
+          order: { createAt: 'ASC' },
+        });
+        res[i].message = [...messages];
+        res[i].total = total;
+      }
+      categories[i].thread = [...res];
+    }
     return categories;
   }
 

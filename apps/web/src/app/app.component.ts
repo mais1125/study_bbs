@@ -22,7 +22,7 @@ export class AppComponent implements OnInit {
     this.router.events.subscribe((val) => {
       if (val instanceof NavigationEnd) {
         this.apiService
-          .get<Category[]>(API_ENDPOINT.THREADALL_READ)
+          .get<Category[]>(API_ENDPOINT.ALL_READ)
           .toPromise()
           .then((i) => {
             this.rxjsService.myCategoriesSec(i);

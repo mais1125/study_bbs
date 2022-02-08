@@ -9,16 +9,11 @@ import {
 import { CategoryEntity, MessageEntity } from '@entities';
 
 import { TimeStampEntity } from './abstract';
-import {
-  BoardCreate,
-  Category,
-  Message,
-  Thread,
-} from 'apps/common/models/_index';
+import { BoardCreate, Category, Message, _ThreadEntity } from '@common/models';
 import { IsNotEmpty } from 'class-validator';
 
 @Entity('Threads')
-export class ThreadEntity extends TimeStampEntity implements Thread {
+export class ThreadEntity extends TimeStampEntity implements _ThreadEntity {
   @PrimaryGeneratedColumn({ comment: '親スレッドID' })
   id?: number;
 

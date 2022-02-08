@@ -18,7 +18,7 @@ export class ThreadController {
   // /**
   //  * スレッドの全件取得
   //  */
-  // @Get(API_ENDPOINT.THREADALL_READ)
+  // @Get(API_ENDPOINT.ALL_READ)
   // thradsRead(): Promise<Thread[]> {
   //   return this.threadService.thradsRead();
   // }
